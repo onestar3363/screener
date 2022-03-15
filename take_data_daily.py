@@ -14,8 +14,10 @@ st.title('Screener')
 start = time.perf_counter()
 @st.cache(suppress_st_warning=True)
 def getdata():
-    os.remove("günlük.db")
-    os.remove("haftalik.db")
+    if os.path.exists("günlük.db"):
+      os.remove("günlük.db")
+    elif os.path.exists("haftalik.db"):
+      os.remove("haftalik.db")
     exchange=ccxt.currencycom()
     markets= exchange.load_markets()    
     symbols1=pd.read_csv('csymbols.csv',header=None)
