@@ -67,9 +67,8 @@ def getdata():
         st.write('Last downloaded', index,ticker,now)
         return(index,ticker,now)
 lastindex=getdata()
-st.write('Last downloaded', lastindex)
 end = time.perf_counter() 
-st.write(end - start)
+st.write('Last downloaded', lastindex, 'Süre', end - start)
 
 def MACDdecision(df):
     df['MACD_diff']= ta.trend.macd_diff(df.Close)
