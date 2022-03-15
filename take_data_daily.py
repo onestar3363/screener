@@ -31,7 +31,7 @@ def getdata():
             index += 1
             try:
                 data2 = exchange.fetch_ohlcv(ticker, timeframe='1d',limit=155) #since=exchange.parse8601('2022-02-13T00:00:00Z'))
-                data3= exchange.fetch_ohlcv(ticker, timeframe='1w',limit=155)
+                data3= exchange.fetch_ohlcv(ticker, timeframe='1w',limit=55)
                 st.write(f"⏳ {index,ticker} downloaded")
             except Exception as e:
                 print(e)
@@ -58,7 +58,7 @@ def getdata():
             df3=df2.reset_index()
             df4=df3.round(2)
             df4.to_sql(bticker,engine, if_exists='replace')
-            dfw=yf.download(bticker,period="155wk",interval = "1wk")
+            dfw=yf.download(bticker,period="55wk",interval = "1wk")
             df2w=dfw.drop('Adj Close', 1)
             df3w=df2w.reset_index()
             df4w=df3w.round(2)
