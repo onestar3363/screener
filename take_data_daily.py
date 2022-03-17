@@ -189,7 +189,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                 if len(frame)>30 and len(framew)>30 and framew['Decision EMA50'].iloc[-1]=='Sell' \
                 and frame['ADX'].iloc[-1]>=adx_value and (frame['MACD_diff'].iloc[-1]<0 or frame['Trend MACD'].iloc[-1]=='Strong')  \
                 and (framew['MACD_diff'].iloc[-1]<0 or framew['Trend MACD'].iloc[-1]=='Strong') and frame['Decision EMA50_cross'].iloc[-1]=='Sell'\
-                and framew['sup'].iloc[-1]=='-1':
+                and framew['sup'].iloc[-1]==-1:
                     sira +=1
                     st.write(str(sira)+" Selling EMA50 for "+ name)
                     st.write(frame.tail(2))
@@ -199,7 +199,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
             try:
                 if  len(frame)>30 and len(framew)>30 and frame['Decision MACD'].iloc[-1]=='Buy'  \
                 and framew['Decision EMA50'].iloc[-1]=='Buy' and frame['ADX'].iloc[-1]>=adx_value\
-                and (framew['MACD_diff'].iloc[-1]>0 or framew['Trend MACD'].iloc[-1]=='Strong') and framew['sup'].iloc[-1]=='1':
+                and (framew['MACD_diff'].iloc[-1]>0 or framew['Trend MACD'].iloc[-1]=='Strong') and framew['sup'].iloc[-1]==1:
                     sira +=1
                     st.write(str(sira)+" Buying Signal MACD/EMA200 for "+ name)
                     st.write(frame.tail(2))
@@ -209,7 +209,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
             try: 
                 if len(frame)>30 and len(framew)>30 and frame['Decision MACD'].iloc[-1]=='Sell'  \
                     and framew['Decision EMA50'].iloc[-1]=='Sell' and frame['ADX'].iloc[-1]>=adx_value \
-                    and (framew['MACD_diff'].iloc[-1]<0 or framew['Trend MACD'].iloc[-1]=='Strong') and framew['sup'].iloc[-1]=='-1':
+                    and (framew['MACD_diff'].iloc[-1]<0 or framew['Trend MACD'].iloc[-1]=='Strong') and framew['sup'].iloc[-1]==-1:
                         sira +=1
                         st.write(str(sira)+" Selling Signal MACD/EMA200 for "+ name)
                         st.write(frame.tail(2))
