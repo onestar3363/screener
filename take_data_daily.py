@@ -111,6 +111,10 @@ def Supertrend(df):
     df.loc[(df.sup==1)&(df.sup.shift(1)==-1), 'Decision Super'] = 'Buy'
     df.loc[(df.sup==-1)&(df.sup.shift(1)==1), 'Decision Super'] = 'Sell'  
 
+def ATR_decision(df):
+    df['ATR']= ta.volatility.AverageTrueRange(df.High, df.Low, df.Close)
+    df['RISK']= df['ATR']/1000
+
 # def Stoch_decision(df):
 #     df['Stoch'] = ta.momentum.stoch(df.High, df.Low, df.Close, smooth_window=3)
 #     df['Stoch_Signal'] = ta.momentum.stoch_signal(df.High, df.Low, df.Close, smooth_window=3)
@@ -145,6 +149,7 @@ def get_framelist():
                 EMA_decision(frame)
                 ADX_decision(frame)
                 Supertrend(frame)
+                ATR_decision(frame)
                 #Stoch_decision(frame)
                 # print(name)
                 # print(frame)
@@ -279,8 +284,8 @@ for name, frame,framew in zip(names,framelist,framelistw):
                         showlegend=False, xaxis_rangeslider_visible=False)
                     with st.expander(str(sira) +') '+ name):
                         col3, col4 = st.columns([1, 1])
-                        col3.write(frame[['Close', 'sup2','EMA50_cross','EMA200_cross','ADX','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
-                        col4.write(framew[['Close','sup2','EMA50_cross','EMA200_cross','ADX','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
+                        col3.write(frame[['Close','RISK','sup2','ADX','EMA50_cross','EMA200_cross','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
+                        col4.write(framew[['Close','RISK','sup2','ADX','EMA50_cross','EMA200_cross','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
                     col1, col2 = st.columns([1, 1])
                     col1.plotly_chart(fig,use_container_width=True)
                     col2.plotly_chart(figw,use_container_width=True)
