@@ -112,8 +112,8 @@ def Supertrend(df):
     df.loc[(df.sup==-1)&(df.sup.shift(1)==1), 'Decision Super'] = 'Sell'  
 
 def ATR_decision(df):
-    df['ATR']= ta.volatility.average_true_range(df.High, df.Low, df.Close)
-    df['RISK']= df['ATR']/1000
+    df['ATR']= ta.volatility.average_true_range(df.High, df.Low, df.Close,window=10)
+    df['RISK']= df['ATR']/1000*100
 
 # def Stoch_decision(df):
 #     df['Stoch'] = ta.momentum.stoch(df.High, df.Low, df.Close, smooth_window=3)
