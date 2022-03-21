@@ -285,7 +285,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                     with st.expander(str(sira) +') '+ name):
                         col3, col4 = st.columns([1, 1])
                         col3.write(frame[['Close','RISK','sup2','ADX','EMA50_cross','EMA200_cross','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
-                        col4.write(framew[['Close','RISK','sup2','ADX','EMA50_cross','EMA200_cross','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
+                        col4.write(framew[['Close','sup2','ADX','EMA50_cross','EMA200_cross','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
                     col1, col2 = st.columns([1, 1])
                     col1.plotly_chart(fig,use_container_width=True)
                     col2.plotly_chart(figw,use_container_width=True)
