@@ -212,7 +212,7 @@ def get_figures(frame):
     fig.add_trace(go.Scatter(x=frame['Date'], 
          y=frame['sup2'],
          opacity=0.7,
-         mode='markers', marker=dict(size=5,color='LightSkyBlue'), 
+         mode='markers', marker=dict(size=2,color='LightSkyBlue'), 
          name='Supertrend'))
     fig.add_trace(go.Bar(x=frame['Date'], 
      y=frame['MACD_diff']
@@ -237,7 +237,7 @@ def get_figures(frame):
          y=frame['DIOSQ_EMA'],
          line=dict(color='purple', width=1)
         ), row=3, col=1)   
-    fig.update_layout( height=500, width=1200,
+    fig.update_layout( height=600, width=1200,
         showlegend=False, xaxis_rangeslider_visible=False)
     return fig
 sira=0
