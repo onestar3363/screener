@@ -314,37 +314,4 @@ for name, frame,framew in zip(names,framelist,framelistw):
                     col2.plotly_chart(figw,use_container_width=True)
             except Exception as e:
                 st.write(name,e)
-        elif option1 == 'Buy'and option2 == 'SUPERTREND':
-            try:
-                if len(frame)>30 and len(framew)>30 and frame['Decision Super'].iloc[-1]=='Buy' and framew['Dec_EMA50'].iloc[-1]=='Buy' \
-                or frame['ADX'].iloc[-1]>=adx_value and (frame['MACD_diff'].iloc[-1]>0 or frame['Trend MACD'].iloc[-1]=='Strong')  \
-                and (framew['MACD_diff'].iloc[-1]>0 or framew['Trend MACD'].iloc[-1]=='Strong'):
-                    sira +=1
-                    with st.expander(str(sira) +') '+ name):
-                        col3, col4 = st.columns([1, 1])
-                        col3.write(frame[['Close','RISK','sup2','ADX','EMA50_cross','EMA200_cross','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
-                        col4.write(framew[['Close','sup2','ADX','EMA50_cross','EMA200_cross','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
-                    col1, col2 = st.columns([1, 1])
-                    fig=get_figures(frame)
-                    figw=get_figures(framew)
-                    col1.plotly_chart(fig,use_container_width=True)
-                    col2.plotly_chart(figw,use_container_width=True)
-            except Exception as e:
-                st.write(name,e) 
-        elif option1 == 'Sell'and option2 == 'SUPERTREND':        
-            try:    
-                if len(frame)>30 and len(framew)>30 and frame['Decision Super'].iloc[-1]=='Sell' and framew['Dec_EMA50'].iloc[-1]=='Sell' \
-                or frame['ADX'].iloc[-1]>=adx_value and (frame['MACD_diff'].iloc[-1]<0 or frame['Trend MACD'].iloc[-1]=='Strong') \
-                and (framew['MACD_diff'].iloc[-1]<0 or framew['Trend MACD'].iloc[-1]=='Strong'):
-                    sira +=1
-                    with st.expander(str(sira) +') '+ name):
-                        col3, col4 = st.columns([1, 1])
-                        col3.write(frame[['Close','RISK','sup2','ADX','EMA50_cross','EMA200_cross','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
-                        col4.write(framew[['Close','sup2','ADX','EMA50_cross','EMA200_cross','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
-                        col1, col2 = st.columns([1, 1])
-                        fig=get_figures(frame)
-                        figw=get_figures(framew)
-                        col1.plotly_chart(fig,use_container_width=True)
-                        col2.plotly_chart(figw,use_container_width=True)
-            except Exception as e:
-                st.write(name,e)  
+       
