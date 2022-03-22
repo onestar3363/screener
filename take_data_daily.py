@@ -301,7 +301,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                     and framew['Dec_EMA50'].iloc[-1]=='Sell' and frame['ADX'].iloc[-1]>=adx_value and frame['MACD'].iloc[-1]>=0 \
                     and (framew['MACD_diff'].iloc[-1]<0 or framew['Trend MACD'].iloc[-1]=='Strong'):
                         sira +=1
-                        with st.expander(str(sira) +') '+ name):
+                    with st.expander(str(sira) +') '+ name):
                         col3, col4 = st.columns([1, 1])
                         col3.write(frame[['Close','RISK','sup2','ADX','EMA50_cross','EMA200_cross','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
                         col4.write(framew[['Close','sup2','ADX','EMA50_cross','EMA200_cross','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
