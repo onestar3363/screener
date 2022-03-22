@@ -211,7 +211,9 @@ def get_figures(frame):
          name='EMA 200'))
     fig.add_trace(go.Scatter(x=frame['Date'], 
          y=frame['sup2'],
-         mode='markers', name='Supertrend'))
+         opacity=0.7,
+         mode='markers', marker=dict(size=5,color='LightSkyBlue'), 
+         name='Supertrend'))
     fig.add_trace(go.Bar(x=frame['Date'], 
      y=frame['MACD_diff']
     ), row=2, col=1)
