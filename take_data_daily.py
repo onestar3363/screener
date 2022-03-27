@@ -253,7 +253,7 @@ def expander():
     with st.expander(str(sira) +') '+ name+'/'+' RISK= '+str(frame['RISK'].iloc[-1].round(2))+'/ %ATR='+str(frame['ATR%'].iloc[-1].round(2))):
         col3, col4 = st.columns([1, 1])
         col3.write(frame[['Close','RISK','ATR%','sup2','ADX','EMA20_cross','EMA50_cross','EMA200_cross','Dec_MACD','Dec_DIOSQ','Trend MACD','MACD_diff']].tail(2))
-        col4.write(framew[['Close','sup2','ADX','EMA50_cross','EMA200_cross','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
+        col4.write(framew[['Close','sup2','Dec_EMA50','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
         col1, col2 = st.columns([1, 1])
         fig=get_figures(frame)
         figw=get_figures(framew)
@@ -263,9 +263,9 @@ sira=0
 for name, frame,framew in zip(names,framelist,framelistw): 
     if option1 == 'Buy'and option2 == 'EMA':  
         try:
-            if len(frame)>30 and len(framew)>30 and framew['Dec_EMA50'].iloc[-1]=='Buy' \
-            and frame['ADX'].iloc[-1]>=adx_value and (frame['MACD_diff'].iloc[-1]>0 or frame['Trend MACD'].iloc[-1]=='Buy')  \
-            and (framew['MACD_diff'].iloc[-1]>0 or framew['Trend MACD'].iloc[-1]=='Buy') and (frame['EMA50_cross'].iloc[-1]=='Buy' or frame['EMA200_cross'].iloc[-1]=='Buy') \
+            if len(frame)>30 and len(framew)>30 and (frame['EMA50_cross'].iloc[-1]=='Buy' or frame['EMA200_cross'].iloc[-1]=='Buy') \
+            and frame['ADX'].iloc[-1]>=adx_value and (frame['MACD_diff'].iloc[-1]>0 or frame['Trend MACD'].iloc[-1]=='Buy')   \
+            and (framew['MACD_diff'].iloc[-1]>0 or framew['Trend MACD'].iloc[-1]=='Buy' and framew['Dec_EMA50'].iloc[-1]=='Buy') \
             and framew['sup'].iloc[-1]==1: 
                 sira +=1
                 expander()
