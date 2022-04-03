@@ -253,7 +253,7 @@ def get_figures(frame):
 def expander():
     with st.expander(str(sira) +') '+ name+'/'+' RISK= '+str(frame['RISK'].iloc[-1].round(2))+'/ %ATR='+str(frame['ATR%'].iloc[-1].round(2))):
         col3, col4 = st.columns([1, 1])
-        col3.write(frame[['Close','RISK','ATR%','sup2','ADX','EMA20_cross','EMA50_cross','EMA200_cross','Dec_MACD','Dec_DIOSQ','Trend MACD','MACD_diff']].tail(2))
+        col3.write(frame[['Close','RISK','ATR%','ADX','EMA20_cross','EMA50_cross','EMA200_cross','Dec_MACD','Dec_DIOSQ','Trend MACD','MACD_diff']].tail(2))
         col4.write(framew[['Close','sup2','Dec_EMA50','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
         col1, col2 = st.columns([1, 1])
         fig=get_figures(frame)
