@@ -11,14 +11,11 @@ import pandas_ta as pa
 import os
 import plotly
 import plotly.graph_objs as go 
-from streamlit_autorefresh import st_autorefresh
-
 
 st.set_page_config(layout="wide")
-st_autorefresh(interval=3 * 60 * 1000, key="dataframerefresh")
 st.title('Screener')
 start = time.perf_counter()
-@st.cache(suppress_st_warning=True,ttl=2*60)
+@st.cache(suppress_st_warning=True)
 def getdata():
     if os.path.exists("günlük.db"):
         os.remove("günlük.db")
@@ -33,11 +30,11 @@ def getdata():
     engine=sqlalchemy.create_engine('sqlite:///günlük.db')
     enginew=sqlalchemy.create_engine('sqlite:///haftalik.db')
     with st.empty():
-        for ticker,fullname in zip(symbols[:5],fullnames[:5]):
+        for ticker,fullname in zip(symbols,fullnames):
             index += 1
             try:
-                data2 = exchange.fetch_ohlcv(ticker, timeframe='1d',limit=1000) #since=exchange.parse8601('2022-02-13T00:00:00Z'))
-                data3= exchange.fetch_ohlcv(ticker, timeframe='1w',limit=250)
+                data2 = exchange.fetch_ohlcv(ticker, timeframe='1d',limit=205) #since=exchange.parse8601('2022-02-13T00:00:00Z'))
+                data3= exchange.fetch_ohlcv(ticker, timeframe='1w',limit=55)
                 st.write(f"⏳ {index,ticker} downloaded")
             except Exception as e:
                 print(e)
@@ -52,23 +49,23 @@ def getdata():
                 dfc2['Date'] = dfc2['Date'].dt.strftime('%d-%m-%Y')
                 dfc2.to_sql(fullname,enginew, if_exists='replace')
 
-        # index += 1
-        # bsymbols1=pd.read_csv('bsymbols.csv',header=None)
-        # bsymbols=bsymbols1.iloc[:,0].to_list()
-        # for bticker in bsymbols:
-            # #print(index,bticker,end="\r")
-            # st.write(f"⏳ {index,bticker} downloaded")
-            # index += 1
-            # df=yf.download(bticker,period="3y")
-            # df2=df.drop('Adj Close', 1)
-            # df3=df2.reset_index()
-            # df4=df3.round(2)
-            # df4.to_sql(bticker,engine, if_exists='replace')
-            # dfw=yf.download(bticker,period="250wk",interval = "1wk")
-            # df2w=dfw.drop('Adj Close', 1)
-            # df3w=df2w.reset_index()
-            # df4w=df3w.round(2)
-            # df4w.to_sql(bticker,enginew, if_exists='replace')
+        index += 1
+        bsymbols1=pd.read_csv('bsymbols.csv',header=None)
+        bsymbols=bsymbols1.iloc[:,0].to_list()
+        for bticker in bsymbols:
+            #print(index,bticker,end="\r")
+            st.write(f"⏳ {index,bticker} downloaded")
+            index += 1
+            df=yf.download(bticker,period="1y")
+            df2=df.drop('Adj Close', 1)
+            df3=df2.reset_index()
+            df4=df3.round(2)
+            df4.to_sql(bticker,engine, if_exists='replace')
+            dfw=yf.download(bticker,period="55wk",interval = "1wk")
+            df2w=dfw.drop('Adj Close', 1)
+            df3w=df2w.reset_index()
+            df4w=df3w.round(2)
+            df4w.to_sql(bticker,enginew, if_exists='replace')
         now=pd.Timestamp.now().strftime("%d-%m-%Y, %H:%M")
         st.write('Last downloaded', index,ticker,now)
         return(index,ticker,now)
@@ -95,8 +92,7 @@ def EMA_decision(df):
     (df.Low.shift(1)>=df.EMA20.shift(1))&(df.Close<df.EMA20)), 'EMA20_cross'] = 'Sell'
 
     df['EMA50'] = ta.trend.ema_indicator(df.Close,window=50)
-    #df.loc[(df.Close>df['EMA50']), 'Dec_EMA50'] = 'Buy'
-    df.loc[((df.Close>df.EMA50)& (df.Close.shift(1)>df.EMA50.shift(1))), 'Dec_EMA50'] = 'Buy'
+    df.loc[(df.Close>df['EMA50']), 'Dec_EMA50'] = 'Buy'
     df.loc[(df.Close<df['EMA50']), 'Dec_EMA50'] = 'Sell'
     df.loc[((df.Close>df.EMA50)& (df.Close.shift(1)<df.EMA50.shift(1)))|((df.Close.shift(1)>df.EMA50.shift(1))& \
     (df.Low.shift(1)<=df.EMA50.shift(1))&(df.Close>df.EMA50)), 'EMA50_cross'] = 'Buy'
@@ -117,7 +113,7 @@ def ADX_decision(df):
     df['ADX_pos']=ta.trend.adx_pos(df.High, df.Low, df.Close)
     df['DIOSQ']=df['ADX_pos']-df['ADX_neg']
     df['DIOSQ_EMA']=ta.trend.ema_indicator(df.DIOSQ,window=10)
-    df.loc[(df.ADX>df.ADX.shift(1)) & (df.ADX>=25),'Decision ADX']='Buy'
+    df.loc[(df.ADX>df.ADX.shift(1)) & (df.ADX>=18),'Decision ADX']='Buy'
     df.loc[(df.DIOSQ>df.DIOSQ_EMA)& (df.DIOSQ.shift(1)<df.DIOSQ_EMA.shift(1)), 'Dec_DIOSQ'] = 'Buy'
     df.loc[(df.DIOSQ<df.DIOSQ_EMA)& (df.DIOSQ.shift(1)>df.DIOSQ_EMA.shift(1)), 'Dec_DIOSQ'] = 'Sell'
 
@@ -307,8 +303,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
         try:   
             if  len(frame)>30 and len(framew)>30 and framew['Dec_EMA50'].iloc[-1]=='Buy' \
             and (frame['MACD_diff'].iloc[-1]>0 or frame['Trend MACD'].iloc[-1]=='Buy') and frame['ADX'].iloc[-1]>=adx_value \
-            and (framew['MACD_diff'].iloc[-1]>0 or framew['Trend MACD'].iloc[-1]=='Buy') and frame['EMA20_cross'].iloc[-1]=='Buy'  \
-            and framew['sup'].iloc[-1]==1 :    
+            and (framew['MACD_diff'].iloc[-1]>0 or framew['Trend MACD'].iloc[-1]=='Buy') and frame['EMA20_cross'].iloc[-1]=='Buy' and frame['sup'].iloc[-1]==1:    
                 sira +=1
                 expander()
         except Exception as e:
@@ -317,7 +312,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
         try: 
             if  len(frame)>30 and len(framew)>30 and framew['Dec_EMA50'].iloc[-1]=='Sell' \
             and (frame['MACD_diff'].iloc[-1]<0 or frame['Trend MACD'].iloc[-1]=='Sell') and frame['ADX'].iloc[-1]>=adx_value \
-            and (framew['MACD_diff'].iloc[-1]<0 or framew['Trend MACD'].iloc[-1]=='Sell') and frame['EMA20_cross'].iloc[-1]=='Sell' and framew['sup'].iloc[-1]==-1:  
+            and (framew['MACD_diff'].iloc[-1]<0 or framew['Trend MACD'].iloc[-1]=='Sell') and frame['EMA20_cross'].iloc[-1]=='Sell' and frame['sup'].iloc[-1]==-1:  
                 sira +=1
                 expander()
         except Exception as e:
