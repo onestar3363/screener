@@ -196,7 +196,7 @@ end = time.perf_counter()
 st.write(end - start)
 
 option1 = st.sidebar.selectbox("Buy or Sell",('Buy','Sell')) 
-option2 = st.sidebar.selectbox("Which Indicator?", ('EMA', 'MACD','EMA20'))
+option2 = st.sidebar.selectbox("Which Indicator?", ('EMA', 'MACD','Index'))
 adx_value= st.sidebar.number_input('ADX Value',min_value=10,value=18)
 st.header(option1 + option2)
 def get_figures(frame):
@@ -261,6 +261,7 @@ def expander():
         col1.plotly_chart(fig,use_container_width=True)
         col2.plotly_chart(figw,use_container_width=True)
 sira=0
+indices=['US500/USD_S&P 500_INDEX_US','EU50/EUR_Euro Stoxx 50_INDEX_DE','XU030.IS']
 for name, frame,framew in zip(names,framelist,framelistw): 
     if option1 == 'Buy'and option2 == 'EMA':  
         try:
@@ -300,3 +301,8 @@ for name, frame,framew in zip(names,framelist,framelistw):
                 expander()
         except Exception as e:
             st.write(name,e)
+    elif option2 == 'Index' and name in indices:
+        try:   
+                expander()
+        except Exception as e:
+            st.write(name,e) 
