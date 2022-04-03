@@ -33,8 +33,8 @@ def getdata():
         for ticker,fullname in zip(symbols,fullnames):
             index += 1
             try:
-                data2 = exchange.fetch_ohlcv(ticker, timeframe='1d',limit=205) #since=exchange.parse8601('2022-02-13T00:00:00Z'))
-                data3= exchange.fetch_ohlcv(ticker, timeframe='1w',limit=55)
+                data2 = exchange.fetch_ohlcv(ticker, timeframe='1d',limit=1000) #since=exchange.parse8601('2022-02-13T00:00:00Z'))
+                data3= exchange.fetch_ohlcv(ticker, timeframe='1w',limit=250)
                 st.write(f"⏳ {index,ticker} downloaded")
             except Exception as e:
                 print(e)
@@ -56,12 +56,12 @@ def getdata():
             #print(index,bticker,end="\r")
             st.write(f"⏳ {index,bticker} downloaded")
             index += 1
-            df=yf.download(bticker,period="1y")
+            df=yf.download(bticker,period="3y")
             df2=df.drop('Adj Close', 1)
             df3=df2.reset_index()
             df4=df3.round(2)
             df4.to_sql(bticker,engine, if_exists='replace')
-            dfw=yf.download(bticker,period="55wk",interval = "1wk")
+            dfw=yf.download(bticker,period="250wk",interval = "1wk")
             df2w=dfw.drop('Adj Close', 1)
             df3w=df2w.reset_index()
             df4w=df3w.round(2)
@@ -92,7 +92,8 @@ def EMA_decision(df):
     (df.Low.shift(1)>=df.EMA20.shift(1))&(df.Close<df.EMA20)), 'EMA20_cross'] = 'Sell'
 
     df['EMA50'] = ta.trend.ema_indicator(df.Close,window=50)
-    df.loc[(df.Close>df['EMA50']), 'Dec_EMA50'] = 'Buy'
+    #df.loc[(df.Close>df['EMA50']), 'Dec_EMA50'] = 'Buy'
+    df.loc[((df.Close>df.EMA50)& (df.Close.shift(1)>df.EMA50.shift(1))), 'Dec_EMA50'] = 'Buy'
     df.loc[(df.Close<df['EMA50']), 'Dec_EMA50'] = 'Sell'
     df.loc[((df.Close>df.EMA50)& (df.Close.shift(1)<df.EMA50.shift(1)))|((df.Close.shift(1)>df.EMA50.shift(1))& \
     (df.Low.shift(1)<=df.EMA50.shift(1))&(df.Close>df.EMA50)), 'EMA50_cross'] = 'Buy'
@@ -113,7 +114,7 @@ def ADX_decision(df):
     df['ADX_pos']=ta.trend.adx_pos(df.High, df.Low, df.Close)
     df['DIOSQ']=df['ADX_pos']-df['ADX_neg']
     df['DIOSQ_EMA']=ta.trend.ema_indicator(df.DIOSQ,window=10)
-    df.loc[(df.ADX>df.ADX.shift(1)) & (df.ADX>=18),'Decision ADX']='Buy'
+    df.loc[(df.ADX>df.ADX.shift(1)) & (df.ADX>=25),'Decision ADX']='Buy'
     df.loc[(df.DIOSQ>df.DIOSQ_EMA)& (df.DIOSQ.shift(1)<df.DIOSQ_EMA.shift(1)), 'Dec_DIOSQ'] = 'Buy'
     df.loc[(df.DIOSQ<df.DIOSQ_EMA)& (df.DIOSQ.shift(1)>df.DIOSQ_EMA.shift(1)), 'Dec_DIOSQ'] = 'Sell'
 
@@ -263,7 +264,7 @@ sira=0
 for name, frame,framew in zip(names,framelist,framelistw): 
     if option1 == 'Buy'and option2 == 'EMA':  
         try:
-            if len(frame)>30 and len(framew)>30 and (frame['EMA50_cross'].iloc[-1]=='Buy' or frame['EMA200_cross'].iloc[-1]=='Buy') \
+            if len(frame)>30 and len(framew)>30 and (frame['EMA20_cross'].iloc[-1]=='Buy' or frame['EMA50_cross'].iloc[-1]=='Buy' or frame['EMA200_cross'].iloc[-1]=='Buy') \
             and frame['ADX'].iloc[-1]>=adx_value and (frame['MACD_diff'].iloc[-1]>0 or frame['Trend MACD'].iloc[-1]=='Buy')   \
             and (framew['MACD_diff'].iloc[-1]>0 or framew['Trend MACD'].iloc[-1]=='Buy') and framew['Dec_EMA50'].iloc[-1]=='Buy'  \
             and framew['sup'].iloc[-1]==1: 
@@ -273,7 +274,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
             st.write(name,e)
     elif option1 == 'Sell'and option2 == 'EMA':   
         try:     
-             if len(frame)>30 and len(framew)>30 and (frame['EMA50_cross'].iloc[-1]=='Sell' or frame['EMA200_cross'].iloc[-1]=='Sell') \
+             if len(frame)>30 and len(framew)>30 and (frame['EMA20_cross'].iloc[-1]=='Sell' or frame['EMA50_cross'].iloc[-1]=='Sell' or frame['EMA200_cross'].iloc[-1]=='Sell') \
             and frame['ADX'].iloc[-1]>=adx_value and (frame['MACD_diff'].iloc[-1]<0 or frame['Trend MACD'].iloc[-1]=='Sell')   \
             and (framew['MACD_diff'].iloc[-1]<0 or framew['Trend MACD'].iloc[-1]=='Sell') and framew['Dec_EMA50'].iloc[-1]=='Sell'  \
             and framew['sup'].iloc[-1]==-1: 
@@ -299,21 +300,3 @@ for name, frame,framew in zip(names,framelist,framelistw):
                 expander()
         except Exception as e:
             st.write(name,e)
-    elif option1 == 'Buy'and option2 == 'EMA20':  
-        try:   
-            if  len(frame)>30 and len(framew)>30 and framew['Dec_EMA50'].iloc[-1]=='Buy' \
-            and (frame['MACD_diff'].iloc[-1]>0 or frame['Trend MACD'].iloc[-1]=='Buy') and frame['ADX'].iloc[-1]>=adx_value \
-            and (framew['MACD_diff'].iloc[-1]>0 or framew['Trend MACD'].iloc[-1]=='Buy') and frame['EMA20_cross'].iloc[-1]=='Buy' and frame['sup'].iloc[-1]==1:    
-                sira +=1
-                expander()
-        except Exception as e:
-            st.write(name,e) 
-    elif option1 == 'Sell'and option2 == 'EMA20': 
-        try: 
-            if  len(frame)>30 and len(framew)>30 and framew['Dec_EMA50'].iloc[-1]=='Sell' \
-            and (frame['MACD_diff'].iloc[-1]<0 or frame['Trend MACD'].iloc[-1]=='Sell') and frame['ADX'].iloc[-1]>=adx_value \
-            and (framew['MACD_diff'].iloc[-1]<0 or framew['Trend MACD'].iloc[-1]=='Sell') and frame['EMA20_cross'].iloc[-1]=='Sell' and frame['sup'].iloc[-1]==-1:  
-                sira +=1
-                expander()
-        except Exception as e:
-            st.write(name,e) 
