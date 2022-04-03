@@ -261,7 +261,7 @@ def expander():
         col1.plotly_chart(fig,use_container_width=True)
         col2.plotly_chart(figw,use_container_width=True)
 sira=0
-indices=['US500/USD_S&P 500_INDEX_US','EU50/EUR_Euro Stoxx 50_INDEX_DE','XU030.IS']
+indices=['US500/USD_S&P 500_INDEX_US','EU50/EUR_Euro Stoxx 50_INDEX_DE','^N225']
 for name, frame,framew in zip(names,framelist,framelistw): 
     if option1 == 'Buy'and option2 == 'EMA':  
         try:
@@ -303,6 +303,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
             st.write(name,e)
     elif option2 == 'Index' and name in indices:
         try:   
+                sira +=1
                 expander()
         except Exception as e:
             st.write(name,e) 
