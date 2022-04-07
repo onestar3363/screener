@@ -264,7 +264,7 @@ indices=['US500/USD_S&P 500_INDEX_US','EU50/EUR_Euro Stoxx 50_INDEX_DE','^N225']
 for name, frame,framew in zip(names,framelist,framelistw): 
     if option1 == 'Buy'and option2 == 'EMA':  
         try:
-            if len(frame)>30 and len(framew)>30 and (frame['EMA20_cross'].iloc[-1]=='Buy' or frame['EMA50_cross'].iloc[-1]=='Buy' or frame['EMA200_cross'].iloc[-1]=='Buy') \
+            if len(frame)>30 and len(framew)>30 and (frame['EMA50_cross'].iloc[-1]=='Buy' or frame['EMA200_cross'].iloc[-1]=='Buy') \
             and frame['ADX'].iloc[-1]>=adx_value and (frame['MACD_diff'].iloc[-1]>0 or frame['Trend MACD'].iloc[-1]=='Buy')   \
             and (framew['MACD_diff'].iloc[-1]>0 or framew['Trend MACD'].iloc[-1]=='Buy') and framew['Dec_EMA50'].iloc[-1]=='Buy'  \
             and framew['sup'].iloc[-1]==1: 
