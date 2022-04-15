@@ -200,6 +200,7 @@ st.write(end - start)
 option1 = st.sidebar.selectbox("Buy or Sell",('Buy','Sell')) 
 option2 = st.sidebar.selectbox("Which Indicator?", ('EMA', 'MACD','EMA20','ADX','Index'))
 adx_value= st.sidebar.number_input('ADX Value',min_value=10,value=18)
+adx_value2= st.sidebar.number_input('ADX Value_ust',min_value=10,value=25)
 st.header(option1 + option2)
 def get_figures(frame):
     fig = go.Figure()
@@ -331,7 +332,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
     elif option1 == 'Buy'and option2 == 'ADX':  
         try:
             if len(frame)>30 and len(framew)>30 and frame['Decision ADX'].iloc[-1]=='Buy'  \
-            and frame['ADX'].iloc[-1]>=adx_value and (framew['MACD_diff'].iloc[-1]>0 or framew['Trend MACD'].iloc[-1]=='Buy') \
+            and frame['ADX'].iloc[-1]>=adx_value and frame['ADX'].iloc[-1]<=adx_value2 and (framew['MACD_diff'].iloc[-1]>0 or framew['Trend MACD'].iloc[-1]=='Buy') \
             and framew['Dec_EMA50'].iloc[-1]=='Buy' and framew['sup'].iloc[-1]==1:
                 sira +=1
                 expander()
@@ -340,7 +341,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
     elif option1 == 'Sell'and option2 == 'ADX':  
         try:     
              if len(frame)>30 and len(framew)>30 and frame['Decision ADX'].iloc[-1]=='Sell' \
-            and frame['ADX'].iloc[-1]>=adx_value and (framew['MACD_diff'].iloc[-1]<0 or framew['Trend MACD'].iloc[-1]=='Sell') \
+            and frame['ADX'].iloc[-1]>=adx_value and frame['ADX'].iloc[-1]<=adx_value2 and (framew['MACD_diff'].iloc[-1]<0 or framew['Trend MACD'].iloc[-1]=='Sell') \
             and framew['Dec_EMA50'].iloc[-1]=='Sell' and framew['sup'].iloc[-1]==-1: 
                 sira +=1
                 expander()
