@@ -116,7 +116,7 @@ def ADX_decision(df):
     df['ADX_pos']=ta.trend.adx_pos(df.High, df.Low, df.Close)
     df['DIOSQ']=df['ADX_pos']-df['ADX_neg']
     df['DIOSQ_EMA']=ta.trend.ema_indicator(df.DIOSQ,window=10)
-    df.loc[(df.ADX>df.ADX.shift(1)) & (df.ADX>=25),'Decision ADX']='Buy'
+    df.loc[(df.ADX>df.ADX.shift(1)),'Decision ADX']='Buy'
     df.loc[(df.DIOSQ>df.DIOSQ_EMA)& (df.DIOSQ.shift(1)<df.DIOSQ_EMA.shift(1)), 'Dec_DIOSQ'] = 'Buy'
     df.loc[(df.DIOSQ<df.DIOSQ_EMA)& (df.DIOSQ.shift(1)>df.DIOSQ_EMA.shift(1)), 'Dec_DIOSQ'] = 'Sell'
 
@@ -331,17 +331,16 @@ for name, frame,framew in zip(names,framelist,framelistw):
     elif option1 == 'Buy'and option2 == 'ADX':  
         try:
             if len(frame)>30 and len(framew)>30 and frame['Decision ADX'].iloc[-1]=='Buy'  \
-            and (framew['MACD_diff'].iloc[-1]>0 or framew['Trend MACD'].iloc[-1]=='Buy') \
+            and frame['ADX'].iloc[-1]>=adx_value and (framew['MACD_diff'].iloc[-1]>0 or framew['Trend MACD'].iloc[-1]=='Buy') \
             and framew['Dec_EMA50'].iloc[-1]=='Buy' and framew['sup'].iloc[-1]==1:
                 sira +=1
                 expander()
         except Exception as e:
             st.write(name,e)
-            
     elif option1 == 'Sell'and option2 == 'ADX':  
         try:     
-             if len(frame)>30 and len(framew)>30 and frame['Decision ADX'].iloc[-1]=='Buy' \
-            and (framew['MACD_diff'].iloc[-1]<0 or framew['Trend MACD'].iloc[-1]=='Sell') \
+             if len(frame)>30 and len(framew)>30 and frame['Decision ADX'].iloc[-1]=='Sell' \
+            and frame['ADX'].iloc[-1]>=adx_value and (framew['MACD_diff'].iloc[-1]<0 or framew['Trend MACD'].iloc[-1]=='Sell') \
             and framew['Dec_EMA50'].iloc[-1]=='Sell' and framew['sup'].iloc[-1]==-1: 
                 sira +=1
                 expander()
