@@ -330,17 +330,18 @@ for name, frame,framew in zip(names,framelist,framelistw):
         
     elif option1 == 'Buy'and option2 == 'ADX':  
         try:
-            if len(frame)>30 and len(framew)>30 and frame['EMA20_cross'].iloc[-1]=='Buy'  \
-            and frame['ADX'].iloc[-1]>=25  and (framew['MACD_diff'].iloc[-1]>0 or framew['Trend MACD'].iloc[-1]=='Buy') \
+            if len(frame)>30 and len(framew)>30 and frame['Decision ADX'].iloc[-1]=='Buy'  \
+            and (framew['MACD_diff'].iloc[-1]>0 or framew['Trend MACD'].iloc[-1]=='Buy') \
             and framew['Dec_EMA50'].iloc[-1]=='Buy' and framew['sup'].iloc[-1]==1:
                 sira +=1
                 expander()
         except Exception as e:
             st.write(name,e)
+            
     elif option1 == 'Sell'and option2 == 'ADX':  
         try:     
-             if len(frame)>30 and len(framew)>30 and frame['EMA20_cross'].iloc[-1]=='Sell' \
-            and frame['ADX'].iloc[-1]>=25 and (framew['MACD_diff'].iloc[-1]<0 or framew['Trend MACD'].iloc[-1]=='Sell') \
+             if len(frame)>30 and len(framew)>30 and frame['Decision ADX'].iloc[-1]=='Buy' \
+            and (framew['MACD_diff'].iloc[-1]<0 or framew['Trend MACD'].iloc[-1]=='Sell') \
             and framew['Dec_EMA50'].iloc[-1]=='Sell' and framew['sup'].iloc[-1]==-1: 
                 sira +=1
                 expander()
