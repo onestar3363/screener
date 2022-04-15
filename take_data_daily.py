@@ -340,7 +340,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
             st.write(name,e)
     elif option1 == 'Sell'and option2 == 'ADX':  
         try:     
-             if len(frame)>30 and len(framew)>30 and frame['Decision ADX'].iloc[-1]=='Sell' \
+             if len(frame)>30 and len(framew)>30 and frame['Decision ADX'].iloc[-1]=='Buy' \
             and frame['ADX'].iloc[-1]>=adx_value and frame['ADX'].iloc[-1]<=adx_value2 and (framew['MACD_diff'].iloc[-1]<0 or framew['Trend MACD'].iloc[-1]=='Sell') \
             and framew['Dec_EMA50'].iloc[-1]=='Sell' and framew['sup'].iloc[-1]==-1: 
                 sira +=1
