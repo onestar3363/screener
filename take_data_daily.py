@@ -53,7 +53,6 @@ def getdata():
         bsymbols1=pd.read_csv('bsymbols.csv',header=None)
         bsymbols=bsymbols1.iloc[:,0].to_list()
         for bticker in bsymbols:
-            #print(index,bticker,end="\r")
             st.write(f"⏳ {index,bticker} downloaded")
             index += 1
             df=yf.download(bticker,period="3y")
@@ -92,9 +91,10 @@ def EMA_decision(df):
     (df.High>=df.EMA20)), 'EMA20_cross'] = 'Sell'
 
     df['EMA50'] = ta.trend.ema_indicator(df.Close,window=50)
-    #df.loc[(df.Close>df['EMA50']), 'Dec_EMA50'] = 'Buy'
-    df.loc[((df.Close>df.EMA50)& (df.Close.shift(1)>df.EMA50.shift(1))), 'Dec_EMA50'] = 'Buy'
-    df.loc[((df.Close<df.EMA50)& (df.Close.shift(1)<df.EMA50.shift(1))), 'Dec_EMA50'] = 'Sell'
+    df.loc[(df.Close>df['EMA50']), 'Dec_EMA50'] = 'Buy'
+    df.loc[(df.Close<df['EMA50']), 'Dec_EMA50'] = 'Sell'
+    #df.loc[((df.Close>df.EMA50)& (df.Close.shift(1)>df.EMA50.shift(1))), 'Dec_EMA50'] = 'Buy'
+    #df.loc[((df.Close<df.EMA50)& (df.Close.shift(1)<df.EMA50.shift(1))), 'Dec_EMA50'] = 'Sell'
     df.loc[((df.Close>=df.EMA50)& (df.Close.shift(1)<=df.EMA50.shift(1)))|((df.Close.shift(1)>=df.EMA50.shift(1))& \
     (df.Low<=df.EMA50)), 'EMA50_cross'] = 'Buy'
     df.loc[((df.Close<=df.EMA50)& (df.Close.shift(1)>=df.EMA50.shift(1)))|((df.Close.shift(1)<=df.EMA50.shift(1))& \
@@ -116,15 +116,21 @@ def ADX_decision(df):
     df['ADX_pos']=ta.trend.adx_pos(df.High, df.Low, df.Close)
     df['DIOSQ']=df['ADX_pos']-df['ADX_neg']
     df['DIOSQ_EMA']=ta.trend.ema_indicator(df.DIOSQ,window=10)
-    df.loc[(df.ADX>df.ADX.shift(1)),'Decision ADX']='Buy'
+    df.loc[(df.ADX>df.ADX.shift(1)) ,'Decision ADX']='Buy'
     df.loc[(df.DIOSQ>df.DIOSQ_EMA)& (df.DIOSQ.shift(1)<df.DIOSQ_EMA.shift(1)), 'Dec_DIOSQ'] = 'Buy'
     df.loc[(df.DIOSQ<df.DIOSQ_EMA)& (df.DIOSQ.shift(1)>df.DIOSQ_EMA.shift(1)), 'Dec_DIOSQ'] = 'Sell'
 
 def Supertrend(df):
-    df['sup']=pa.supertrend(high=df['High'],low=df['Low'],close=df['Close'],length=10,multiplier=1)['SUPERTd_10_1.0']
+    df['sup']=pa.supertrend(high=df['High'],low=df['Low'],close=df['Close'],length=10,multiplier=1.0)['SUPERTd_10_1.0']
     df['sup2']=pa.supertrend(high=df['High'],low=df['Low'],close=df['Close'],length=10,multiplier=1.0)['SUPERT_10_1.0']
-    df.loc[(df.sup==1)&(df.sup.shift(1)==-1), 'Decision Super'] = 'Buy'
-    df.loc[(df.sup==-1)&(df.sup.shift(1)==1), 'Decision Super'] = 'Sell'  
+    df['sup3']=pa.supertrend(high=df['High'],low=df['Low'],close=df['Close'],length=10,multiplier=2.0)['SUPERTd_10_2.0']
+    df['sup4']=pa.supertrend(high=df['High'],low=df['Low'],close=df['Close'],length=10,multiplier=2.0)['SUPERT_10_2.0']
+    df.loc[(df.sup3==1)&(df.sup3.shift(1)==-1), 'Decision Super'] = 'Buy'
+    df.loc[(df.sup3==-1)&(df.sup3.shift(1)==1), 'Decision Super'] = 'Sell'  
+    df.loc[(df.sup==1)&(df.sup.shift(1)==-1), 'Decision Super2'] = 'Buy'
+    df.loc[(df.sup==-1)&(df.sup.shift(1)==1), 'Decision Super2'] = 'Sell'  
+    df.loc[(df.sup2 == df.sup2.shift(5)), 'Consolidating'] = 'Yes'
+    df.loc[(df.sup4 == df.sup4.shift(5)), 'Consolidating2'] = 'Yes'
 
 def ATR_decision(df):
     df['ATR']= ta.volatility.average_true_range(df.High, df.Low, df.Close,window=10)
@@ -135,6 +141,7 @@ def ATR_decision(df):
 #     df['Stoch'] = ta.momentum.stoch(df.High, df.Low, df.Close, smooth_window=3)
 #     df['Stoch_Signal'] = ta.momentum.stoch_signal(df.High, df.Low, df.Close, smooth_window=3)
 #     df.loc[(df.Stoch>df.Stoch_Signal)& (df.Stoch.shift(1)<df.Stoch_Signal.shift(1)) & (df.Stoch_Signal<20), 'Decision Stoch'] = 'Buy'  
+
 
 
 @st.cache(allow_output_mutation=True)
@@ -159,7 +166,7 @@ def get_framelist():
     np.seterr(divide='ignore', invalid='ignore')
     with st.empty():
         sira=0
-        for name,frame in zip(names,framelist): 
+        for name,frame in zip(names[:250],framelist[:250]): 
             if len(frame)>30:
                 MACDdecision(frame)
                 EMA_decision(frame)
@@ -177,7 +184,7 @@ def get_framelistw():
     np.seterr(divide='ignore', invalid='ignore')
     with st.empty():
         sira=0
-        for name,framew in zip(names,framelistw): 
+        for name,framew in zip(names[:250],framelistw[:250]): 
             if  len(framew)>30 :
                 MACDdecision(framew)
                 EMA_decision(framew)
@@ -198,7 +205,7 @@ end = time.perf_counter()
 st.write(end - start)
 
 option1 = st.sidebar.selectbox("Buy or Sell",('Buy','Sell')) 
-option2 = st.sidebar.selectbox("Which Indicator?", ('EMA', 'MACD','EMA20','ADX','Index'))
+option2 = st.sidebar.selectbox("Which Indicator?", ('EMA50', 'EMA200', 'EMA20','MACD','ADX','Consolidating','Supertrend','Index'))
 adx_value= st.sidebar.number_input('ADX Value',min_value=10,value=18)
 adx_value2= st.sidebar.number_input('ADX Value_ust',min_value=10,value=25)
 st.header(option1 + option2)
@@ -226,6 +233,11 @@ def get_figures(frame):
          y=frame['sup2'],
          opacity=0.7,
          mode='markers', marker=dict(size=2,color='LightSkyBlue'), 
+         name='Supertrend'))
+    fig.add_trace(go.Scatter(x=frame['Date'], 
+         y=frame['sup4'],
+         opacity=0.7,
+         mode='markers', marker=dict(size=2,color='green'), 
          name='Supertrend'))
     fig.add_trace(go.Bar(x=frame['Date'], 
      y=frame['MACD_diff']
@@ -265,85 +277,73 @@ def expander():
         col2.plotly_chart(figw,use_container_width=True)
 sira=0
 indices=['US500/USD_S&P 500_INDEX_US','EU50/EUR_Euro Stoxx 50_INDEX_DE','^N225']
-for name, frame,framew in zip(names,framelist,framelistw): 
-    if option1 == 'Buy'and option2 == 'EMA':  
-        try:
-            if len(frame)>30 and len(framew)>30 and (frame['EMA50_cross'].iloc[-1]=='Buy' or frame['EMA200_cross'].iloc[-1]=='Buy') \
-            and frame['ADX'].iloc[-1]>=adx_value  and (framew['MACD_diff'].iloc[-1]>0 or framew['Trend MACD'].iloc[-1]=='Buy') \
-            and framew['Dec_EMA50'].iloc[-1]=='Buy' and framew['sup'].iloc[-1]==1: 
-                sira +=1
-                expander()
-        except Exception as e:
-            st.write(name,e)
-    elif option1 == 'Sell'and option2 == 'EMA':   
-        try:     
-             if len(frame)>30 and len(framew)>30 and (frame['EMA50_cross'].iloc[-1]=='Sell' or frame['EMA200_cross'].iloc[-1]=='Sell') \
-            and frame['ADX'].iloc[-1]>=adx_value and (framew['MACD_diff'].iloc[-1]<0 or framew['Trend MACD'].iloc[-1]=='Sell') \
-            and framew['Dec_EMA50'].iloc[-1]=='Sell' and framew['sup'].iloc[-1]==-1: 
-                sira +=1
-                expander()
-        except Exception as e:
-            st.write(name,e)
-    elif option1 == 'Buy'and option2 == 'MACD':  
-        try:   
-            if  len(frame)>30 and len(framew)>30 and frame['Dec_MACD'].iloc[-1]=='Buy'  \
-            and framew['Dec_EMA50'].iloc[-1]=='Buy' and frame['ADX'].iloc[-1]>=adx_value\
-            and (framew['MACD_diff'].iloc[-1]>0 or framew['Trend MACD'].iloc[-1]=='Buy') \
-            and framew['sup'].iloc[-1]==1:
-                sira +=1
-                expander()
-        except Exception as e:
-            st.write(name,e) 
-    elif option1 == 'Sell'and option2 == 'MACD': 
-        try: 
-            if len(frame)>30 and len(framew)>30 and frame['Dec_MACD'].iloc[-1]=='Sell' \
-            and framew['Dec_EMA50'].iloc[-1]=='Sell' and frame['ADX'].iloc[-1]>=adx_value \
-            and (framew['MACD_diff'].iloc[-1]<0 or framew['Trend MACD'].iloc[-1]=='Sell'):
-                sira +=1
-                expander()
-        except Exception as e:
-            st.write(name,e)
-    elif option2 == 'Index' and name in indices:
-        try:   
-                sira +=1
-                expander()
-        except Exception as e:
-            st.write(name,e) 
-
-    elif option1 == 'Buy'and option2 == 'EMA20':  
-        try:
-            if len(frame)>30 and len(framew)>30 and frame['EMA20_cross'].iloc[-1]=='Buy'  \
-            and frame['ADX'].iloc[-1]>=adx_value  and (framew['MACD_diff'].iloc[-1]>0 or framew['Trend MACD'].iloc[-1]=='Buy') \
+for name, frame,framew in zip(names[:250],framelist[:250],framelistw[:250]): 
+    try:
+        if len(frame)>30 and len(framew)>30 and frame['ADX'].iloc[-1]>=adx_value:
+            if option1 == 'Buy' and (framew['MACD_diff'].iloc[-1]>0 or framew['Trend MACD'].iloc[-1]=='Buy') \
             and framew['Dec_EMA50'].iloc[-1]=='Buy' and framew['sup'].iloc[-1]==1:
+                if option2 == 'EMA50':  
+                    if frame['EMA50_cross'].iloc[-1]=='Buy':
+                            sira +=1
+                            expander()
+                if option2 == 'EMA200':  
+                    if frame['EMA200_cross'].iloc[-1]=='Buy':
+                            sira +=1
+                            expander()
+                if option2 == 'EMA20':
+                    if frame['EMA20_cross'].iloc[-1]=='Buy':
+                            sira +=1
+                            expander() 
+                if option2 == 'ADX':
+                    if frame['Decision ADX'].iloc[-1]=='Buy' and frame['ADX'].iloc[-1]<=adx_value2:
+                            sira +=1
+                            expander()
+                if option2 == 'MACD':
+                    if frame['Dec_MACD'].iloc[-1]=='Buy' :
+                            sira +=1
+                            expander()
+                if option2 == 'Consolidating':
+                    if (frame['Consolidating'].iloc[-1]=='Yes' or frame['Consolidating2'].iloc[-1]=='Yes') :
+                            sira +=1
+                            expander()          
+                if option2 == 'Supertrend':
+                    if frame['Decision Super2'].iloc[-1]=='Buy' :
+                            sira +=1
+                            expander()          
+            elif option1 == 'Sell'and (framew['MACD_diff'].iloc[-1]<0 or framew['Trend MACD'].iloc[-1]=='Sell') \
+            and framew['Dec_EMA50'].iloc[-1]=='Sell' and framew['sup'].iloc[-1]==-1:
+                if option2 == 'EMA50':  
+                    if frame['EMA50_cross'].iloc[-1]=='Sell':
+                            sira +=1
+                            expander()
+                if option2 == 'EMA200':  
+                    if frame['EMA200_cross'].iloc[-1]=='Sell':
+                            sira +=1
+                            expander()
+                if option2 == 'EMA20':
+                    if frame['EMA20_cross'].iloc[-1]=='Sell':
+                            sira +=1
+                            expander() 
+                if option2 == 'ADX':
+                    if frame['Decision ADX'].iloc[-1]=='Sell' and frame['ADX'].iloc[-1]<=adx_value2:
+                            sira +=1
+                            expander()
+                if option2 == 'MACD':
+                    if frame['Dec_MACD'].iloc[-1]=='Sell' :
+                            sira +=1
+                            expander()
+                if option2 == 'Consolidating':
+                    if (frame['Consolidating'].iloc[-1]=='Yes' or frame['Consolidating2'].iloc[-1]=='Yes') :
+                            sira +=1
+                            expander()          
+                if option2 == 'Supertrend':
+                    if frame['Decision Super2'].iloc[-1]=='Sell' :
+                            sira +=1
+                            expander() 
+        if option2 == 'Index' and name in indices:
                 sira +=1
-                expander()
-        except Exception as e:
-            st.write(name,e)
-    elif option1 == 'Sell'and option2 == 'EMA20':  
-        try:     
-             if len(frame)>30 and len(framew)>30 and frame['EMA20_cross'].iloc[-1]=='Sell' \
-            and frame['ADX'].iloc[-1]>=adx_value and (framew['MACD_diff'].iloc[-1]<0 or framew['Trend MACD'].iloc[-1]=='Sell') \
-            and framew['Dec_EMA50'].iloc[-1]=='Sell' and framew['sup'].iloc[-1]==-1: 
-                sira +=1
-                expander()
-        except Exception as e:
-            st.write(name,e)
-        
-    elif option1 == 'Buy'and option2 == 'ADX':  
-        try:
-            if len(frame)>30 and len(framew)>30 and frame['Decision ADX'].iloc[-1]=='Buy'  \
-            and frame['ADX'].iloc[-1]>=adx_value and frame['ADX'].iloc[-1]<=adx_value2 and (framew['MACD_diff'].iloc[-1]>0 or framew['Trend MACD'].iloc[-1]=='Buy') \
-            and framew['Dec_EMA50'].iloc[-1]=='Buy' and framew['sup'].iloc[-1]==1:
-                sira +=1
-                expander()
-        except Exception as e:
-            st.write(name,e)
-    elif option1 == 'Sell'and option2 == 'ADX':  
-        try:     
-             if len(frame)>30 and len(framew)>30 and frame['Decision ADX'].iloc[-1]=='Buy' \
-            and frame['ADX'].iloc[-1]>=adx_value and frame['ADX'].iloc[-1]<=adx_value2 and (framew['MACD_diff'].iloc[-1]<0 or framew['Trend MACD'].iloc[-1]=='Sell') \
-            and framew['Dec_EMA50'].iloc[-1]=='Sell' and framew['sup'].iloc[-1]==-1: 
-                sira +=1
-                expander()
-        except Exception as e:
-            st.write(name,e)
+                expander()            
+    except Exception as e:
+        st.write(name,e) 
+    
+   
