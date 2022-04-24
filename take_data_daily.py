@@ -166,7 +166,7 @@ def get_framelist():
     np.seterr(divide='ignore', invalid='ignore')
     with st.empty():
         sira=0
-        for name,frame in zip(names[:250],framelist[:250]): 
+        for name,frame in zip(names,framelist): 
             if len(frame)>30:
                 MACDdecision(frame)
                 EMA_decision(frame)
@@ -184,7 +184,7 @@ def get_framelistw():
     np.seterr(divide='ignore', invalid='ignore')
     with st.empty():
         sira=0
-        for name,framew in zip(names[:250],framelistw[:250]): 
+        for name,framew in zip(names,framelistw): 
             if  len(framew)>30 :
                 MACDdecision(framew)
                 EMA_decision(framew)
@@ -277,7 +277,7 @@ def expander():
         col2.plotly_chart(figw,use_container_width=True)
 sira=0
 indices=['US500/USD_S&P 500_INDEX_US','EU50/EUR_Euro Stoxx 50_INDEX_DE','^N225']
-for name, frame,framew in zip(names[:250],framelist[:250],framelistw[:250]): 
+for name, frame,framew in zip(names,framelist,framelistw): 
     try:
         if len(frame)>30 and len(framew)>30 and frame['ADX'].iloc[-1]>=adx_value:
             if option1 == 'Buy' and (framew['MACD_diff'].iloc[-1]>0 or framew['Trend MACD'].iloc[-1]=='Buy') \
