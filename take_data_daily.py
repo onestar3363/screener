@@ -308,7 +308,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                             sira +=1
                             expander()          
                 if option2 == 'Supertrend':
-                    if frame['Decision Super2'].iloc[-1]=='Buy' :
+                    if frame['Decision Super'].iloc[-1]=='Buy' :
                             sira +=1
                             expander()          
             elif option1 == 'Sell'and (framew['MACD_diff'].iloc[-1]<0 or framew['Trend MACD'].iloc[-1]=='Sell') :
@@ -338,7 +338,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                             sira +=1
                             expander()          
                 if option2 == 'Supertrend':
-                    if frame['Decision Super2'].iloc[-1]=='Sell' :
+                    if frame['Decision Super'].iloc[-1]=='Sell' :
                             sira +=1
                             expander() 
         if option2 == 'Index' and name in indices:
