@@ -125,10 +125,10 @@ def Supertrend(df):
     df['sup2']=pa.supertrend(high=df['High'],low=df['Low'],close=df['Close'],length=10,multiplier=1.0)['SUPERT_10_1.0']
     df['sup3']=pa.supertrend(high=df['High'],low=df['Low'],close=df['Close'],length=10,multiplier=2.0)['SUPERTd_10_2.0']
     df['sup4']=pa.supertrend(high=df['High'],low=df['Low'],close=df['Close'],length=10,multiplier=2.0)['SUPERT_10_2.0']
-    df.loc[(df.sup3==1)&(df.sup3.shift(1)==-1), 'Decision Super'] = 'Buy'
-    df.loc[(df.sup3==-1)&(df.sup3.shift(1)==1), 'Decision Super'] = 'Sell'  
-    df.loc[(df.sup==1)&(df.sup.shift(1)==-1), 'Decision Super2'] = 'Buy'
-    df.loc[(df.sup==-1)&(df.sup.shift(1)==1), 'Decision Super2'] = 'Sell'  
+    df.loc[(df.sup3==1)&(df.sup3.shift(1)==-1), 'Decision Super2'] = 'Buy'
+    df.loc[(df.sup3==-1)&(df.sup3.shift(1)==1), 'Decision Super2'] = 'Sell'  
+    df.loc[(df.sup==1)&(df.sup.shift(1)==-1), 'Decision Super'] = 'Buy'
+    df.loc[(df.sup==-1)&(df.sup.shift(1)==1), 'Decision Super'] = 'Sell'  
     df.loc[(df.sup2 == df.sup2.shift(5)), 'Consolidating'] = 'Yes'
     df.loc[(df.sup4 == df.sup4.shift(5)), 'Consolidating2'] = 'Yes'
 account= st.sidebar.number_input('Account',min_value=100,value=700)
@@ -308,7 +308,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                             sira +=1
                             expander()          
                 if option2 == 'Supertrend':
-                    if frame['Decision Super'].iloc[-1]=='Buy' :
+                    if frame['Decision Super2'].iloc[-1]=='Buy' :
                             sira +=1
                             expander()          
             elif option1 == 'Sell'and (framew['MACD_diff'].iloc[-1]<0 or framew['Trend MACD'].iloc[-1]=='Sell') :
@@ -338,7 +338,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                             sira +=1
                             expander()          
                 if option2 == 'Supertrend':
-                    if frame['Decision Super'].iloc[-1]=='Sell' :
+                    if frame['Decision Super2'].iloc[-1]=='Sell' :
                             sira +=1
                             expander() 
         if option2 == 'Index' and name in indices:
