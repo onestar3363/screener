@@ -131,11 +131,11 @@ def Supertrend(df):
     df.loc[(df.sup==-1)&(df.sup.shift(1)==1), 'Decision Super2'] = 'Sell'  
     df.loc[(df.sup2 == df.sup2.shift(5)), 'Consolidating'] = 'Yes'
     df.loc[(df.sup4 == df.sup4.shift(5)), 'Consolidating2'] = 'Yes'
-
+account= st.sidebar.number_input('Account',min_value=100,value=700)
 def ATR_decision(df):
     df['ATR']= ta.volatility.average_true_range(df.High, df.Low, df.Close,window=10)
     df['ATR%'] = df['ATR']/df.Close*100
-    df['RISK']= df['ATR']/1000*100        
+    df['RISK']= df['ATR']/account*100        
 
 # def Stoch_decision(df):
 #     df['Stoch'] = ta.momentum.stoch(df.High, df.Low, df.Close, smooth_window=3)
@@ -204,11 +204,6 @@ framelistw=get_framelistw()
 end = time.perf_counter()
 st.write(end - start)
 
-option1 = st.sidebar.selectbox("Buy or Sell",('Buy','Sell')) 
-option2 = st.sidebar.selectbox("Which Indicator?", ('EMA50', 'EMA200', 'EMA20','MACD','ADX','Consolidating','Supertrend','Index'))
-adx_value= st.sidebar.number_input('ADX Value',min_value=10,value=18)
-adx_value2= st.sidebar.number_input('ADX Value_ust',min_value=10,value=25)
-st.header(option1 + option2)
 def get_figures(frame):
     fig = go.Figure()
     fig = plotly.subplots.make_subplots(rows=3, cols=1, shared_xaxes=True,
@@ -276,12 +271,18 @@ def expander():
         col1.plotly_chart(fig,use_container_width=True)
         col2.plotly_chart(figw,use_container_width=True)
 sira=0
+option1 = st.sidebar.selectbox("Buy or Sell",('Buy','Sell')) 
+option2 = st.sidebar.selectbox("Which Indicator?", ('EMA50', 'EMA200', 'EMA20','MACD','ADX','Consolidating','Supertrend','Index'))
+adx_value= st.sidebar.number_input('ADX Value',min_value=10,value=18)
+adx_value2= st.sidebar.number_input('ADX Value_ust',min_value=10,value=25)
+riskvalue=st.sidebar.number_input('Risk',min_value=0.01,value=1.0,step=0.1)
+st.header(option1 + option2)
 indices=['US500/USD_S&P 500_INDEX_US','EU50/EUR_Euro Stoxx 50_INDEX_DE','^N225']
 for name, frame,framew in zip(names,framelist,framelistw): 
     try:
-        if len(frame)>30 and len(framew)>30 and frame['ADX'].iloc[-1]>=adx_value:
-            if option1 == 'Buy' and (framew['MACD_diff'].iloc[-1]>0 or framew['Trend MACD'].iloc[-1]=='Buy') \
-            and framew['Dec_EMA50'].iloc[-1]=='Buy' and framew['sup'].iloc[-1]==1:
+        if len(frame)>30 and len(framew)>30 and frame['ADX'].iloc[-1]>=adx_value and frame['RISK'].iloc[-1]<=riskvalue :
+            if option1 == 'Buy' and (framew['MACD_diff'].iloc[-1]>0 or framew['Trend MACD'].iloc[-1]=='Buy') :
+            ##and framew['Dec_EMA50'].iloc[-1]=='Buy' and framew['sup'].iloc[-1]==1:
                 if option2 == 'EMA50':  
                     if frame['EMA50_cross'].iloc[-1]=='Buy':
                             sira +=1
@@ -310,8 +311,8 @@ for name, frame,framew in zip(names,framelist,framelistw):
                     if frame['Decision Super2'].iloc[-1]=='Buy' :
                             sira +=1
                             expander()          
-            elif option1 == 'Sell'and (framew['MACD_diff'].iloc[-1]<0 or framew['Trend MACD'].iloc[-1]=='Sell') \
-            and framew['Dec_EMA50'].iloc[-1]=='Sell' and framew['sup'].iloc[-1]==-1:
+            elif option1 == 'Sell'and (framew['MACD_diff'].iloc[-1]<0 or framew['Trend MACD'].iloc[-1]=='Sell') :
+            #and framew['Dec_EMA50'].iloc[-1]=='Sell' and framew['sup'].iloc[-1]==-1:
                 if option2 == 'EMA50':  
                     if frame['EMA50_cross'].iloc[-1]=='Sell':
                             sira +=1
