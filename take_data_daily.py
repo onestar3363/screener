@@ -296,7 +296,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                             sira +=1
                             expander() 
                 if option2 == 'ADX':
-                    if frame['Decision ADX'].iloc[-1]=='Buy' and frame['ADX'].iloc[-1]<=adx_value2:
+                    if frame['Decision ADX'].iloc[-1]=='Buy' and frame['ADX'].iloc[-1]<=adx_value2 and frame['Consolidating2'].iloc[-1]=='Yes':
                             sira +=1
                             expander()
                 if option2 == 'MACD':
