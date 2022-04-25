@@ -300,7 +300,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                             sira +=1
                             expander()
                 if option2 == 'MACD':
-                    if frame['Dec_MACD'].iloc[-1]=='Buy' :
+                    if frame['Dec_MACD'].iloc[-1]=='Buy' and frame['MACD'].iloc[-1]<=0 :
                             sira +=1
                             expander()
                 if option2 == 'Consolidating':
@@ -330,7 +330,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                             sira +=1
                             expander()
                 if option2 == 'MACD':
-                    if frame['Dec_MACD'].iloc[-1]=='Sell' :
+                    if frame['Dec_MACD'].iloc[-1]=='Sell' and frame['MACD'].iloc[-1]>=0:
                             sira +=1
                             expander()
                 if option2 == 'Consolidating':
