@@ -131,7 +131,6 @@ def Supertrend(df):
     df.loc[(df.sup==-1)&(df.sup.shift(1)==1), 'Decision Super'] = 'Sell'  
     df.loc[(df.sup2 == df.sup2.shift(3)), 'Consolidating'] = 'Yes'
     df.loc[(df.sup4 == df.sup4.shift(3)), 'Consolidating2'] = 'Yes'
-account= st.sidebar.number_input('Account',min_value=100,value=700)
 
 def ATR_decision(df):
     df['ATR']= ta.volatility.average_true_range(df.High, df.Low, df.Close,window=10)
@@ -272,6 +271,7 @@ def expander():
         col1.plotly_chart(fig,use_container_width=True)
         col2.plotly_chart(figw,use_container_width=True)
 sira=0
+account= st.sidebar.number_input('Account',min_value=100,value=700)
 option1 = st.sidebar.selectbox("Buy or Sell",('Buy','Sell')) 
 option2 = st.sidebar.selectbox("Which Indicator?", ('EMA50', 'EMA200', 'EMA20','MACD','ADX','Consolidating','Supertrend','Index'))
 adx_value= st.sidebar.number_input('ADX Value',min_value=10,value=18)
