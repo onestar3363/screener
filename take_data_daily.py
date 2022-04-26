@@ -71,7 +71,6 @@ def getdata():
 lastindex=getdata()
 end = time.perf_counter() 
 st.write('Last downloaded', lastindex, 'Süre', end - start)
-account= st.sidebar.number_input('Account',min_value=100,value=700)
 def MACDdecision(df):
     df['MACD_diff']= ta.trend.macd_diff(df.Close)
     df['MACD']= ta.trend.macd(df.Close)
@@ -135,7 +134,7 @@ def Supertrend(df):
 def ATR_decision(df):
     df['ATR']= ta.volatility.average_true_range(df.High, df.Low, df.Close,window=10)
     df['ATR%'] = df['ATR']/df.Close*100
-    df['RISK']= 2*df['ATR']/account*100        
+    df['RISK']= 2*df['ATR']/700*100        
 
 # def Stoch_decision(df):
 #     df['Stoch'] = ta.momentum.stoch(df.High, df.Low, df.Close, smooth_window=3)
