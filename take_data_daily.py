@@ -158,7 +158,7 @@ def get_names():
     names = names.name.to_list()
     return names
     
-@st.cache(hash_funcs={sqlalchemy.engine.base.Engine:id},suppress_st_warning=True)
+@st.cache(hash_funcs={sqlalchemy.engine.base.Engine:id},suppress_st_warning=True,max_entries=2)
 def get_framelist():
     framelist=[]
     for name in names:
@@ -176,7 +176,7 @@ def get_framelist():
                 sira +=1
                 st.write('günlük',sira,name)             
     return framelist    
-@st.cache(hash_funcs={sqlalchemy.engine.base.Engine:id},suppress_st_warning=True)      
+@st.cache(hash_funcs={sqlalchemy.engine.base.Engine:id},suppress_st_warning=True,max_entries=2)      
 def get_framelistw():
     framelistw=[]
     for name in names: 
