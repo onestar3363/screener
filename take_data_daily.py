@@ -155,7 +155,6 @@ def connect_enginew(url):
     enginew=sqlalchemy.create_engine(url) 
     return enginew
 start = time.perf_counter()
-
 def get_names():
     names= pd.read_sql('SELECT name FROM sqlite_master WHERE type="table"',engine)
     names = names.name.to_list()
