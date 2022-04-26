@@ -129,8 +129,8 @@ def Supertrend(df):
     df.loc[(df.sup3==-1)&(df.sup3.shift(1)==1), 'Decision Super2'] = 'Sell'  
     df.loc[(df.sup==1)&(df.sup.shift(1)==-1), 'Decision Super'] = 'Buy'
     df.loc[(df.sup==-1)&(df.sup.shift(1)==1), 'Decision Super'] = 'Sell'  
-    df.loc[(df.sup2 == df.sup2.shift(5)), 'Consolidating'] = 'Yes'
-    df.loc[(df.sup4 == df.sup4.shift(5)), 'Consolidating2'] = 'Yes'
+    df.loc[(df.sup2 == df.sup2.shift(3)), 'Consolidating'] = 'Yes'
+    df.loc[(df.sup4 == df.sup4.shift(3)), 'Consolidating2'] = 'Yes'
 account= st.sidebar.number_input('Account',min_value=100,value=700)
 def ATR_decision(df):
     df['ATR']= ta.volatility.average_true_range(df.High, df.Low, df.Close,window=10)
