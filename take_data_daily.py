@@ -71,7 +71,7 @@ def getdata():
 lastindex=getdata()
 end = time.perf_counter() 
 st.write('Last downloaded', lastindex, 'Süre', end - start)
-@st.cache
+
 def MACDdecision(df):
     df['MACD_diff']= ta.trend.macd_diff(df.Close)
     df['MACD']= ta.trend.macd(df.Close)
@@ -80,7 +80,7 @@ def MACDdecision(df):
     df.loc[(df.MACD_diff<0) & (df.MACD_diff.shift(1)>0),'Dec_MACD']='Sell'
     df.loc[(df.MACD_diff.shift(1)<df.MACD_diff),'Trend MACD']='Buy'
     df.loc[(df.MACD_diff.shift(1)>df.MACD_diff),'Trend MACD']='Sell'
-@st.cache
+
 def EMA_decision(df):
 
     df['EMA20'] = ta.trend.ema_indicator(df.Close,window=20)
@@ -110,7 +110,6 @@ def EMA_decision(df):
     df.loc[((df.Close<=df.EMA200)& (df.Close.shift(1)>=df.EMA200.shift(1)))|((df.Close.shift(1)<=df.EMA200.shift(1))& \
     (df.High>=df.EMA200)), 'EMA200_cross'] = 'Sell'
 
-@st.cache
 def ADX_decision(df):
     df['ADX']= ta.trend.adx(df.High, df.Low, df.Close)
     df['ADX_neg']=ta.trend.adx_neg(df.High, df.Low, df.Close)
@@ -120,7 +119,7 @@ def ADX_decision(df):
     df.loc[(df.ADX>df.ADX.shift(1)) ,'Decision ADX']='Buy'
     df.loc[(df.DIOSQ>df.DIOSQ_EMA)& (df.DIOSQ.shift(1)<df.DIOSQ_EMA.shift(1)), 'Dec_DIOSQ'] = 'Buy'
     df.loc[(df.DIOSQ<df.DIOSQ_EMA)& (df.DIOSQ.shift(1)>df.DIOSQ_EMA.shift(1)), 'Dec_DIOSQ'] = 'Sell'
-@st.cache
+
 def Supertrend(df):
     df['sup']=pa.supertrend(high=df['High'],low=df['Low'],close=df['Close'],length=10,multiplier=1.0)['SUPERTd_10_1.0']
     df['sup2']=pa.supertrend(high=df['High'],low=df['Low'],close=df['Close'],length=10,multiplier=1.0)['SUPERT_10_1.0']
@@ -133,7 +132,7 @@ def Supertrend(df):
     df.loc[(df.sup2 == df.sup2.shift(3)), 'Consolidating'] = 'Yes'
     df.loc[(df.sup4 == df.sup4.shift(3)), 'Consolidating2'] = 'Yes'
 account= st.sidebar.number_input('Account',min_value=100,value=700)
-@st.cache
+
 def ATR_decision(df):
     df['ATR']= ta.volatility.average_true_range(df.High, df.Low, df.Close,window=10)
     df['ATR%'] = df['ATR']/df.Close*100
