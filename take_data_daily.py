@@ -30,7 +30,7 @@ def getdata():
     engine=sqlalchemy.create_engine('sqlite:///günlük.db')
     enginew=sqlalchemy.create_engine('sqlite:///haftalik.db')
     with st.empty():
-        for ticker,fullname in zip(symbols,fullnames):
+        for ticker,fullname in zip(symbols[:5],fullnames[:5]):
             index += 1
             try:
                 data2 = exchange.fetch_ohlcv(ticker, timeframe='1d',limit=1000) #since=exchange.parse8601('2022-02-13T00:00:00Z'))
