@@ -128,8 +128,8 @@ def Supertrend(df):
     df.loc[(df.sup3==-1)&(df.sup3.shift(1)==1), 'Decision Super2'] = 'Sell'  
     df.loc[(df.sup==1)&(df.sup.shift(1)==-1), 'Decision Super'] = 'Buy'
     df.loc[(df.sup==-1)&(df.sup.shift(1)==1), 'Decision Super'] = 'Sell'  
-    df.loc[(df.sup2 == df.sup2.shift(3))&(df.sup2 != df.sup2.shift(4)), 'Consolidating'] = 'Yes'
-    df.loc[(df.sup4 == df.sup4.shift(3))&(df.sup4 != df.sup4.shift(4)), 'Consolidating2'] = 'Yes'
+    df.loc[(df.sup2 == df.sup2.shift(2))&(df.sup2 != df.sup2.shift(3)), 'Consolidating'] = 'Yes'
+    df.loc[(df.sup4 == df.sup4.shift(2))&(df.sup4 != df.sup4.shift(3)), 'Consolidating2'] = 'Yes'
 
 def ATR_decision(df):
     df['ATR']= ta.volatility.average_true_range(df.High, df.Low, df.Close,window=10)
