@@ -230,13 +230,18 @@ def get_figures(frame):
     fig.add_trace(go.Scatter(x=frame['Date'], 
          y=frame['sup2'],
          opacity=0.7,
-         mode='markers', marker=dict(size=2,color='LightSkyBlue'), 
-         name='Supertrend'))
+         mode='markers', marker=dict(size=2,color='green'), 
+         name='Supertrend1'))
     fig.add_trace(go.Scatter(x=frame['Date'], 
          y=frame['sup4'],
          opacity=0.7,
-         mode='markers', marker=dict(size=2,color='green'), 
-         name='Supertrend'))
+         mode='markers', marker=dict(size=2,color='orange'), 
+         name='Supertrend2'))
+    fig.add_trace(go.Scatter(x=frame['Date'], 
+         y=frame['sup6'],
+         opacity=0.7,
+         mode='markers', marker=dict(size=2,color='blue'), 
+         name='Supertrend3'))
     fig.add_trace(go.Bar(x=frame['Date'], 
      y=frame['MACD_diff']
         ), row=2, col=1)
