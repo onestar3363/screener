@@ -213,11 +213,11 @@ def get_figures(frame):
     vertical_spacing=0.01, row_heights=[0.5,0.2,0.2])
     r=50
     fig.add_trace(go.Candlestick(x=frame['Date'].tail(r), open=frame['Open'].tail(r), high=frame['High'].tail(r), low=frame['Low'].tail(r), close=frame['Close'].tail(r)))
-    #fig.add_trace(go.Scatter(x=frame['Date'], 
-    #     y=frame['EMA20'], 
-    #     opacity=0.7, 
-    #     line=dict(color='green', width=2), 
-    #     name='EMA 20'))
+    fig.add_trace(go.Scatter(x=frame['Date'].tail(r), 
+         y=frame['EMA20'].tail(r), 
+         opacity=0.7, 
+         line=dict(color='green', width=2), 
+         name='EMA 20'))
     #fig.add_trace(go.Scatter(x=frame['Date'], 
     #     y=frame['EMA50'], 
     #     opacity=0.7, 
