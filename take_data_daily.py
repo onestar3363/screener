@@ -212,56 +212,56 @@ def get_figures(frame):
     fig = plotly.subplots.make_subplots(rows=3, cols=1, shared_xaxes=True,
     vertical_spacing=0.01, row_heights=[0.5,0.2,0.2])
     fig.add_trace(go.Candlestick(x=frame['Date'].tail(10), open=frame['Open'], high=frame['High'], low=frame['Low'], close=frame['Close']))
-    fig.add_trace(go.Scatter(x=frame['Date'], 
+    fig.add_trace(go.Scatter(x=frame['Date'].tail(10), 
          y=frame['EMA20'], 
          opacity=0.7, 
          line=dict(color='green', width=2), 
          name='EMA 20'))
-    fig.add_trace(go.Scatter(x=frame['Date'], 
+    fig.add_trace(go.Scatter(x=frame['Date'].tail(10), 
          y=frame['EMA50'], 
          opacity=0.7, 
          line=dict(color='orange', width=2), 
          name='EMA 50'))
-    fig.add_trace(go.Scatter(x=frame['Date'], 
+    fig.add_trace(go.Scatter(x=frame['Date'].tail(10), 
          y=frame['EMA200'], 
          opacity=0.7, 
          line=dict(color='blue', width=2), 
          name='EMA 200'))
-    fig.add_trace(go.Scatter(x=frame['Date'], 
+    fig.add_trace(go.Scatter(x=frame['Date'].tail(10), 
          y=frame['sup2'],
          opacity=0.7,
          mode='markers', marker=dict(size=2,color='green'), 
          name='Supertrend1'))
-    fig.add_trace(go.Scatter(x=frame['Date'], 
+    fig.add_trace(go.Scatter(x=frame['Date'].tail(10), 
          y=frame['sup4'],
          opacity=0.7,
          mode='markers', marker=dict(size=2,color='orange'), 
          name='Supertrend2'))
-    fig.add_trace(go.Scatter(x=frame['Date'], 
+    fig.add_trace(go.Scatter(x=frame['Date'].tail(10), 
          y=frame['sup6'],
          opacity=0.7,
          mode='markers', marker=dict(size=2,color='blue'), 
          name='Supertrend3'))
-    fig.add_trace(go.Bar(x=frame['Date'], 
+    fig.add_trace(go.Bar(x=frame['Date'].tail(10), 
      y=frame['MACD_diff']
         ), row=2, col=1)
-    fig.add_trace(go.Scatter(x=frame['Date'],
+    fig.add_trace(go.Scatter(x=frame['Date'].tail(10),
          y=frame['MACD'],
          line=dict(color='black', width=2)
         ), row=2, col=1)
-    fig.add_trace(go.Scatter(x=frame['Date'],
+    fig.add_trace(go.Scatter(x=frame['Date'].tail(10),
          y=frame['MACD_signal'],
          line=dict(color='blue', width=1)
         ), row=2, col=1)
-    fig.add_trace(go.Scatter(x=frame['Date'],
+    fig.add_trace(go.Scatter(x=frame['Date'].tail(10),
          y=frame['ADX'],
          line=dict(color='orange', width=1)
         ), row=3, col=1)
-    fig.add_trace(go.Scatter(x=frame['Date'],
+    fig.add_trace(go.Scatter(x=frame['Date'].tail(10),
          y=frame['DIOSQ'],
          line=dict(color='green', width=1)
         ), row=3, col=1)
-    fig.add_trace(go.Scatter(x=frame['Date'],
+    fig.add_trace(go.Scatter(x=frame['Date'].tail(10),
          y=frame['DIOSQ_EMA'],
          line=dict(color='purple', width=1)
         ), row=3, col=1)   
