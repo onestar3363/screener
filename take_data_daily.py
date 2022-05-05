@@ -132,9 +132,9 @@ def Supertrend(df):
     df.loc[(df.sup==-1)&(df.sup.shift(1)==1), 'Decision Super'] = 'Sell' 
     df.loc[(df.sup5==1)&(df.sup5.shift(1)==-1), 'Decision Super3'] = 'Buy'
     df.loc[(df.sup5==-1)&(df.sup5.shift(1)==1), 'Decision Super3'] = 'Sell' 
-    df.loc[(df.sup2 == df.sup2.shift(8))&(df.sup2 != df.sup2.shift(9)), 'Consolidating'] = 'Yes'
-    df.loc[(df.sup4 == df.sup4.shift(8))&(df.sup4 != df.sup4.shift(9)), 'Consolidating2'] = 'Yes'
-    df.loc[(df.sup6 == df.sup6.shift(8))&(df.sup6 != df.sup6.shift(9)), 'Consolidating3'] = 'Yes'
+    df.loc[(df.sup2 == df.sup2.shift(3))&(df.sup2 != df.sup2.shift(4)), 'Consolidating'] = 'Yes'
+    df.loc[(df.sup4 == df.sup4.shift(3))&(df.sup4 != df.sup4.shift(4)), 'Consolidating2'] = 'Yes'
+    df.loc[(df.sup6 == df.sup6.shift(3))&(df.sup6 != df.sup6.shift(4)), 'Consolidating3'] = 'Yes'
 def ATR_decision(df):
     df['ATR']= ta.volatility.average_true_range(df.High, df.Low, df.Close,window=10)
     df['ATR%'] = df['ATR']/df.Close*100
@@ -312,7 +312,8 @@ for name, frame,framew in zip(names,framelist,framelistw):
                             sira +=1
                             expander()
                 if option2 == 'Consolidating':
-                    if (frame['Consolidating2'].iloc[-1]=='Yes' or frame['Consolidating3'].iloc[-1]=='Yes') and frame['MACD_diff'].iloc[-1]>0 and frame['Dec_EMA20'].iloc[-1]=='Buy':
+                    if (frame['Consolidating2'].iloc[-1]=='Yes' or frame['Consolidating3'].iloc[-1]=='Yes') \
+                    and frame['MACD_diff'].iloc[-1]>0 and framew['Trend MACD'].iloc[-1]=='Buy' and frame['Dec_EMA20'].iloc[-1]=='Buy':
                             sira +=1
                             expander()          
                 if option2 == 'Supertrend':
@@ -342,7 +343,8 @@ for name, frame,framew in zip(names,framelist,framelistw):
                             sira +=1
                             expander()
                 if option2 == 'Consolidating':
-                    if (frame['Consolidating2'].iloc[-1]=='Yes' or frame['Consolidating3'].iloc[-1]=='Yes') and frame['MACD_diff'].iloc[-1]<0 and frame['Dec_EMA20'].iloc[-1]=='Sell':
+                    if (frame['Consolidating2'].iloc[-1]=='Yes' or frame['Consolidating3'].iloc[-1]=='Yes') 
+                    and frame['MACD_diff'].iloc[-1]<0 and framew['Trend MACD'].iloc[-1]=='Sell' and frame['Dec_EMA20'].iloc[-1]=='Sell':
                             sira +=1
                             expander()          
                 if option2 == 'Supertrend':
