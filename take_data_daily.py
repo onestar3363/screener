@@ -33,7 +33,7 @@ def getdata():
         for ticker,fullname in zip(symbols,fullnames):
             index += 1
             try:
-                data2 = exchange.fetch_ohlcv(ticker, timeframe='1d',limit=1000) #since=exchange.parse8601('2022-02-13T00:00:00Z'))
+                data2 = exchange.fetch_ohlcv(ticker, timeframe='1d',limit=250) #since=exchange.parse8601('2022-02-13T00:00:00Z'))
                 data3= exchange.fetch_ohlcv(ticker, timeframe='1w',limit=250)
                 st.write(f"⏳ {index,ticker} downloaded")
             except Exception as e:
@@ -55,7 +55,7 @@ def getdata():
         for bticker in bsymbols:
             st.write(f"⏳ {index,bticker} downloaded")
             index += 1
-            df=yf.download(bticker,period="3y")
+            df=yf.download(bticker,period="1y")
             df2=df.drop('Adj Close', 1)
             df3=df2.reset_index()
             df4=df3.round(2)
