@@ -223,16 +223,16 @@ def get_figures(frame):
          opacity=0.7, 
          line=dict(color='orange', width=2), 
          name='EMA 50'))
-    #fig.add_trace(go.Scatter(x=frame['Date'], 
-    #     y=frame['EMA200'], 
-    #     opacity=0.7, 
-    #     line=dict(color='blue', width=2), 
-    #     name='EMA 200'))
-    #fig.add_trace(go.Scatter(x=frame['Date'], 
-    #     y=frame['sup2'],
-    #     opacity=0.7,
-    #     mode='markers', marker=dict(size=2,color='green'), 
-    #     name='Supertrend1'))
+    fig.add_trace(go.Scatter(x=frame['Date'].tail(r), 
+         y=frame['EMA200'].tail(r), 
+         opacity=0.7, 
+         line=dict(color='blue', width=2), 
+         name='EMA 200'))
+    fig.add_trace(go.Scatter(x=frame['Date'].tail(r), 
+         y=frame['sup2'].tail(r),
+         opacity=0.7,
+         mode='markers', marker=dict(size=2,color='green'), 
+         name='Supertrend1'))
     #fig.add_trace(go.Scatter(x=frame['Date'], 
     #     y=frame['sup4'],
     #     opacity=0.7,
