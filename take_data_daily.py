@@ -281,7 +281,7 @@ def expander():
         col2.plotly_chart(figw,use_container_width=True)
 sira=0
 option1 = st.sidebar.selectbox("Buy or Sell",('Buy','Sell')) 
-option2 = st.sidebar.selectbox("Which Indicator?", ('EMA50', 'EMA200', 'EMA20','MACD','ADX','Consolidating','Supertrend','Index'))
+option2 = st.sidebar.selectbox("Which Indicator?", ('EMA50', 'EMA200', 'EMA20','MACD','ADX','Consolidating','Supertrend1','Supertrend2','Supertrend3','Index'))
 adx_value= st.sidebar.number_input('ADX Value',min_value=10,value=18)
 adx_value2= st.sidebar.number_input('ADX Value_ust',min_value=10,value=25)
 riskvalue=st.sidebar.number_input('Risk',min_value=0.01,value=1.0,step=0.1)
@@ -317,10 +317,18 @@ for name, frame,framew in zip(names,framelist,framelistw):
                     and frame['MACD_diff'].iloc[-1]>0 and framew['Trend MACD'].iloc[-1]=='Buy' and frame['Dec_EMA20'].iloc[-1]=='Buy':
                             sira +=1
                             expander()          
-                if option2 == 'Supertrend':
+                if option2 == 'Supertrend1':
+                    if frame['Decision Super'].iloc[-1]=='Buy' :
+                            sira +=1
+                            expander()   
+                if option2 == 'Supertrend2':
                     if frame['Decision Super2'].iloc[-1]=='Buy' :
                             sira +=1
-                            expander()          
+                            expander()
+                if option2 == 'Supertrend3':
+                    if frame['Decision Super2'].iloc[-1]=='Buy' :
+                            sira +=1
+                            expander()
             elif option1 == 'Sell'and framew['Trend MACD'].iloc[-1]=='Sell' and (framew['Dec_EMA50'].iloc[-1]=='Sell' or framew['sup'].iloc[-1]==-1)  :
             #and framew['sup'].iloc[-1]==-1 and framew['Dec_EMA50'].iloc[-1]=='Sell':
                 if option2 == 'EMA50':  
