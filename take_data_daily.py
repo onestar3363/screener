@@ -356,7 +356,15 @@ for name, frame,framew in zip(names,framelist,framelistw):
                     and frame['MACD_diff'].iloc[-1]<0 and framew['Trend MACD'].iloc[-1]=='Sell' and frame['Dec_EMA50'].iloc[-1]=='Buy':
                             sira +=1
                             expander()          
-                if option2 == 'Supertrend':
+                if option2 == 'Supertrend1':
+                    if frame['Decision Super'].iloc[-1]=='Sell' :
+                            sira +=1
+                            expander()   
+                if option2 == 'Supertrend2':
+                    if frame['Decision Super2'].iloc[-1]=='Sell' :
+                            sira +=1
+                            expander()
+                if option2 == 'Supertrend3':
                     if frame['Decision Super2'].iloc[-1]=='Sell' :
                             sira +=1
                             expander() 
