@@ -352,8 +352,8 @@ for name, frame,framew in zip(names,framelist,framelistw):
                             sira +=1
                             expander()
                 if option2 == 'Consolidating':
-                    if (frame['Consolidating2'].iloc[-1]=='Yes' or frame['Consolidating3'].iloc[-1]=='Yes') \
-                    and frame['MACD_diff'].iloc[-1]<0 and framew['Trend MACD'].iloc[-1]=='Sell' and frame['Dec_EMA50'].iloc[-1]=='Buy':
+                    if (frame['Consolidating2'].iloc[-1]=='Yes' or frame['Consolidating3'].iloc[-1]=='Yes') :
+                    #and frame['MACD_diff'].iloc[-1]<0 and framew['Trend MACD'].iloc[-1]=='Sell' and frame['Dec_EMA50'].iloc[-1]=='Buy':
                             sira +=1
                             expander()          
                 if option2 == 'Supertrend1':
