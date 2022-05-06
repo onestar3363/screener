@@ -233,41 +233,41 @@ def get_figures(frame):
          opacity=0.7,
          mode='markers', marker=dict(size=2,color='green'), 
          name='Supertrend1'))
-    #fig.add_trace(go.Scatter(x=frame['Date'], 
-    #     y=frame['sup4'],
-    #     opacity=0.7,
-    #     mode='markers', marker=dict(size=2,color='orange'), 
-    #     name='Supertrend2'))
-    #fig.add_trace(go.Scatter(x=frame['Date'], 
-    #     y=frame['sup6'],
-    #     opacity=0.7,
-    #     mode='markers', marker=dict(size=2,color='blue'), 
-    #     name='Supertrend3'))
-    #fig.add_trace(go.Bar(x=frame['Date'], 
-    # y=frame['MACD_diff']
-    #    ), row=2, col=1)
-    #fig.add_trace(go.Scatter(x=frame['Date'],
-    #     y=frame['MACD'],
-    #     line=dict(color='black', width=2)
-    #    ), row=2, col=1)
-    #fig.add_trace(go.Scatter(x=frame['Date'],
-    #     y=frame['MACD_signal'],
-    #     line=dict(color='blue', width=1)
-    #    ), row=2, col=1)
-    #fig.add_trace(go.Scatter(x=frame['Date'],
-    #     y=frame['ADX'],
-    #     line=dict(color='orange', width=1)
-    #    ), row=3, col=1)
-    #fig.add_trace(go.Scatter(x=frame['Date'],
-    #     y=frame['DIOSQ'],
-    #     line=dict(color='green', width=1)
-    #    ), row=3, col=1)
-    #fig.add_trace(go.Scatter(x=frame['Date'],
-    #     y=frame['DIOSQ_EMA'],
-    #     line=dict(color='purple', width=1)
-    #    ), row=3, col=1)   
-    #fig.update_layout( height=600, width=1200,
-    #    showlegend=False, xaxis_rangeslider_visible=False)
+    fig.add_trace(go.Scatter(x=frame['Date'].tail(r), 
+         y=frame['sup4'].tail(r),
+         opacity=0.7,
+         mode='markers', marker=dict(size=2,color='orange'), 
+         name='Supertrend2'))
+    fig.add_trace(go.Scatter(x=frame['Date'].tail(r), 
+         y=frame['sup6'].tail(r),
+         opacity=0.7,
+         mode='markers', marker=dict(size=2,color='blue'), 
+         name='Supertrend3'))
+    fig.add_trace(go.Bar(x=frame['Date'].tail(r), 
+     y=frame['MACD_diff'].tail(r)
+        ), row=2, col=1)
+    fig.add_trace(go.Scatter(x=frame['Date'].tail(r),
+         y=frame['MACD'].tail(r),
+         line=dict(color='black', width=2)
+        ), row=2, col=1)
+    fig.add_trace(go.Scatter(x=frame['Date'].tail(r),
+         y=frame['MACD_signal'].tail(r),
+         line=dict(color='blue', width=1)
+        ), row=2, col=1)
+    fig.add_trace(go.Scatter(x=frame['Date'].tail(r),
+         y=frame['ADX'].tail(r),
+         line=dict(color='orange', width=1)
+        ), row=3, col=1)
+    fig.add_trace(go.Scatter(x=frame['Date'].tail(r),
+         y=frame['DIOSQ'].tail(r),
+         line=dict(color='green', width=1)
+        ), row=3, col=1)
+    fig.add_trace(go.Scatter(x=frame['Date'].tail(r),
+         y=frame['DIOSQ_EMA'].tail(r),
+         line=dict(color='purple', width=1)
+        ), row=3, col=1)   
+    fig.update_layout( height=600, width=1200,
+        showlegend=False, xaxis_rangeslider_visible=False)
     return fig
 def expander():
     with st.expander(str(sira) +') '+ name+'/'+' RISK= '+str(frame['RISK'].iloc[-1].round(2))+'/ %ATR='+str(frame['ATR%'].iloc[-1].round(2))):
