@@ -293,7 +293,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
             if option1 == 'Buy' and framew['Trend MACD'].iloc[-1]=='Buy': #and (framew['Dec_EMA50'].iloc[-1]=='Buy' or framew['sup3'].iloc[-1]==1) :
             #and framew['sup'].iloc[-1]==1 and framew['Dec_EMA50'].iloc[-1]=='Buy':
                 if option2 == 'EMA50':  
-                    if frame['EMA50_cross'].iloc[-1]=='Buy':
+                    if frame['EMA50_cross'].iloc[-1]=='Buy' and framew['sup5'].iloc[-1]==1:
                             sira +=1
                             expander()
                 if option2 == 'EMA200':  
@@ -301,7 +301,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                             sira +=1
                             expander()
                 if option2 == 'EMA20':
-                    if frame['EMA20_cross'].iloc[-1]=='Buy':
+                    if frame['EMA20_cross'].iloc[-1]=='Buy' and framew['sup5'].iloc[-1]==1:
                             sira +=1
                             expander() 
                 if option2 == 'ADX':
@@ -332,7 +332,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
             elif option1 == 'Sell'and framew['Trend MACD'].iloc[-1]=='Sell': #and (framew['Dec_EMA50'].iloc[-1]=='Sell' or framew['sup3'].iloc[-1]==-1)  :
             #and framew['sup'].iloc[-1]==-1 and framew['Dec_EMA50'].iloc[-1]=='Sell':
                 if option2 == 'EMA50':  
-                    if frame['EMA50_cross'].iloc[-1]=='Sell' :
+                    if frame['EMA50_cross'].iloc[-1]=='Sell' and framew['sup5'].iloc[-1]==-1 :
                             sira +=1
                             expander()
                 if option2 == 'EMA200':  
@@ -340,7 +340,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                             sira +=1
                             expander()
                 if option2 == 'EMA20':
-                    if frame['EMA20_cross'].iloc[-1]=='Sell' :
+                    if frame['EMA20_cross'].iloc[-1]=='Sell' and framew['sup5'].iloc[-1]==-1 :
                             sira +=1
                             expander() 
                 if option2 == 'ADX':
