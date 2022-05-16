@@ -319,7 +319,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                             expander()          
                 if option2 == 'Supertrend':
                     if frame['Decision Super'].iloc[-1]=='Buy' or frame['Decision Super2'].iloc[-1]=='Buy' or frame['Decision Super3'].iloc[-1]=='Buy' \
-                    framew['Decision Super'].iloc[-1]=='Buy' or framew['Decision Super2'].iloc[-1]=='Buy' or framew['Decision Super3'].iloc[-1]=='Buy':
+                    and framew['Decision Super'].iloc[-1]=='Buy' or framew['Decision Super2'].iloc[-1]=='Buy' or framew['Decision Super3'].iloc[-1]=='Buy':
                             sira +=1
                             expander()
                             
