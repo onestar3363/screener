@@ -359,7 +359,8 @@ for name, frame,framew in zip(names,framelist,framelistw):
                             sira +=1
                             expander()          
                 if option2 == 'Supertrend':
-                    if frame['Decision Super'].iloc[-1]=='Sell' or frame['Decision Super2'].iloc[-1]=='Sell' or frame['Decision Super3'].iloc[-1]=='Sell' :
+                    if frame['Decision Super'].iloc[-1]=='Sell' or frame['Decision Super2'].iloc[-1]=='Sell' or frame['Decision Super3'].iloc[-1]=='Sell'\
+                    and framew['Decision Super'].iloc[-1]=='Sell' or framew['Decision Super2'].iloc[-1]=='Sell' or framew['Decision Super3'].iloc[-1]=='Sell':
                             sira +=1
                             expander()   
                 #if option2 == 'Supertrend2':
