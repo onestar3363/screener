@@ -126,13 +126,22 @@ def Supertrend(df):
     df['sup4']=pa.supertrend(high=df['High'],low=df['Low'],close=df['Close'],length=10,multiplier=2.0)['SUPERT_10_2.0']
     df['sup5']=pa.supertrend(high=df['High'],low=df['Low'],close=df['Close'],length=10,multiplier=3.0)['SUPERTd_10_3.0']
     df['sup6']=pa.supertrend(high=df['High'],low=df['Low'],close=df['Close'],length=10,multiplier=3.0)['SUPERT_10_3.0']
-    df.loc[(df.sup3==1)&(df.sup3.shift(1)==-1), 'Decision Super2'] = 'Buy'
-    df.loc[(df.sup3==-1)&(df.sup3.shift(1)==1), 'Decision Super2'] = 'Sell'  
+    
     df.loc[(df.sup==1)&(df.sup.shift(1)==-1)|((df.Close.shift(1)>=df.sup2.shift(1))& \
     (df.Low<=df.sup2)&(df.Close>df.sup2)), 'Decision Super'] = 'Buy'
-    df.loc[(df.sup==-1)&(df.sup.shift(1)==1), 'Decision Super'] = 'Sell' 
-    df.loc[(df.sup5==1)&(df.sup5.shift(1)==-1), 'Decision Super3'] = 'Buy'
-    df.loc[(df.sup5==-1)&(df.sup5.shift(1)==1), 'Decision Super3'] = 'Sell' 
+    df.loc[(df.sup==-1)&(df.sup.shift(1)==1)|((df.Close.shift(1)<=df.sup2.shift(1))& \
+    (df.Low>=df.sup2)&(df.Close<df.sup2)), 'Decision Super'] = 'Sell' 
+    
+    df.loc[(df.sup3==1)&(df.sup3.shift(1)==-1)|((df.Close.shift(1)>=df.sup4.shift(1))& \
+    (df.Low<=df.sup4)&(df.Close>df.sup4)), 'Decision Super2'] = 'Buy'
+    df.loc[(df.sup3==-1)&(df.sup3.shift(1)==1)|((df.Close.shift(1)<=df.sup4.shift(1))& \
+    (df.Low>=df.sup4)&(df.Close<df.sup4)), 'Decision Super2'] = 'Sell'   
+    
+    df.loc[(df.sup5==1)&(df.sup5.shift(1)==-1)|((df.Close.shift(1)>=df.sup6.shift(1))& \
+    (df.Low<=df.sup6)&(df.Close>df.sup6)), 'Decision Super3'] = 'Buy'
+    df.loc[(df.sup5==-1)&(df.sup5.shift(1)==1)|((df.Close.shift(1)<=df.sup6.shift(1))& \
+    (df.Low>=df.sup6)&(df.Close<df.sup6)), 'Decision Super3'] = 'Sell' 
+    
     df.loc[(df.sup2 == df.sup2.shift(8))&(df.sup2 != df.sup2.shift(9)), 'Consolidating'] = 'Yes'
     df.loc[(df.sup4 == df.sup4.shift(8))&(df.sup4 != df.sup4.shift(9)), 'Consolidating2'] = 'Yes'
     df.loc[(df.sup6 == df.sup6.shift(3)), 'Consolidating3'] = 'Yes'
