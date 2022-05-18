@@ -303,8 +303,8 @@ for name, frame,framew in zip(names,framelist,framelistw):
             if framew['Trend MACD'].iloc[-1]=='Buy' and (framew['Dec_EMA50'].iloc[-1]=='Buy' or framew['MACD_diff'].iloc[-1]>0) : 
             #and framew['sup'].iloc[-1]==1 and framew['Dec_EMA50'].iloc[-1]=='Buy':
                 if option2 == 'EMA50':  
-                    if frame['EMA50_cross'].iloc[-1]=='Buy' and frame['MACD_diff'].iloc[-1]>0: #and frame['Trend MACD'].iloc[-1]=='Buy' :
-                            st.header('Buy' +option2)
+                    st.header('Buy' +option2)
+                    if frame['EMA50_cross'].iloc[-1]=='Buy' and frame['MACD_diff'].iloc[-1]>0: #and frame['Trend MACD'].iloc[-1]=='Buy' :                          
                             sira +=1
                             expander()
                 if option2 == 'EMA200':  
@@ -344,8 +344,8 @@ for name, frame,framew in zip(names,framelist,framelistw):
             if framew['Trend MACD'].iloc[-1]=='Sell' and (framew['Dec_EMA50'].iloc[-1]=='Sell' or framew['MACD_diff'].iloc[-1]<0):
             #and framew['sup'].iloc[-1]==-1 and framew['Dec_EMA50'].iloc[-1]=='Sell':
                 if option2 == 'EMA50':  
-                    if frame['EMA50_cross'].iloc[-1]=='Sell' and frame['MACD_diff'].iloc[-1]<0: #and frame['Trend MACD'].iloc[-1]=='Sell':
-                            st.header('Sell' +option2)
+                    st.header('Sell' +option2)
+                    if frame['EMA50_cross'].iloc[-1]=='Sell' and frame['MACD_diff'].iloc[-1]<0: #and frame['Trend MACD'].iloc[-1]=='Sell':                            
                             sira +=1
                             expander()
                 if option2 == 'EMA200':  
