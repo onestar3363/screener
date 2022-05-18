@@ -302,8 +302,9 @@ for name, frame,framew in zip(names,framelist,framelistw):
         if len(frame)>30 and len(framew)>30 and frame['ADX'].iloc[-1]>=adx_value and frame['RISK'].iloc[-1]<=riskvalue :
             if framew['Trend MACD'].iloc[-1]=='Buy' and (framew['Dec_EMA50'].iloc[-1]=='Buy' or framew['MACD_diff'].iloc[-1]>0) : 
             #and framew['sup'].iloc[-1]==1 and framew['Dec_EMA50'].iloc[-1]=='Buy':
+                st.header('Buy' +option2)
                 if option2 == 'EMA50':  
-                    st.header('Buy' +option2)
+                    
                     if frame['EMA50_cross'].iloc[-1]=='Buy' and frame['MACD_diff'].iloc[-1]>0: #and frame['Trend MACD'].iloc[-1]=='Buy' :                          
                             sira +=1
                             expander()
