@@ -303,7 +303,8 @@ for name, frame,framew in zip(names,framelist,framelistw):
             if option1 == 'Buy' and framew['Trend MACD'].iloc[-1]=='Buy' and framew['Dec_EMA50'].iloc[-1]=='Buy': #and framew['MACD_diff'].iloc[-1]>0) : 
             #and framew['sup'].iloc[-1]==1 and framew['Dec_EMA50'].iloc[-1]=='Buy':
                 if option2 == 'EMA50':  
-                    if frame['EMA50_cross'].iloc[-1]=='Buy' and frame['MACD_diff'].iloc[-1]>0: #and frame['Trend MACD'].iloc[-1]=='Buy' :                          
+                    if (frame['EMA50_cross'].iloc[-1]=='Buy' or frame['EMA20_cross'].iloc[-1]=='Buy'\ 
+                    or 'Decision Super2'].iloc[-1]=='Buy' or frame['Decision Super3'].iloc[-1]=='Buy') and frame['MACD_diff'].iloc[-1]>0:                          
                             sira +=1
                             expander()
                 if option2 == 'EMA200':  
