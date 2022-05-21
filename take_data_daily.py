@@ -155,7 +155,10 @@ def ATR_decision(df):
 #     df['Stoch_Signal'] = ta.momentum.stoch_signal(df.High, df.Low, df.Close, smooth_window=3)
 #     df.loc[(df.Stoch>df.Stoch_Signal)& (df.Stoch.shift(1)<df.Stoch_Signal.shift(1)) & (df.Stoch_Signal<20), 'Decision Stoch'] = 'Buy'  
 
-
+def Stochrsi_decision(df):
+     df['Stochrsi_d'] = ta.momentum.stochrsi_d(df.Close)
+     df['Stochrsi_k'] = ta.momentum.stochrsi_k(df.Close)
+ 
 
 @st.cache(allow_output_mutation=True)
 def connect_engine(url):
@@ -186,6 +189,7 @@ def get_framelist():
                 ADX_decision(frame)
                 Supertrend(frame)
                 ATR_decision(frame)
+                Stochrsi_decision(frame)
                 sira +=1
                 st.write('günlük',sira,name)             
     return framelist    
@@ -203,6 +207,7 @@ def get_framelistw():
                 EMA_decision(framew)
                 ADX_decision(framew)
                 Supertrend(framew)
+                Stochrsi_decision(framew)
                 sira +=1
                 st.write('haftalik',sira,name)              
     return framelistw        
@@ -265,16 +270,20 @@ def get_figures(frame):
          line=dict(color='blue', width=1)
         ), row=2, col=1)
     fig.add_trace(go.Scatter(x=frame['Date'].tail(r),
-         y=frame['ADX'].tail(r),
+         y=frame['Stochrsi_d'].tail(r),
          line=dict(color='orange', width=1)
         ), row=3, col=1)
     fig.add_trace(go.Scatter(x=frame['Date'].tail(r),
-         y=frame['DIOSQ'].tail(r),
-         line=dict(color='green', width=1)
+         y=frame['Stochrsi_k'].tail(r),
+         line=dict(color='blue', width=1)
         ), row=3, col=1)
     fig.add_trace(go.Scatter(x=frame['Date'].tail(r),
-         y=frame['DIOSQ_EMA'].tail(r),
-         line=dict(color='purple', width=1)
+         y=20,
+         line=dict(color='black', width=1, dash='dash')
+        ), row=3, col=1)   
+    fig.add_trace(go.Scatter(x=frame['Date'].tail(r),
+         y=80,
+         line=dict(color='black', width=1, dash='dash')
         ), row=3, col=1)   
     fig.update_layout( height=600, width=1200,
         showlegend=False, xaxis_rangeslider_visible=False)
