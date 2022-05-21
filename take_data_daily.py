@@ -277,12 +277,12 @@ def get_figures(frame):
          y=frame['Stochrsi_k'].tail(r),
          line=dict(color='blue', width=1)
         ), row=3, col=1)
-    fig.add_hline(y=20, line_width=3, line_dash="dash", line_color="green"
+    fig.add_hline(y=20, line_width=3, line_dash="dash", line_color="green")
         ), row=3, col=1)
-    fig.add_trace(go.Scatter(x=frame['Date'].tail(r),
-         y=80,
-         line=dict(color='black', width=1, dash='dash')
-        ), row=3, col=1)
+    #fig.add_trace(go.Scatter(x=frame['Date'].tail(r),
+    #     y=80,
+    #     line=dict(color='black', width=1, dash='dash')
+    #    ), row=3, col=1)
     fig.update_layout( height=600, width=1200,
         showlegend=False, xaxis_rangeslider_visible=False)
     return fig
