@@ -277,8 +277,9 @@ def get_figures(frame):
          y=frame['Stochrsi_k'].tail(r),
          line=dict(color='blue', width=1)
         ), row=3, col=1)
-    fig.add_hline(y=0.8, line_width=2, line_dash="dash", line_color="green",row=3, col=1)
     fig.add_hline(y=0.2, line_width=2, line_dash="dash", line_color="green",row=3, col=1)
+    fig.add_hline(y=0.5, line_width=2, line_dash="dash", line_color="green",row=3, col=1)
+    fig.add_hline(y=0.8, line_width=2, line_dash="dash", line_color="green",row=3, col=1)
     fig.update_layout( height=600, width=1200,
         showlegend=False, xaxis_rangeslider_visible=False)
     return fig
