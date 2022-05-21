@@ -263,7 +263,7 @@ def get_figures(frame):
         ), row=2, col=1)
     fig.add_trace(go.Scatter(x=frame['Date'].tail(r),
          y=frame['MACD'].tail(r),
-         line=dict(color='blue', width=2)
+         line=dict(color='blue', width=1)
         ), row=2, col=1)
     fig.add_trace(go.Scatter(x=frame['Date'].tail(r),
          y=frame['MACD_signal'].tail(r),
