@@ -226,7 +226,7 @@ def get_figures(frame):
     fig = go.Figure()
     fig = plotly.subplots.make_subplots(rows=3, cols=1, shared_xaxes=True,
     vertical_spacing=0.01, row_heights=[0.5,0.2,0.2])
-    r=50
+    r=100
     fig.add_trace(go.Candlestick(x=frame['Date'].tail(r), open=frame['Open'].tail(r), high=frame['High'].tail(r), low=frame['Low'].tail(r), close=frame['Close'].tail(r)))
     fig.add_trace(go.Scatter(x=frame['Date'].tail(r), 
          y=frame['EMA20'].tail(r), 
@@ -263,11 +263,11 @@ def get_figures(frame):
         ), row=2, col=1)
     fig.add_trace(go.Scatter(x=frame['Date'].tail(r),
          y=frame['MACD'].tail(r),
-         line=dict(color='black', width=2)
+         line=dict(color='blue', width=2)
         ), row=2, col=1)
     fig.add_trace(go.Scatter(x=frame['Date'].tail(r),
          y=frame['MACD_signal'].tail(r),
-         line=dict(color='blue', width=1)
+         line=dict(color='orange', width=1)
         ), row=2, col=1)
     fig.add_trace(go.Scatter(x=frame['Date'].tail(r),
          y=frame['Stochrsi_d'].tail(r),
@@ -277,9 +277,9 @@ def get_figures(frame):
          y=frame['Stochrsi_k'].tail(r),
          line=dict(color='blue', width=1)
         ), row=3, col=1)
-    fig.add_hline(y=0.2, line_width=2, line_dash="dash", line_color="green",row=3, col=1)
-    fig.add_hline(y=0.5, line_width=2, line_dash="dash", line_color="green",row=3, col=1)
-    fig.add_hline(y=0.8, line_width=2, line_dash="dash", line_color="green",row=3, col=1)
+    fig.add_hline(y=0.2, line_width=1, line_dash="dash", line_color="green",row=3, col=1)
+    fig.add_hline(y=0.5, line_width=1, line_dash="dash", line_color="green",row=3, col=1)
+    fig.add_hline(y=0.8, line_width=1, line_dash="dash", line_color="green",row=3, col=1)
     fig.update_layout( height=600, width=1200,
         showlegend=False, xaxis_rangeslider_visible=False)
     return fig
