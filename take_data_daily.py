@@ -202,7 +202,7 @@ def get_framelistw():
     with st.empty():
         sira=0
         for name,framew in zip(names,framelistw): 
-            if  len(framew)>30 :
+            if  len(framew)>29 :
                 MACDdecision(framew)
                 EMA_decision(framew)
                 ADX_decision(framew)
