@@ -148,7 +148,7 @@ def Supertrend(df):
 def ATR_decision(df):
     df['ATR']= ta.volatility.average_true_range(df.High, df.Low, df.Close,window=10)
     df['ATR%'] = df['ATR']/df.Close*100
-    df['RISK']= 2*df['ATR']/700*100        
+    df['RISK']= 2*df['ATR']/701*100        
 
 # def Stoch_decision(df):
 #     df['Stoch'] = ta.momentum.stoch(df.High, df.Low, df.Close, smooth_window=3)
@@ -202,7 +202,7 @@ def get_framelistw():
     with st.empty():
         sira=0
         for name,framew in zip(names,framelistw): 
-            if  len(framew)>29 :
+            if  len(framew)>30 :
                 MACDdecision(framew)
                 EMA_decision(framew)
                 ADX_decision(framew)
