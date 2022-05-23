@@ -86,9 +86,9 @@ def EMA_decision(df):
     df.loc[(df.Close>df['EMA20']), 'Dec_EMA20'] = 'Buy'
     df.loc[(df.Close<df['EMA20']), 'Dec_EMA20'] = 'Sell'
     df.loc[((df.Close>=df.EMA20)& (df.Close.shift(1)<=df.EMA20.shift(1)))|((df.Close.shift(1)>=df.EMA20.shift(1))& \
-    (df.Low<=df.EMA20)), 'EMA20_cross'] = 'Buy'
+    (df.Low<=df.EMA20)&(df.Close>=df.EMA20)), 'EMA20_cross'] = 'Buy'
     df.loc[((df.Close<=df.EMA20)& (df.Close.shift(1)>=df.EMA20.shift(1)))|((df.Close.shift(1)<=df.EMA20.shift(1))& \
-    (df.High>=df.EMA20)), 'EMA20_cross'] = 'Sell'
+    (df.High>=df.EMA20)&(df.Close<=df.EMA20)), 'EMA20_cross'] = 'Sell'
 
     df['EMA50'] = ta.trend.ema_indicator(df.Close,window=50)
     df.loc[(df.Close>df['EMA50']), 'Dec_EMA50'] = 'Buy'
@@ -96,18 +96,18 @@ def EMA_decision(df):
     #df.loc[((df.Close>df.EMA50)& (df.Close.shift(1)>df.EMA50.shift(1))), 'Dec_EMA50'] = 'Buy'
     #df.loc[((df.Close<df.EMA50)& (df.Close.shift(1)<df.EMA50.shift(1))), 'Dec_EMA50'] = 'Sell'
     df.loc[((df.Close>=df.EMA50)& (df.Close.shift(1)<=df.EMA50.shift(1)))|((df.Close.shift(1)>=df.EMA50.shift(1))& \
-    (df.Low<=df.EMA50)), 'EMA50_cross'] = 'Buy'
+    (df.Low<=df.EMA50)&(df.Close>=df.EMA50)), 'EMA50_cross'] = 'Buy'
     df.loc[((df.Close<=df.EMA50)& (df.Close.shift(1)>=df.EMA50.shift(1)))|((df.Close.shift(1)<=df.EMA50.shift(1))& \
-    (df.High>=df.EMA50)), 'EMA50_cross'] = 'Sell'
+    (df.High>=df.EMA50)&(df.Close<=df.EMA50)), 'EMA50_cross'] = 'Sell'
 
 
     df['EMA200'] = ta.trend.ema_indicator(df.Close,window=200)
     df.loc[(df.Close>df['EMA200']), 'Dec_EMA200'] = 'Buy'
     df.loc[(df.Close<df['EMA200']), 'Dec_EMA200'] = 'Sell'
     df.loc[((df.Close>=df.EMA200)& (df.Close.shift(1)<=df.EMA200.shift(1)))|((df.Close.shift(1)>=df.EMA200.shift(1))& \
-    (df.Low<=df.EMA200)), 'EMA200_cross'] = 'Buy'
+    (df.Low<=df.EMA200)&(df.Close>=df.EMA200)), 'EMA200_cross'] = 'Buy'
     df.loc[((df.Close<=df.EMA200)& (df.Close.shift(1)>=df.EMA200.shift(1)))|((df.Close.shift(1)<=df.EMA200.shift(1))& \
-    (df.High>=df.EMA200)), 'EMA200_cross'] = 'Sell'
+    (df.High>=df.EMA200)&(df.Close<=df.EMA200)), 'EMA200_cross'] = 'Sell'
 
 def ADX_decision(df):
     df['ADX']= ta.trend.adx(df.High, df.Low, df.Close)
