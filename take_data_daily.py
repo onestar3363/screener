@@ -227,7 +227,7 @@ def get_figures(frame):
     fig = go.Figure()
     fig = plotly.subplots.make_subplots(rows=3, cols=1, shared_xaxes=True,
     vertical_spacing=0.01, row_heights=[0.5,0.2,0.2])
-    r=100
+    r=50
     fig.add_trace(go.Candlestick(x=frame['Date'].tail(r), open=frame['Open'].tail(r), high=frame['High'].tail(r), low=frame['Low'].tail(r), close=frame['Close'].tail(r)))
     fig.add_trace(go.Scatter(x=frame['Date'].tail(r), 
          y=frame['EMA20'].tail(r), 
