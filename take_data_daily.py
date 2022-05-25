@@ -127,8 +127,8 @@ def Supertrend(df):
     df['sup5']=pa.supertrend(high=df['High'],low=df['Low'],close=df['Close'],length=10,multiplier=3.0)['SUPERTd_10_3.0']
     df['sup6']=pa.supertrend(high=df['High'],low=df['Low'],close=df['Close'],length=10,multiplier=3.0)['SUPERT_10_3.0']
     
-    df.loc[(df.sup==1)&(df.sup.shift(1)==-1)|((df.Close.shift(1)>=df.sup2.shift(1))& \
-    (df.Low<=df.sup2)&(df.Close>df.sup2)), 'Decision Super'] = 'Buy'
+    df.loc[(df.sup==1)&(df.sup.shift(1)==-1)|(df.Close.shift(1)>=df.sup2.shift(1))& \
+    (df.Low<=df.sup2)&(df.Close>df.sup2)|(df.High>=df.sup2), 'Decision Super'] = 'Buy'
     df.loc[(df.sup==-1)&(df.sup.shift(1)==1)|((df.Close.shift(1)<=df.sup2.shift(1))& \
     (df.High>=df.sup2)&(df.Close<df.sup2)), 'Decision Super'] = 'Sell' 
     
