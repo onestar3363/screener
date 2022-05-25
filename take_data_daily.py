@@ -302,7 +302,7 @@ adx_value= st.sidebar.number_input('ADX Value',min_value=10,value=18)
 adx_value2= st.sidebar.number_input('ADX Value_ust',min_value=10,value=25)
 riskvalue=st.sidebar.number_input('Risk',min_value=0.01,value=1.0,step=0.1)
 st.header(option1 + option2)
-indices=['US500/USD_S&P 500_INDEX_US','EU50/EUR_Euro Stoxx 50_INDEX_DE','^N225']
+indices=['US500/USD_S&P 500_INDEX_US','EU50/EUR_Euro Stoxx 50_INDEX_DE','^N225','XU030.IS']
 for name, frame,framew in zip(names,framelist,framelistw): 
     try:
         if  len(frame)>30 and len(framew)>30 and frame['ADX'].iloc[-1]>=adx_value and frame['RISK'].iloc[-1]<=riskvalue :
