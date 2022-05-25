@@ -310,7 +310,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
             or framew['MACD_diff'].iloc[-1]>0): 
                 if option2 == 'EMASUPER':  
                     if (frame['EMA50_cross'].iloc[-1]=='Buy' or frame['EMA20_cross'].iloc[-1]=='Buy' or frame['EMA200_cross'].iloc[-1]=='Buy'\
-                    or frame['Decision Super2'].iloc[-1]=='Buy' or frame['Decision Super3'].iloc[-1]=='Buy')\
+                    or frame['Decision Super'].iloc[-1]=='Buy' or frame['Decision Super2'].iloc[-1]=='Buy' or frame['Decision Super3'].iloc[-1]=='Buy')\
                     and (frame['MACD_diff'].iloc[-1]>0 and frame['EMA20'].iloc[-1]>frame['EMA50'].iloc[-1]):                        
                             sira +=1
                             expander()
