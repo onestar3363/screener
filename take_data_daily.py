@@ -306,7 +306,7 @@ indices=['US500/USD_S&P 500_INDEX_US','EU50/EUR_Euro Stoxx 50_INDEX_DE','^N225',
 for name, frame,framew in zip(names,framelist,framelistw): 
     try:
         if  len(frame)>30 and len(framew)>30 and frame['ADX'].iloc[-1]>=adx_value and frame['RISK'].iloc[-1]<=riskvalue :
-            if option1 == 'Buy' and framew['Trend MACD'].iloc[-1]=='Buy' and (framew['Dec_EMA50'].iloc[-1]=='Buy' or framew['Dec_EMA20'].iloc[-1]=='Buy'\
+            if option1 == 'Buy' and (framew['Dec_EMA50'].iloc[-1]=='Buy' or framew['Dec_EMA20'].iloc[-1]=='Buy'\
             or framew['MACD_diff'].iloc[-1]>0): 
                 if option2 == 'EMASUPER':  
                     if (frame['EMA50_cross'].iloc[-1]=='Buy' or frame['EMA20_cross'].iloc[-1]=='Buy' or frame['EMA200_cross'].iloc[-1]=='Buy'\
@@ -348,7 +348,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                #     if frame['Decision Super3'].iloc[-1]=='Buy' :
                #             sira +=1
                #             expander()
-            if option1 == 'Sell' and framew['Trend MACD'].iloc[-1]=='Sell' and (framew['Dec_EMA50'].iloc[-1]=='Sell' or framew['Dec_EMA20'].iloc[-1]=='Sell'\
+            if option1 == 'Sell' and (framew['Dec_EMA50'].iloc[-1]=='Sell' or framew['Dec_EMA20'].iloc[-1]=='Sell'\
             or framew['MACD_diff'].iloc[-1]<0):
                 if option2 == 'EMASUPER':  
                     if (frame['EMA50_cross'].iloc[-1]=='Sell' or frame['EMA20_cross'].iloc[-1]=='Sell' or frame['EMA200_cross'].iloc[-1]=='Sell'\
