@@ -142,9 +142,9 @@ def Supertrend(df):
     df.loc[(df.sup5==-1)&(df.sup5.shift(1)==1)|(df.Close.shift(1)<=df.sup6.shift(1))& \
     (df.High>=df.sup6)&(df.Close<df.sup6)|((df.Low<=df.sup6)&(df.Close>=df.sup6)), 'Decision Super3'] = 'Sell' 
     
-    df.loc[(df.sup2 == df.sup2.shift(8))&(df.sup2 != df.sup2.shift(9)), 'Consolidating'] = 'Yes'
-    df.loc[(df.sup4 == df.sup4.shift(8))&(df.sup4 != df.sup4.shift(9)), 'Consolidating2'] = 'Yes'
-    df.loc[(df.sup6 == df.sup6.shift(3)), 'Consolidating3'] = 'Yes'
+    df.loc[(df.sup2 == df.sup2.shift(2)), 'Consolidating'] = 'Yes'
+    df.loc[(df.sup4 == df.sup4.shift(2)), 'Consolidating2'] = 'Yes'
+    df.loc[(df.sup6 == df.sup6.shift(2)), 'Consolidating3'] = 'Yes'
 def ATR_decision(df):
     df['ATR']= ta.volatility.average_true_range(df.High, df.Low, df.Close,window=10)
     df['ATR%'] = df['ATR']/df.Close*100
@@ -309,6 +309,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
             
             if option1 == 'Buy' and framew['Dec_EMA50'].iloc[-1]=='Buy' and (framew['Stochrsi_k'].iloc[-1]>framew['Stochrsi_d'].iloc[-1]\
             or framew['MACD_diff'].iloc[-1]>0 or framew['Stochrsi_k'].iloc[-1]>framew['Stochrsi_k'].iloc[-2]):
+                
                 if option2 == 'EMASUPER':  
                     if (frame['EMA50_cross'].iloc[-1]=='Buy' or frame['EMA20_cross'].iloc[-1]=='Buy' or frame['EMA200_cross'].iloc[-1]=='Buy'\
                     or frame['Decision Super'].iloc[-1]=='Buy' or frame['Decision Super2'].iloc[-1]=='Buy' or frame['Decision Super3'].iloc[-1]=='Buy')\
