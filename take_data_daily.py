@@ -308,7 +308,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
         if  len(frame)>30 and len(framew)>30 and frame['ADX'].iloc[-1]>=adx_value and frame['RISK'].iloc[-1]<=riskvalue :
             
             if option1 == 'Buy' and framew['Close'].iloc[-1]>framew['sup6'].iloc[-1] and (framew['Dec_EMA50'].iloc[-1]=='Buy' or framew['Dec_EMA20'].iloc[-1]=='Buy')\
-            and (framew['Stochrsi_k'].iloc[-1]>framew['Stochrsi_d'].iloc[-1] or framew['MACD_diff'].iloc[-1]>0):
+            and ((framew['Stochrsi_k'].iloc[-1]>framew['Stochrsi_d'].iloc[-1] and framew['Stochrsi_k'].iloc[-1]>0.2) or framew['MACD_diff'].iloc[-1]>0):
                 if option2 == 'EMASUPER':  
                     if (frame['EMA50_cross'].iloc[-1]=='Buy' or frame['EMA20_cross'].iloc[-1]=='Buy' or frame['EMA200_cross'].iloc[-1]=='Buy'\
                     or frame['Decision Super'].iloc[-1]=='Buy' or frame['Decision Super2'].iloc[-1]=='Buy' or frame['Decision Super3'].iloc[-1]=='Buy')\
