@@ -158,7 +158,7 @@ def ATR_decision(df):
 def Stochrsi_decision(df):
      df['Stochrsi_d'] = ta.momentum.stochrsi_d(df.Close)
      df['Stochrsi_k'] = ta.momentum.stochrsi_k(df.Close)
- 
+     df.loc[(df.Stochrsi_k.shift(1)>0.8)&(df.Stochrsi_k<0.8),'DecStoch']='Sell'
 
 @st.cache(allow_output_mutation=True)
 def connect_engine(url):
@@ -358,7 +358,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                     if (frame['EMA50_cross'].iloc[-1]=='Sell'\
                     or frame['Decision Super2'].iloc[-1]=='Sell' or frame['Decision Super3'].iloc[-1]=='Sell')\
                     and (frame['Close'].iloc[-1]<frame['EMA20'].iloc[-1] and frame['Close'].iloc[-1]<frame['EMA50'].iloc[-1])\
-                    and (frame['MACD_diff'].iloc[-1]<0): #or frame['Stochrsi_k'].iloc[-1]<frame['Stochrsi_d'].iloc[-1]):                            
+                    and (frame['MACD_diff'].iloc[-1]<0) or (frame['Stochrsi_k'].iloc[-1]<frame['Stochrsi_d'].iloc[-1]) and frame['Stochrsi_k'].iloc[-1]<0.8)):                            
                             sira +=1
                             expander()
                 if option2 == 'EMA200':  
