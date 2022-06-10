@@ -353,9 +353,8 @@ for name, frame,framew in zip(names,framelist,framelistw):
                #             expander()
             
             if option1 == 'Sell' and framew['Close'].iloc[-1]<framew['sup2'].iloc[-1]\
-            #(framew['Dec_EMA50'].iloc[-1]=='Sell' or framew['Dec_EMA20'].iloc[-1]=='Sell')\
             and (framew['Stochrsi_k'].iloc[-1]<framew['Stochrsi_d'].iloc[-1] or framew['Trend MACD'].iloc[-1]=='Sell' or framew['MACD_diff'].iloc[-1]<0):
-                
+            #(framew['Dec_EMA50'].iloc[-1]=='Sell' or framew['Dec_EMA20'].iloc[-1]=='Sell')\    
                 if option2 == 'EMASUPER':
                     if (frame['EMA50_cross'].iloc[-1]=='Sell' or frame['EMA20_cross'].iloc[-1]=='Sell' or frame['Decision Super'].iloc[-1]=='Sell'\
                     or frame['Decision Super'].iloc[-1]=='Sell' or frame['Decision Super2'].iloc[-1]=='Sell' or frame['Decision Super3'].iloc[-1]=='Sell')\
