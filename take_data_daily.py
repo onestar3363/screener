@@ -357,7 +357,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
             and (framew['Stochrsi_k'].iloc[-1]<framew['Stochrsi_d'].iloc[-1] or framew['Trend MACD'].iloc[-1]=='Sell' or framew['MACD_diff'].iloc[-1]<0):
             #(framew['Dec_EMA50'].iloc[-1]=='Sell' or framew['Dec_EMA20'].iloc[-1]=='Sell')\    
                 if option2 == 'EMASUPER':
-                    if (frame['EMA50_cross'].iloc[-1]=='Sell' or frame['EMA20_cross'].iloc[-1]=='Sell'\
+                    if (frame['EMA50_cross'].iloc[-1]=='Sell' or frame['EMA20_cross'].iloc[-1]=='Sell')\
                     and (frame['EMA50'].iloc[-1]>frame['EMA20'].iloc[-1] and frame['Stochrsi_k'].iloc[-1]<frame['Stochrsi_d'].iloc[-1]):
                             sira +=1
                             expander()
