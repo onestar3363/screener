@@ -305,8 +305,7 @@ st.header(option1 + option2)
 indices=['US500/USD_S&P 500_INDEX_US','EU50/EUR_Euro Stoxx 50_INDEX_DE','^N225','XU030.IS']
 for name, frame,framew in zip(names,framelist,framelistw):
     if (name=='US500/USD_S&P 500_INDEX_US' and frame['Dec_EMA50'].iloc[-1]=='Sell'):
-        #for name, frame,framew in zip(names,framelist,framelistw): 
-            try:
+        for name, frame,framew in zip(names,framelist,framelistw): 
                 if  len(frame)>30 and len(framew)>30 and frame['ADX'].iloc[-1]>=adx_value and frame['RISK'].iloc[-1]<=riskvalue:
                         if (framew['Dec_EMA20'].iloc[-1]=='Buy' or framew['Dec_EMA50'].iloc[-1]=='Buy')\
                         and ((framew['Stochrsi_k'].iloc[-1]>framew['Stochrsi_d'].iloc[-1] and framew['Stochrsi_k'].iloc[-1]>0.2) or framew['MACD_diff'].iloc[-1]>0 or framew['Trend MACD'].iloc[-1]=='Buy'):
@@ -317,6 +316,9 @@ for name, frame,framew in zip(names,framelist,framelistw):
                                 and (frame['Stochrsi_k'].iloc[-1]>frame['Stochrsi_d'].iloc[-1] or frame['MACD_diff'].iloc[-1]>0):
                                         sira +=1
                                         expander()                 
+    elif (name=='XU030.IS' and frame['Dec_EMA50'].iloc[-1]=='Buy'):  
+        for name, frame,framew in zip(names,framelist,framelistw):
+                if  len(frame)>30 and len(framew)>30 and frame['ADX'].iloc[-1]>=adx_value and frame['RISK'].iloc[-1]<=riskvalue:
                         if (framew['Dec_EMA20'].iloc[-1]=='Sell' or framew['Dec_EMA50'].iloc[-1]=='Sell')\
                         and (framew['Stochrsi_k'].iloc[-1]<framew['Stochrsi_d'].iloc[-1] or framew['Trend MACD'].iloc[-1]=='Sell' or framew['MACD_diff'].iloc[-1]<0):                       
                             if option2 == 'EMASUPER':
@@ -325,10 +327,5 @@ for name, frame,framew in zip(names,framelist,framelistw):
                                 and (frame['Stochrsi_k'].iloc[-1]<frame['Stochrsi_d'].iloc[-1] or frame['MACD_diff'].iloc[-1]<0):
                                         sira +=1
                                         expander()
-                if option2 == 'Index' and name in indices:
-                        sira +=1
-                        expander()            
-            except Exception as e:
-                st.write(name,e) 
-    
+
    
