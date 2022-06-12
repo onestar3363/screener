@@ -297,7 +297,7 @@ def expander():
         col2.plotly_chart(figw,use_container_width=True)
 sira=0
 option1 = st.sidebar.selectbox("Buy or Sell",('Buy','Sell')) 
-option2 = st.sidebar.selectbox("Which Indicator?", ('EMASUPER','EMA50','Supertrend','EMA20','MACD','ADX','Consolidating','Index','EMA200'))
+option2 = st.sidebar.selectbox("Which Indicator?", ('EMASUPER','Index','EMA50','Supertrend','EMA20','MACD','ADX','Consolidating','EMA200'))
 adx_value= st.sidebar.number_input('ADX Value',min_value=10,value=18)
 adx_value2= st.sidebar.number_input('ADX Value_ust',min_value=10,value=25)
 riskvalue=st.sidebar.number_input('Risk',min_value=0.01,value=1.0,step=0.1)
