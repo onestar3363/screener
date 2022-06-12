@@ -360,7 +360,8 @@ for name, frame,framew in zip(names,framelist,framelistw):
             #(framew['Dec_EMA50'].iloc[-1]=='Sell' or framew['Dec_EMA20'].iloc[-1]=='Sell')\    
                 if option2 == 'EMASUPER':
                     if (frame['EMA50_cross'].iloc[-1]=='Sell' or frame['EMA20_cross'].iloc[-1]=='Sell')\
-                    and (frame['Dec_EMA50'].iloc[-1]=='Sell' and (frame['Stochrsi_k'].iloc[-1]<frame['Stochrsi_d'].iloc[-1] or frame['MACD_diff'].iloc[-1]<0)):
+                    and (frame['Dec_EMA20'].iloc[-1]=='Buy' or frame['Dec_EMA50'].iloc[-1]=='Sell')\
+                    and (frame['Stochrsi_k'].iloc[-1]<frame['Stochrsi_d'].iloc[-1] or frame['MACD_diff'].iloc[-1]<0):
                             sira +=1
                             expander()
                 if option2 == 'EMA200':  
