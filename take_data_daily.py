@@ -132,15 +132,25 @@ def Supertrend(df):
     df.loc[(df.sup==-1)&(df.sup.shift(1)==1)|(df.Close.shift(1)<=df.sup2.shift(1))& \
     (df.High>=df.sup2)&(df.Close<df.sup2), 'Decision Super'] = 'Sell' 
     
+    (df.Close.shift(1)<=df.sup2.shift(1))& \
+    (df.High>=df.sup2)&(df.Close<df.sup2), 'Decision Super'] = 'Sell2' 
+    
     df.loc[(df.sup3==1)&(df.sup3.shift(1)==-1)|(df.Close.shift(1)>=df.sup4.shift(1))& \
     (df.Low<=df.sup4)&(df.Close>df.sup4), 'Decision Super2'] = 'Buy'
     df.loc[(df.sup3==-1)&(df.sup3.shift(1)==1)|(df.Close.shift(1)<=df.sup4.shift(1))& \
-    (df.High>=df.sup4)&(df.Close<df.sup4), 'Decision Super2'] = 'Sell'   
+    (df.High>=df.sup4)&(df.Close<df.sup4), 'Decision Super2'] = 'Sell'  
+    
+    (df.Close.shift(1)<=df.sup4.shift(1))& \
+    (df.High>=df.sup4)&(df.Close<df.sup4), 'Decision Super2'] = 'Sell2'
     
     df.loc[(df.sup5==1)&(df.sup5.shift(1)==-1)|(df.Close.shift(1)>=df.sup6.shift(1))& \
     (df.Low<=df.sup6)&(df.Close>df.sup6), 'Decision Super3'] = 'Buy'
+    
     df.loc[(df.sup5==-1)&(df.sup5.shift(1)==1)|(df.Close.shift(1)<=df.sup6.shift(1))& \
     (df.High>=df.sup6)&(df.Close<df.sup6), 'Decision Super3'] = 'Sell' 
+    
+    (df.Close.shift(1)<=df.sup6.shift(1))& \
+    (df.High>=df.sup6)&(df.Close<df.sup6), 'Decision Super3'] = 'Sell2' 
     
     df.loc[(df.sup2 == df.sup2.shift(2)), 'Consolidating'] = 'Yes'
     df.loc[(df.sup4 == df.sup4.shift(2)), 'Consolidating2'] = 'Yes'
@@ -319,7 +329,8 @@ for name, frame,framew in zip(names,framelist,framelistw):
             if option1 == 'Sell' and (framew['Dec_EMA20'].iloc[-1]=='Sell' or framew['Dec_EMA50'].iloc[-1]=='Sell')\
             and (framew['Stochrsi_k'].iloc[-1]<framew['Stochrsi_d'].iloc[-1] or framew['Trend MACD'].iloc[-1]=='Sell' or framew['MACD_diff'].iloc[-1]<0):   
                 if option2 == 'EMASUPER':
-                    if (frame['EMA50_cross'].iloc[-1]=='Sell' or frame['EMA20_cross'].iloc[-1]=='Sell')\
+                    if (frame['EMA50_cross'].iloc[-1]=='Sell' or frame['EMA20_cross'].iloc[-1]=='Sell'
+                    or frame['Decision Super'].iloc[-1]=='Sell2' or frame['Decision Super2'].iloc[-1]=='Sell2' or frame['Decision Super3'].iloc[-1]=='Sell2')\
                     and (frame['Dec_EMA50'].iloc[-1]=='Sell')\
                     and (frame['Stochrsi_k'].iloc[-1]<frame['Stochrsi_d'].iloc[-1] or frame['MACD_diff'].iloc[-1]<0):
                             sira +=1
