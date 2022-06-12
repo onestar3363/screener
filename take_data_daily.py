@@ -402,7 +402,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                 if option2 == 'Index' and name in indices:
                         sira +=1
                         expander()            
-        except Exception as e:
-            st.write(name,e) 
+            except Exception as e:
+                st.write(name,e) 
     
    
