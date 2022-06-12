@@ -399,9 +399,9 @@ for name, frame,framew in zip(names,framelist,framelistw):
                             #    if frame['Decision Super3'].iloc[-1]=='Sell' :
                             #            sira +=1
                             #            expander() 
-            if option2 == 'Index' and name in indices:
-                    sira +=1
-                    expander()            
+                if option2 == 'Index' and name in indices:
+                        sira +=1
+                        expander()            
         except Exception as e:
             st.write(name,e) 
     
