@@ -356,49 +356,49 @@ for name, frame,framew in zip(names,framelist,framelistw):
                            #             sira +=1
                            #             expander()
                     
-                    if option1 == 'Sell' and framew['Dec_EMA20'].iloc[-1]=='Sell'\
-                    and (framew['Stochrsi_k'].iloc[-1]<framew['Stochrsi_d'].iloc[-1] or framew['Trend MACD'].iloc[-1]=='Sell' or framew['MACD_diff'].iloc[-1]<0):
-                    #(framew['Dec_EMA50'].iloc[-1]=='Sell' or framew['Dec_EMA20'].iloc[-1]=='Sell')\    
-                        if option2 == 'EMASUPER':
-                            if (frame['EMA50_cross'].iloc[-1]=='Sell' or frame['EMA20_cross'].iloc[-1]=='Sell' or frame['EMA200_cross'].iloc[-1]=='Sell')\
-                            and (frame['Dec_EMA50'].iloc[-1]=='Sell')\
-                            and (frame['Stochrsi_k'].iloc[-1]<frame['Stochrsi_d'].iloc[-1] or frame['MACD_diff'].iloc[-1]<0):
-                                    sira +=1
-                                    expander()
-                        if option2 == 'EMA200':  
-                            if frame['EMA200_cross'].iloc[-1]=='Sell' and frame['MACD_diff'].iloc[-1]<0: #and frame['Trend MACD'].iloc[-1]=='Sell':
-                                    sira +=1
-                                    expander()
-                        if option2 == 'EMA20':
-                            if frame['EMA20_cross'].iloc[-1]=='Sell' and frame['MACD_diff'].iloc[-1]<0: #and frame['Trend MACD'].iloc[-1]=='Sell' :
-                                    sira +=1
-                                    expander() 
-                        if option2 == 'ADX':
-                            if frame['Decision ADX'].iloc[-1]=='Sell' and frame['ADX'].iloc[-1]<=adx_value2 and frame['MACD_diff'].iloc[-1]<0:
-                                    sira +=1
-                                    expander()
-                        if option2 == 'MACD':
-                            if frame['Dec_MACD'].iloc[-1]=='Sell' and frame['MACD'].iloc[-1]>=0:
-                                    sira +=1
-                                    expander()
-                        if option2 == 'Consolidating':
-                            if frame['Consolidating3'].iloc[-1]=='Yes' and frame['MACD_diff'].iloc[-1]<0 :
-                            #and frame['MACD_diff'].iloc[-1]<0 and framew['Trend MACD'].iloc[-1]=='Sell' and frame['Dec_EMA50'].iloc[-1]=='Buy':
-                                    sira +=1
-                                    expander()          
-                        if option2 == 'Supertrend':
-                            if frame['Decision Super'].iloc[-1]=='Sell' or frame['Decision Super2'].iloc[-1]=='Sell' or frame['Decision Super3'].iloc[-1]=='Sell'\
-                            and frame['MACD_diff'].iloc[-1]<0 and frame['Dec_EMA20'].iloc[-1]=='Sell': #and frame['Trend MACD'].iloc[-1]=='Sell':
-                                    sira +=1
-                                    expander()   
-                        #if option2 == 'Supertrend2':
-                        #    if frame['Decision Super2'].iloc[-1]=='Sell' :
-                        #            sira +=1
-                        #            expander()
-                        #if option2 == 'Supertrend3':
-                        #    if frame['Decision Super3'].iloc[-1]=='Sell' :
-                        #            sira +=1
-                        #            expander() 
+                        if option1 == 'Sell' and framew['Dec_EMA20'].iloc[-1]=='Sell'\
+                        and (framew['Stochrsi_k'].iloc[-1]<framew['Stochrsi_d'].iloc[-1] or framew['Trend MACD'].iloc[-1]=='Sell' or framew['MACD_diff'].iloc[-1]<0):
+                        #(framew['Dec_EMA50'].iloc[-1]=='Sell' or framew['Dec_EMA20'].iloc[-1]=='Sell')\    
+                            if option2 == 'EMASUPER':
+                                if (frame['EMA50_cross'].iloc[-1]=='Sell' or frame['EMA20_cross'].iloc[-1]=='Sell' or frame['EMA200_cross'].iloc[-1]=='Sell')\
+                                and (frame['Dec_EMA50'].iloc[-1]=='Sell')\
+                                and (frame['Stochrsi_k'].iloc[-1]<frame['Stochrsi_d'].iloc[-1] or frame['MACD_diff'].iloc[-1]<0):
+                                        sira +=1
+                                        expander()
+                            if option2 == 'EMA200':  
+                                if frame['EMA200_cross'].iloc[-1]=='Sell' and frame['MACD_diff'].iloc[-1]<0: #and frame['Trend MACD'].iloc[-1]=='Sell':
+                                        sira +=1
+                                        expander()
+                            if option2 == 'EMA20':
+                                if frame['EMA20_cross'].iloc[-1]=='Sell' and frame['MACD_diff'].iloc[-1]<0: #and frame['Trend MACD'].iloc[-1]=='Sell' :
+                                        sira +=1
+                                        expander() 
+                            if option2 == 'ADX':
+                                if frame['Decision ADX'].iloc[-1]=='Sell' and frame['ADX'].iloc[-1]<=adx_value2 and frame['MACD_diff'].iloc[-1]<0:
+                                        sira +=1
+                                        expander()
+                            if option2 == 'MACD':
+                                if frame['Dec_MACD'].iloc[-1]=='Sell' and frame['MACD'].iloc[-1]>=0:
+                                        sira +=1
+                                        expander()
+                            if option2 == 'Consolidating':
+                                if frame['Consolidating3'].iloc[-1]=='Yes' and frame['MACD_diff'].iloc[-1]<0 :
+                                #and frame['MACD_diff'].iloc[-1]<0 and framew['Trend MACD'].iloc[-1]=='Sell' and frame['Dec_EMA50'].iloc[-1]=='Buy':
+                                        sira +=1
+                                        expander()          
+                            if option2 == 'Supertrend':
+                                if frame['Decision Super'].iloc[-1]=='Sell' or frame['Decision Super2'].iloc[-1]=='Sell' or frame['Decision Super3'].iloc[-1]=='Sell'\
+                                and frame['MACD_diff'].iloc[-1]<0 and frame['Dec_EMA20'].iloc[-1]=='Sell': #and frame['Trend MACD'].iloc[-1]=='Sell':
+                                        sira +=1
+                                        expander()   
+                            #if option2 == 'Supertrend2':
+                            #    if frame['Decision Super2'].iloc[-1]=='Sell' :
+                            #            sira +=1
+                            #            expander()
+                            #if option2 == 'Supertrend3':
+                            #    if frame['Decision Super3'].iloc[-1]=='Sell' :
+                            #            sira +=1
+                            #            expander() 
             if option2 == 'Index' and name in indices:
                     sira +=1
                     expander()            
