@@ -304,8 +304,8 @@ riskvalue=st.sidebar.number_input('Risk',min_value=0.01,value=1.0,step=0.1)
 st.header(option1 + option2)
 indices=['US500/USD_S&P 500_INDEX_US','EU50/EUR_Euro Stoxx 50_INDEX_DE','^N225','XU030.IS']
 for name, frame,framew in zip(names,framelist,framelistw):
-    if name=='US500/USD_S&P 500_INDEX_US' or name=='XU030.IS' or name='EU50/EUR_Euro Stoxx 50_INDEX_DE'\
-    or name='^N225' or frame['Dec_EMA50'].iloc[-1]=='Buy' or frame['Dec_EMA50'].iloc[-1]=='Sell':
+    if name=='US500/USD_S&P 500_INDEX_US' or name=='XU030.IS' or name=='EU50/EUR_Euro Stoxx 50_INDEX_DE'\
+    or name=='^N225' or frame['Dec_EMA50'].iloc[-1]=='Buy' or frame['Dec_EMA50'].iloc[-1]=='Sell':
         for name, frame,framew in zip(names,framelist,framelistw): 
             try:
                 if  len(frame)>30 and len(framew)>30 and frame['ADX'].iloc[-1]>=adx_value and frame['RISK'].iloc[-1]<=riskvalue:
