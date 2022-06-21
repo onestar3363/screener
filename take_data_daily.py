@@ -85,10 +85,8 @@ def EMA_decision(df):
     df['EMA20'] = ta.trend.ema_indicator(df.Close,window=20)
     df.loc[(df.Close>df['EMA20']), 'Dec_EMA20'] = 'Buy'
     df.loc[(df.Close<df['EMA20']), 'Dec_EMA20'] = 'Sell'
-    df.loc[((df.Close>=df.EMA20)& (df.Close.shift(1)<=df.EMA20.shift(1)))|((df.Close.shift(1)>=df.EMA20.shift(1))& \
-    (df.Low<=df.EMA20)&(df.Close>=df.EMA20)), 'EMA20_cross'] = 'Buy'
-    df.loc[((df.Close<=df.EMA20)& (df.Close.shift(1)>=df.EMA20.shift(1)))|((df.Close.shift(1)<=df.EMA20.shift(1))& \
-    (df.High>=df.EMA20)&(df.Close<=df.EMA20)), 'EMA20_cross'] = 'Sell'
+    df.loc[((df.Close>=df.EMA20)& (df.Close.shift(1)<=df.EMA20.shift(1))), 'EMA20_cross'] = 'Buy'
+    df.loc[((df.Close<=df.EMA20)& (df.Close.shift(1)>=df.EMA20.shift(1))), 'EMA20_cross'] = 'Sell'
 
     df['EMA50'] = ta.trend.ema_indicator(df.Close,window=50)
     df.loc[(df.Close>df['EMA50']), 'Dec_EMA50'] = 'Buy'
