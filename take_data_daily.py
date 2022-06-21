@@ -331,8 +331,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                     if (frame['EMA50_cross'].iloc[-1]=='Sell' or frame['EMA20_cross'].iloc[-1]=='Sell'\
                     or frame['Decision Super2'].iloc[-1]=='Sell2' or frame['Decision Super3'].iloc[-1]=='Sell2')\
                     and (frame['Dec_EMA50'].iloc[-1]=='Sell' or frame['Dec_EMA200'].iloc[-1]=='Sell' or frame['Dec_EMA20'].iloc[-1]=='Sell')\
-                    and (frame['Stochrsi_k'].iloc[-1]<frame['Stochrsi_d'].iloc[-1] or frame['MACD_diff'].iloc[-1]<0 or frame['Trend MACD'].iloc[-1]=='Sell')\
-                    and (frame['Close'].iloc[-1]>frame['EMA50'].iloc[-1] or frame['Close'].iloc[-1]>frame['EMA20'].iloc[-1]):
+                    and (frame['Stochrsi_k'].iloc[-1]<frame['Stochrsi_d'].iloc[-1] or frame['MACD_diff'].iloc[-1]<0 or frame['Trend MACD'].iloc[-1]=='Sell'):                    
                             sira +=1
                             expander()
         if option2 == 'Index' and name in indices:
