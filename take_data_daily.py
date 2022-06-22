@@ -265,10 +265,7 @@ def get_figures(frame):
          y=frame['MACD_signal'].tail(r),
          line=dict(color='orange', width=1)
         ), row=2, col=1)
-    fig.add_trace(go.Bar(x=frame['Date'].tail(r),
-         y=frame['Volume'].tail(r),
-         line=dict(color='orange', width=1)
-        ), row=3, col=1)
+    fig.add_trace(go.Bar(x=frame['Date'].tail(r), y=frame['Volume'].tail(r), row=3, col=1)
     fig.add_trace(go.Scatter(x=frame['Date'].tail(r),
          y=frame['Volume_EMA'].tail(r),
          line=dict(color='blue', width=1)
