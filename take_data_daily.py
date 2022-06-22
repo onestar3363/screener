@@ -88,6 +88,8 @@ def EMA_decision(df):
     df.loc[((df.Close>=df.EMA20)& (df.Close.shift(1)<=df.EMA20.shift(1)))|((df.Close.shift(1)>=df.EMA20.shift(1))& \
     (df.Low<=df.EMA20)&(df.Close>=df.EMA20)), 'EMA20_cross'] = 'Buy'
     df.loc[((df.Close<=df.EMA20)& (df.Close.shift(1)>=df.EMA20.shift(1))), 'EMA20_cross'] = 'Sell'
+    df.loc[((df.Close<=df.EMA20)& (df.Close.shift(1)>=df.EMA20.shift(1)))|((df.Close.shift(1)<=df.EMA20.shift(1))& \
+    (df.High>=df.EMA20)&(df.Close<=df.EMA20)), 'EMA20_cross'] = 'Sell2'
 
     df['EMA50'] = ta.trend.ema_indicator(df.Close,window=50)
     df.loc[(df.Close>df['EMA50']), 'Dec_EMA50'] = 'Buy'
@@ -95,6 +97,8 @@ def EMA_decision(df):
     df.loc[((df.Close>=df.EMA50)& (df.Close.shift(1)<=df.EMA50.shift(1)))|((df.Close.shift(1)>=df.EMA50.shift(1))& \
     (df.Low<=df.EMA50)&(df.Close>=df.EMA50)), 'EMA50_cross'] = 'Buy'
     df.loc[((df.Close<=df.EMA50)& (df.Close.shift(1)>=df.EMA50.shift(1))), 'EMA50_cross'] = 'Sell'
+    df.loc[((df.Close<=df.EMA50)& (df.Close.shift(1)>=df.EMA50.shift(1)))|((df.Close.shift(1)<=df.EMA50.shift(1))& \
+    (df.High>=df.EMA50)&(df.Close<=df.EMA50)), 'EMA50_cross'] = 'Sell2'
 
 
     df['EMA200'] = ta.trend.ema_indicator(df.Close,window=200)
@@ -124,17 +128,22 @@ def Supertrend(df):
     df.loc[(df.sup==1)&(df.sup.shift(1)==-1)|(df.Close.shift(1)>=df.sup2.shift(1))& \
     (df.Low<=df.sup2)&(df.Close>df.sup2), 'Decision Super'] = 'Buy'
     df.loc[(df.sup==-1)&(df.sup.shift(1)==1), 'Decision Super'] = 'Sell' 
+    df.loc[(df.sup==-1)&(df.sup.shift(1)==1)|(df.Close.shift(1)<=df.sup2.shift(1))& \
+    (df.High>=df.sup2)&(df.Close<df.sup2), 'Decision Super'] = 'Sell2'
     
     
     df.loc[(df.sup3==1)&(df.sup3.shift(1)==-1)|(df.Close.shift(1)>=df.sup4.shift(1))& \
     (df.Low<=df.sup4)&(df.Close>df.sup4), 'Decision Super2'] = 'Buy'
     df.loc[(df.sup3==-1)&(df.sup3.shift(1)==1), 'Decision Super2'] = 'Sell'
+    df.loc[(df.sup3==-1)&(df.sup3.shift(1)==1)|(df.Close.shift(1)<=df.sup4.shift(1))& \
+    (df.High>=df.sup4)&(df.Close<df.sup4), 'Decision Super2'] = 'Sell2'
     
     
     df.loc[(df.sup5==1)&(df.sup5.shift(1)==-1)|(df.Close.shift(1)>=df.sup6.shift(1))& \
     (df.Low<=df.sup6)&(df.Close>df.sup6), 'Decision Super3'] = 'Buy'
     df.loc[(df.sup5==-1)&(df.sup5.shift(1)==1), 'Decision Super3'] = 'Sell' 
-    
+    df.loc[(df.sup5==-1)&(df.sup5.shift(1)==1)|(df.Close.shift(1)<=df.sup6.shift(1))& \
+    (df.High>=df.sup6)&(df.Close<df.sup6), 'Decision Super3'] = 'Sell2' 
     
     df.loc[(df.sup2 == df.sup2.shift(2)), 'Consolidating'] = 'Yes'
     df.loc[(df.sup4 == df.sup4.shift(2)), 'Consolidating2'] = 'Yes'
@@ -320,10 +329,10 @@ for name, frame,framew in zip(names,framelist,framelistw):
             and framew['Trend MACD'].iloc[-1]=='Sell':   
             #framew['MACD_diff'].iloc[-1]<0 or framew['Stochrsi_k'].iloc[-1]<framew['Stochrsi_d'].iloc[-1]
                 if option2 == 'EMASUPER':
-                    if (frame['EMA50_cross'].iloc[-1]=='Sell' or frame['EMA20_cross'].iloc[-1]=='Sell' or frame['Decision Super'].iloc[-1]=='Sell'\
-                    or frame['Decision Super2'].iloc[-1]=='Sell' or frame['Decision Super3'].iloc[-1]=='Sell')\
-                    and (frame['Dec_EMA50'].iloc[-1]=='Sell' or frame['Dec_EMA20'].iloc[-1]=='Sell')\
-                    and (frame['MACD_diff'].iloc[-1]<0 or frame['Trend MACD'].iloc[-1]=='Sell'):                    
+                    if (frame['EMA50_cross'].iloc[-1]=='Sell2' or frame['EMA20_cross'].iloc[-1]=='Sell2' or frame['Decision Super'].iloc[-1]=='Sell2'\
+                    or frame['Decision Super2'].iloc[-1]=='Sell2' or frame['Decision Super3'].iloc[-1]=='Sell2')\
+                    and (frame['Dec_EMA50'].iloc[-1]=='Sell')\
+                    and (frame['MACD_diff'].iloc[-1]<0): #or frame['Trend MACD'].iloc[-1]=='Sell'):                    
                             sira +=1
                             expander()
         if option2 == 'Index' and name in indices:
