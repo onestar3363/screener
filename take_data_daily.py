@@ -149,8 +149,6 @@ def Stochrsi_decision(df):
      df['Stochrsi_k'] = ta.momentum.stochrsi_k(df.Close)
      #df.loc[(df.Stochrsi_k.shift(1)>0.8)&(df.Stochrsi_k<0.8),'DecStoch']='Sell'
 
-#def Volume_decision(df):
-#    df['Volume_EMA']=ta.trend.ema_indicator(df.Volume,window=10)
 
 @st.cache(allow_output_mutation=True)
 def connect_engine(url):
