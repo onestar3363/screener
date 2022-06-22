@@ -168,7 +168,7 @@ def get_names():
 def get_framelist():
     framelist=[]
     for name in names:
-        framelist.append(pd.read_sql(f'SELECT Date,Close,Open,High,Low FROM "{name}"',engine))    
+        framelist.append(pd.read_sql(f'SELECT Date,Close,Open,High,Low,Volume FROM "{name}"',engine))    
     np.seterr(divide='ignore', invalid='ignore')
     with st.empty():
         sira=0
@@ -187,7 +187,7 @@ def get_framelist():
 def get_framelistw():
     framelistw=[]
     for name in names: 
-        framelistw.append(pd.read_sql(f'SELECT Date,Close,Open,High,Low FROM "{name}"',enginew))   
+        framelistw.append(pd.read_sql(f'SELECT Date,Close,Open,High,Low,Volume FROM "{name}"',enginew))   
     np.seterr(divide='ignore', invalid='ignore')
     with st.empty():
         sira=0
