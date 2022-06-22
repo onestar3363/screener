@@ -270,7 +270,7 @@ def get_figures(frame):
         ), row=3, col=1)
     fig.add_trace(go.Scatter(x=frame['Date'].tail(r),
          y=frame['Volume_EMA'].tail(r),
-         line=dict(color='orange', width=1)
+         line=dict(color='orange', width=2)
         ), row=3, col=1)
     fig.add_hline(y=0.2, line_width=1, line_dash="dash", line_color="green",row=3, col=1)
     fig.add_hline(y=0.5, line_width=1, line_dash="dash", line_color="green",row=3, col=1)
