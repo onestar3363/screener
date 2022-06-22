@@ -260,7 +260,7 @@ def get_figures(frame):
          line=dict(color='orange', width=1)
         ), row=2, col=1)
     fig.add_trace(go.Scatter(x=frame['Date'].tail(r),
-         y=frame['Stochrsi_d'].tail(r),
+         y=frame['Volume'].tail(r),
          line=dict(color='orange', width=1)
         ), row=3, col=1)
     fig.add_trace(go.Scatter(x=frame['Date'].tail(r),
