@@ -149,6 +149,10 @@ def Stochrsi_decision(df):
      df['Stochrsi_k'] = ta.momentum.stochrsi_k(df.Close)
      #df.loc[(df.Stochrsi_k.shift(1)>0.8)&(df.Stochrsi_k<0.8),'DecStoch']='Sell'
 
+def Volume_decision(df):
+    df['Volume']
+    df['Volume_EMA']=ta.trend.ema_indicator(df.Volume,window=10)
+
 @st.cache(allow_output_mutation=True)
 def connect_engine(url):
     engine=sqlalchemy.create_engine(url) 
@@ -179,6 +183,7 @@ def get_framelist():
                 Supertrend(frame)
                 ATR_decision(frame)
                 Stochrsi_decision(frame)
+                Volume_decision(frame)
                 sira +=1
                 st.write('günlük',sira,name)             
     return framelist    
@@ -198,6 +203,7 @@ def get_framelistw():
                 Supertrend(framew)
                 ATR_decision(framew)
                 Stochrsi_decision(framew)
+                Volume_decision(framew)
                 sira +=1
                 st.write('haftalik',sira,name)              
     return framelistw        
@@ -264,7 +270,7 @@ def get_figures(frame):
          line=dict(color='orange', width=1)
         ), row=3, col=1)
     fig.add_trace(go.Scatter(x=frame['Date'].tail(r),
-         y=frame['Stochrsi_k'].tail(r),
+         y=frame['Volume_EMA'].tail(r),
          line=dict(color='blue', width=1)
         ), row=3, col=1)
     fig.add_hline(y=0.2, line_width=1, line_dash="dash", line_color="green",row=3, col=1)
