@@ -28,13 +28,11 @@ def getdata():
     index = 0
     fullnames=symbols1.iloc[:,1].to_list()
     engine=sqlalchemy.create_engine('sqlite:///günlük.db')
-    engineh=sqlalchemy.create_engine('sqlite:///saatlik.db')
     enginew=sqlalchemy.create_engine('sqlite:///haftalik.db')
     with st.empty():
         for ticker,fullname in zip(symbols,fullnames):
             index += 1
             try:
-                data1 = exchange.fetch_ohlcv(ticker, timeframe='4h',limit=250)
                 data2 = exchange.fetch_ohlcv(ticker, timeframe='1d',limit=250) #since=exchange.parse8601('2022-02-13T00:00:00Z'))
                 data3= exchange.fetch_ohlcv(ticker, timeframe='1w',limit=250)
                 st.write(f"⏳ {index,ticker} downloaded")
@@ -42,10 +40,6 @@ def getdata():
                 print(e)
             else:
                 header = ['Date', 'Open', 'High', 'Low', 'Close', 'Volume']
-                dfch = pd.DataFrame(data1, columns=header)
-                dfch['Date'] = pd.to_datetime(dfch['Date'],unit='ms')
-                dfch['Date'] = dfch['Date'].dt.strftime('%d-%m-%Y')
-                dfch.to_sql(fullname,engineh, if_exists='replace')
                 dfc = pd.DataFrame(data2, columns=header)
                 dfc['Date'] = pd.to_datetime(dfc['Date'],unit='ms')
                 dfc['Date'] = dfc['Date'].dt.strftime('%d-%m-%Y')
@@ -61,11 +55,6 @@ def getdata():
         for bticker in bsymbols:
             st.write(f"⏳ {index,bticker} downloaded")
             index += 1
-            dfh=yf.download(bticker,period="50d",interval="4h")
-            df2h=dfh.drop('Adj Close', 1)
-            df3h=df2h.reset_index()
-            df4h=df3h.round(2)
-            df4h.to_sql(bticker,engineh, if_exists='replace')
             df=yf.download(bticker,period="1y")
             df2=df.drop('Adj Close', 1)
             df3=df2.reset_index()
@@ -177,10 +166,7 @@ def Stochrsi_decision(df):
 def Volume_decision(df):
     df['Volume_EMA']=ta.trend.ema_indicator(df.Volume,window=10)
 
-@st.cache(allow_output_mutation=True)
-def connect_engineh(url):
-    engineh=sqlalchemy.create_engine(url) 
-    return engineh
+
 @st.cache(allow_output_mutation=True)
 def connect_engine(url):
     engine=sqlalchemy.create_engine(url) 
@@ -194,28 +180,8 @@ def get_names():
     names= pd.read_sql('SELECT name FROM sqlite_master WHERE type="table"',engine)
     names = names.name.to_list()
     return names
-
-@st.cache(hash_funcs={sqlalchemy.engine.base.Engine:id},suppress_st_warning=True,max_entries=3)
-def get_framelisth():
-    framelisth=[]
-    for name in names:
-        framelisth.append(pd.read_sql(f'SELECT Date,Close,Open,High,Low,Volume FROM "{name}"',engineh))    
-    np.seterr(divide='ignore', invalid='ignore')
-    with st.empty():
-        sira=0
-        for name,frameh in zip(names,framelisth): 
-            if len(frameh)>30:
-                MACDdecision(frameh)
-                EMA_decision(frameh)
-                ADX_decision(frameh)
-                Supertrend(frameh)
-                ATR_decision(frameh)
-                Volume_decision(frameh)
-                sira +=1
-                st.write('saatlik',sira,name)             
-    return framelisth
-
-@st.cache(hash_funcs={sqlalchemy.engine.base.Engine:id},suppress_st_warning=True,max_entries=3)
+    
+@st.cache(hash_funcs={sqlalchemy.engine.base.Engine:id},suppress_st_warning=True,max_entries=2)
 def get_framelist():
     framelist=[]
     for name in names:
@@ -230,11 +196,12 @@ def get_framelist():
                 ADX_decision(frame)
                 Supertrend(frame)
                 ATR_decision(frame)
+                Stochrsi_decision(frame)
                 Volume_decision(frame)
                 sira +=1
                 st.write('günlük',sira,name)             
     return framelist    
-@st.cache(hash_funcs={sqlalchemy.engine.base.Engine:id},suppress_st_warning=True,max_entries=3)      
+@st.cache(hash_funcs={sqlalchemy.engine.base.Engine:id},suppress_st_warning=True,max_entries=2)      
 def get_framelistw():
     framelistw=[]
     for name in names: 
@@ -249,22 +216,19 @@ def get_framelistw():
                 ADX_decision(framew)
                 Supertrend(framew)
                 ATR_decision(framew)
+                Stochrsi_decision(framew)
                 Volume_decision(framew)
                 sira +=1
                 st.write('haftalik',sira,name)              
-    return framelistw   
-
+    return framelistw        
 connection_url='sqlite:///günlük.db'
 connection_url2='sqlite:///haftalik.db'
-connection_url3='sqlite:///saatlik.db'
 engine= connect_engine(connection_url) 
 enginew= connect_enginew(connection_url2) 
-engineh= connect_engineh(connection_url3) 
 start = time.perf_counter()
 names=get_names()
 framelist=get_framelist() 
 framelistw=get_framelistw()
-framelisth=get_framelisth()
 end = time.perf_counter()
 st.write(end - start)
 
@@ -322,26 +286,23 @@ def get_figures(frame):
          y=frame['Volume_EMA'].tail(r),
          line=dict(color='orange', width=2)
         ), row=3, col=1)
-    #fig.add_hline(y=0.2, line_width=1, line_dash="dash", line_color="green",row=3, col=1)
-    #fig.add_hline(y=0.5, line_width=1, line_dash="dash", line_color="green",row=3, col=1)
-    #fig.add_hline(y=0.8, line_width=1, line_dash="dash", line_color="green",row=3, col=1)
+    fig.add_hline(y=0.2, line_width=1, line_dash="dash", line_color="green",row=3, col=1)
+    fig.add_hline(y=0.5, line_width=1, line_dash="dash", line_color="green",row=3, col=1)
+    fig.add_hline(y=0.8, line_width=1, line_dash="dash", line_color="green",row=3, col=1)
     fig.update_layout( height=600, width=1200,
         showlegend=False, xaxis_rangeslider_visible=False)
     return fig
 def expander():
     with st.expander(str(sira) +') '+ name+'/'+' RISK= '+str(frame['RISK'].iloc[-1].round(2))+'/ %ATR='+str(frame['ATR%'].iloc[-1].round(2))):
-        st.write(str(sira) +') '+ name+'/'+' RISK= '+str(frame['RISK'].iloc[-1].round(2))+'/ %ATR='+str(frame['ATR%'].iloc[-1].round(2)))
-        col1, col2,col3 = st.columns([1, 1, 1])
-        #col1.write(frameh[['Close','RISK','ATR%','ADX','EMA20_cross','EMA50_cross','EMA200_cross','Dec_MACD','Dec_DIOSQ','Trend MACD','MACD_diff']].tail(2))
-        col2.write(frame[['Close','RISK','ATR%','ADX','EMA20_cross','EMA50_cross','EMA200_cross','Dec_MACD','Dec_DIOSQ','Trend MACD','MACD_diff']].tail(2))
-        col3.write(framew[['Close','ATR%','ADX','Dec_EMA50','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
-        col4, col5, col6 = st.columns([1, 1, 1])
-        figh=get_figures(frameh)
+        #st.write(str(sira) +') '+ name+'/'+' RISK= '+str(frame['RISK'].iloc[-1].round(2))+'/ %ATR='+str(frame['ATR%'].iloc[-1].round(2)))
+        col3, col4 = st.columns([1, 1])
+        col3.write(frame[['Close','Volume','RISK','ATR%','ADX','EMA20_cross','EMA50_cross','EMA200_cross','Dec_MACD','Dec_DIOSQ','Trend MACD','MACD_diff']].tail(2))
+        col4.write(framew[['Close','ATR%','ADX','Dec_EMA50','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
+        col1, col2 = st.columns([1, 1])
         fig=get_figures(frame)
         figw=get_figures(framew)
-        col4.plotly_chart(figh,use_container_width=True)
-        col5.plotly_chart(fig,use_container_width=True)
-        col6.plotly_chart(figw,use_container_width=True)
+        col1.plotly_chart(fig,use_container_width=True)
+        col2.plotly_chart(figw,use_container_width=True)        
     
 sira=0
 option1 = st.sidebar.selectbox("Buy or Sell",('Buy','Sell')) 
@@ -351,9 +312,9 @@ adx_value2= st.sidebar.number_input('ADX Value_ust',min_value=10,value=25)
 riskvalue=st.sidebar.number_input('Risk',min_value=0.01,value=1.0,step=0.1)
 st.header(option1 + option2)
 indices=['US500/USD_S&P 500_INDEX_US','EU50/EUR_Euro Stoxx 50_INDEX_DE','^N225','XU030.IS']
-for name, frameh, frame,framew in zip(names,framelisth, framelist,framelistw): 
+for name, frame,framew in zip(names,framelist,framelistw): 
     try:
-        if  len(frameh)>30 and len(frame)>30 and len(framew)>30 and frame['ADX'].iloc[-1]>=adx_value: #and frame['RISK'].iloc[-1]<=riskvalue :
+        if  len(frame)>30 and len(framew)>30 and frame['ADX'].iloc[-1]>=adx_value: #and frame['RISK'].iloc[-1]<=riskvalue :
             
             if option1 == 'Buy' and (framew['Dec_EMA20'].iloc[-1]=='Buy' or framew['Dec_EMA50'].iloc[-1]=='Buy')\
             and framew['Trend MACD'].iloc[-1]=='Buy':
