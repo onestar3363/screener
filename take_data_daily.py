@@ -204,7 +204,7 @@ def get_framelisth():
     with st.empty():
         sira=0
         for name,frameh in zip(names,framelisth): 
-            if len(frame)>30:
+            if len(frameh)>30:
                 MACDdecision(frameh)
                 EMA_decision(frameh)
                 ADX_decision(frameh)
