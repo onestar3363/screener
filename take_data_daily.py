@@ -178,7 +178,7 @@ def Volume_decision(df):
     df['Volume_EMA']=ta.trend.ema_indicator(df.Volume,window=10)
 
 @st.cache(allow_output_mutation=True)
-def connect_engine(url):
+def connect_engineh(url):
     engineh=sqlalchemy.create_engine(url) 
     return engineh
 @st.cache(allow_output_mutation=True)
