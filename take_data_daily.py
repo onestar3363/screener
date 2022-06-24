@@ -336,7 +336,7 @@ def expander():
         col2.write(frame[['Close','RISK','ATR%','ADX','EMA20_cross','EMA50_cross','EMA200_cross','Dec_MACD','Dec_DIOSQ','Trend MACD','MACD_diff']].tail(2))
         col3.write(framew[['Close','ATR%','ADX','Dec_EMA50','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
         col4, col5, col6 = st.columns([1, 1, 1])
-        figh=get_figures(frameh)
+        #figh=get_figures(frameh)
         fig=get_figures(frame)
         figw=get_figures(framew)
         col4.plotly_chart(figh,use_container_width=True)
