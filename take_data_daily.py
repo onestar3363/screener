@@ -289,7 +289,7 @@ def get_figures(frame):
     fig.add_hline(y=0.2, line_width=1, line_dash="dash", line_color="green",row=3, col=1)
     fig.add_hline(y=0.5, line_width=1, line_dash="dash", line_color="green",row=3, col=1)
     fig.add_hline(y=0.8, line_width=1, line_dash="dash", line_color="green",row=3, col=1)
-    fig.update_layout( height=600, width=800,
+    fig.update_layout( height=600,
         showlegend=False, xaxis_rangeslider_visible=False)
     return fig
 def expander():
@@ -301,9 +301,9 @@ def expander():
         col1, col2, col5 = st.columns([1, 1, 1])
         fig=get_figures(frame)
         figw=get_figures(framew)
-        col1.plotly_chart(fig,use_container_width=False)
-        col2.plotly_chart(figw,use_container_width=False )
-        col5.plotly_chart(figw,use_container_width=False)
+        col1.plotly_chart(fig,use_container_width=True)
+        col2.plotly_chart(figw,use_container_width=True)
+        col5.plotly_chart(figw,use_container_width=True)
     
 sira=0
 option1 = st.sidebar.selectbox("Buy or Sell",('Buy','Sell')) 
