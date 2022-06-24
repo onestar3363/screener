@@ -195,7 +195,7 @@ def get_names():
     names = names.name.to_list()
     return names
 
-@st.cache(hash_funcs={sqlalchemy.engine.base.Engine:id},suppress_st_warning=True,max_entries=2)
+@st.cache(hash_funcs={sqlalchemy.engine.base.Engine:id},suppress_st_warning=True,max_entries=3)
 def get_framelisth():
     framelisth=[]
     for name in names:
@@ -215,7 +215,7 @@ def get_framelisth():
                 st.write('saatlik',sira,name)             
     return framelisth
 
-@st.cache(hash_funcs={sqlalchemy.engine.base.Engine:id},suppress_st_warning=True,max_entries=2)
+@st.cache(hash_funcs={sqlalchemy.engine.base.Engine:id},suppress_st_warning=True,max_entries=3)
 def get_framelist():
     framelist=[]
     for name in names:
@@ -234,7 +234,7 @@ def get_framelist():
                 sira +=1
                 st.write('günlük',sira,name)             
     return framelist    
-@st.cache(hash_funcs={sqlalchemy.engine.base.Engine:id},suppress_st_warning=True,max_entries=2)      
+@st.cache(hash_funcs={sqlalchemy.engine.base.Engine:id},suppress_st_warning=True,max_entries=3)      
 def get_framelistw():
     framelistw=[]
     for name in names: 
@@ -332,11 +332,11 @@ def expander():
     with st.expander(str(sira) +') '+ name+'/'+' RISK= '+str(frame['RISK'].iloc[-1].round(2))+'/ %ATR='+str(frame['ATR%'].iloc[-1].round(2))):
         st.write(str(sira) +') '+ name+'/'+' RISK= '+str(frame['RISK'].iloc[-1].round(2))+'/ %ATR='+str(frame['ATR%'].iloc[-1].round(2)))
         col1, col2,col3 = st.columns([1, 1, 1])
-        #col1.write(frameh[['Close','RISK','ATR%','ADX','EMA20_cross','EMA50_cross','EMA200_cross','Dec_MACD','Dec_DIOSQ','Trend MACD','MACD_diff']].tail(2))
+        col1.write(frameh[['Close','RISK','ATR%','ADX','EMA20_cross','EMA50_cross','EMA200_cross','Dec_MACD','Dec_DIOSQ','Trend MACD','MACD_diff']].tail(2))
         col2.write(frame[['Close','RISK','ATR%','ADX','EMA20_cross','EMA50_cross','EMA200_cross','Dec_MACD','Dec_DIOSQ','Trend MACD','MACD_diff']].tail(2))
         col3.write(framew[['Close','ATR%','ADX','Dec_EMA50','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
         col4, col5, col6 = st.columns([1, 1, 1])
-        #figh=get_figures(frameh)
+        figh=get_figures(frameh)
         fig=get_figures(frame)
         figw=get_figures(framew)
         col4.plotly_chart(figh,use_container_width=True)
