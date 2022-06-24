@@ -301,9 +301,10 @@ def expander():
         col1, col2, col5 = st.columns([1, 1, 1])
         fig=get_figures(frame)
         figw=get_figures(framew)
-        col1.plotly_chart(fig,use_container_width=False)
-        col2.plotly_chart(figw,use_container_width=False)
-        col5.plotly_chart(figw,use_container_width=False)
+        col1.plotly_chart(fig)
+        col2.plotly_chart(figw)
+        col5.plotly_chart(figw)
+        #fig,use_container_width=False
 sira=0
 option1 = st.sidebar.selectbox("Buy or Sell",('Buy','Sell')) 
 option2 = st.sidebar.selectbox("Which Indicator?", ('EMASUPER','Index','EMA50','Supertrend','EMA20','MACD','ADX','Consolidating','EMA200'))
