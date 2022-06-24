@@ -298,7 +298,7 @@ def expander():
         #col3, col4 = st.columns([1, 1])
         #col3.write(frame[['Close','Volume','RISK','ATR%','ADX','EMA20_cross','EMA50_cross','EMA200_cross','Dec_MACD','Dec_DIOSQ','Trend MACD','MACD_diff']].tail(2))
         #col4.write(framew[['Close','ATR%','ADX','Dec_EMA50','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
-        #col1, col2, col5 = st.columns([1, 1, 1])
+        col1, col2, col5 = st.columns([1, 1, 1])
         fig=get_figures(frame)
         figw=get_figures(framew)
         col1.plotly_chart(fig,use_container_width=True)
