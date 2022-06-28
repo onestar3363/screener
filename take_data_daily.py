@@ -94,12 +94,16 @@ def EMA_decision(df):
     df['EMA50'] = ta.trend.ema_indicator(df.Close,window=50)
     df.loc[(df.Close>df['EMA50']), 'Dec_EMA50'] = 'Buy'
     df.loc[(df.Close<df['EMA50']), 'Dec_EMA50'] = 'Sell'
+    df.loc[((df.Close>=df.EMA50)& (df.Close.shift(1)<=df.EMA50.shift(1))), 'EMA50_cross'] = 'Buy'
     df.loc[((df.Close>=df.EMA50)& (df.Close.shift(1)<=df.EMA50.shift(1)))|((df.Close.shift(1)>=df.EMA50.shift(1))& \
-    (df.Low<=df.EMA50)&(df.Close>=df.EMA50)), 'EMA50_cross'] = 'Buy'
+    (df.Low<=df.EMA50)&(df.Close>=df.EMA50)), 'EMA50_cross'] = 'Buy2'
+    df.loc[((df.Close>=df.EMA50)& (df.Close.shift(1)<=df.EMA50.shift(1)))|((df.Close.shift(1)<=df.EMA50.shift(1))& \
+    (df.High>=df.EMA50)&(df.Close<=df.EMA50)), 'EMA50_cross'] = 'Buy3'
     df.loc[((df.Close<=df.EMA50)& (df.Close.shift(1)>=df.EMA50.shift(1))), 'EMA50_cross'] = 'Sell'
     df.loc[((df.Close<=df.EMA50)& (df.Close.shift(1)>=df.EMA50.shift(1)))|((df.Close.shift(1)<=df.EMA50.shift(1))& \
     (df.High>=df.EMA50)&(df.Close<=df.EMA50)), 'EMA50_cross'] = 'Sell2'
-
+    df.loc[((df.Close<=df.EMA50)& (df.Close.shift(1)>=df.EMA50.shift(1)))|((df.Close.shift(1)>=df.EMA50.shift(1))& \
+    (df.Low<=df.EMA50)&(df.Close>=df.EMA50)), 'EMA50_cross'] = 'Sell3'
 
     df['EMA200'] = ta.trend.ema_indicator(df.Close,window=200)
     df.loc[(df.Close>df['EMA200']), 'Dec_EMA200'] = 'Buy'
@@ -130,20 +134,24 @@ def Supertrend(df):
     df.loc[(df.sup==-1)&(df.sup.shift(1)==1), 'Decision Super'] = 'Sell' 
     df.loc[(df.sup==-1)&(df.sup.shift(1)==1)|(df.Close.shift(1)<=df.sup2.shift(1))& \
     (df.High>=df.sup2)&(df.Close<df.sup2), 'Decision Super'] = 'Sell2'
-    
+    df.loc[(df.sup==-1)&(df.sup.shift(1)==1)|(df.Close.shift(1)>=df.sup2.shift(1))& \
+    (df.Low<=df.sup2)&(df.Close>df.sup2), 'Decision Super'] = 'Sell3'
     
     df.loc[(df.sup3==1)&(df.sup3.shift(1)==-1)|(df.Close.shift(1)>=df.sup4.shift(1))& \
     (df.Low<=df.sup4)&(df.Close>df.sup4), 'Decision Super2'] = 'Buy'
     df.loc[(df.sup3==-1)&(df.sup3.shift(1)==1), 'Decision Super2'] = 'Sell'
     df.loc[(df.sup3==-1)&(df.sup3.shift(1)==1)|(df.Close.shift(1)<=df.sup4.shift(1))& \
     (df.High>=df.sup4)&(df.Close<df.sup4), 'Decision Super2'] = 'Sell2'
-    
+    df.loc[(df.sup==-1)&(df.sup.shift(1)==1)|(df.Close.shift(1)>=df.sup2.shift(1))& \
+    (df.Low<=df.sup2)&(df.Close>df.sup2), 'Decision Super2'] = 'Sell3'
     
     df.loc[(df.sup5==1)&(df.sup5.shift(1)==-1)|(df.Close.shift(1)>=df.sup6.shift(1))& \
     (df.Low<=df.sup6)&(df.Close>df.sup6), 'Decision Super3'] = 'Buy'
     df.loc[(df.sup5==-1)&(df.sup5.shift(1)==1), 'Decision Super3'] = 'Sell' 
     df.loc[(df.sup5==-1)&(df.sup5.shift(1)==1)|(df.Close.shift(1)<=df.sup6.shift(1))& \
     (df.High>=df.sup6)&(df.Close<df.sup6), 'Decision Super3'] = 'Sell2' 
+    df.loc[(df.sup==-1)&(df.sup.shift(1)==1)|(df.Close.shift(1)>=df.sup2.shift(1))& \
+    (df.Low<=df.sup2)&(df.Close>df.sup2), 'Decision Super3'] = 'Sell3'
     
     df.loc[(df.sup2 == df.sup2.shift(2)), 'Consolidating'] = 'Yes'
     df.loc[(df.sup4 == df.sup4.shift(2)), 'Consolidating2'] = 'Yes'
