@@ -147,16 +147,16 @@ def Supertrend(df):
     df.loc[(df.sup3==-1)&(df.sup3.shift(1)==1), 'Decision Super2'] = 'Sell'
     df.loc[(df.sup3==-1)&(df.sup3.shift(1)==1)|(df.Close.shift(1)<=df.sup4.shift(1))& \
     (df.High>=df.sup4)&(df.Close<df.sup4), 'Decision Super2'] = 'Sell2'
-    df.loc[(df.sup==-1)&(df.sup.shift(1)==1)|(df.Close.shift(1)>=df.sup2.shift(1))& \
-    (df.Low<=df.sup2)&(df.Close>df.sup2), 'Decision Super2'] = 'Sell3'
+    df.loc[(df.sup==-1)&(df.sup.shift(1)==1)|(df.Close.shift(1)>=df.sup4.shift(1))& \
+    (df.Low<=df.sup4)&(df.Close>df.sup4), 'Decision Super2'] = 'Sell3'
     
     df.loc[(df.sup5==1)&(df.sup5.shift(1)==-1)|(df.Close.shift(1)>=df.sup6.shift(1))& \
     (df.Low<=df.sup6)&(df.Close>df.sup6), 'Decision Super3'] = 'Buy'
     df.loc[(df.sup5==-1)&(df.sup5.shift(1)==1), 'Decision Super3'] = 'Sell' 
     df.loc[(df.sup5==-1)&(df.sup5.shift(1)==1)|(df.Close.shift(1)<=df.sup6.shift(1))& \
     (df.High>=df.sup6)&(df.Close<df.sup6), 'Decision Super3'] = 'Sell2' 
-    df.loc[(df.sup==-1)&(df.sup.shift(1)==1)|(df.Close.shift(1)>=df.sup2.shift(1))& \
-    (df.Low<=df.sup2)&(df.Close>df.sup2), 'Decision Super3'] = 'Sell3'
+    df.loc[(df.sup==-1)&(df.sup.shift(1)==1)|(df.Close.shift(1)>=df.sup6.shift(1))& \
+    (df.Low<=df.sup6)&(df.Close>df.sup6), 'Decision Super3'] = 'Sell3'
     
     df.loc[(df.sup2 == df.sup2.shift(2)), 'Consolidating'] = 'Yes'
     df.loc[(df.sup4 == df.sup4.shift(2)), 'Consolidating2'] = 'Yes'
