@@ -142,7 +142,7 @@ def Supertrend(df):
     df.loc[(df.Close.shift(1)<=df.sup4.shift(1))&(df.High>=df.sup4)&(df.Close<df.sup4), 'Decision Super2'] = 'Buy3'
     df.loc[(df.sup3==-1)&(df.sup3.shift(1)==1), 'Decision Super2'] = 'Sell'
     df.loc[(df.Close.shift(1)<=df.sup4.shift(1))&(df.High>=df.sup4)&(df.Close<df.sup4), 'Decision Super2'] = 'Sell2'
-    df.loc[((df.Close.shift(1)>=df.sup4.shift(1))&(df.Low<=df.sup4)&(df.Close>df.sup4), 'Decision Super2'] = 'Sell3'
+    df.loc[(df.Close.shift(1)>=df.sup4.shift(1))&(df.Low<=df.sup4)&(df.Close>df.sup4), 'Decision Super2'] = 'Sell3'
     
     df.loc[(df.sup5==1)&(df.sup5.shift(1)==-1), 'Decision Super3'] = 'Buy'
     df.loc[(df.Close.shift(1)>=df.sup6.shift(1))&(df.Low<=df.sup6)&(df.Close>df.sup6), 'Decision Super3'] = 'Buy2'
