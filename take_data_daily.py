@@ -341,7 +341,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                     or frame['Decision Super2'].iloc[-1]=='Sell2' or frame['Decision Super3'].iloc[-1]=='Sell2'\
                     or frame['EMA50_cross'].iloc[-1]=='Sell2'\
                     or frame['Decision Super2'].iloc[-1]=='Sell3' or frame['Decision Super3'].iloc[-1]=='Sell3'\
-                    or frame['EMA50_cross'].iloc[-1]=='Sell3':
+                    or frame['EMA50_cross'].iloc[-1]=='Sell3' or frame['EMA20_cross'].iloc[-1]=='Sell3':
                             sira +=1
                             expander()
         if option2 == 'Index' and name in indices:
