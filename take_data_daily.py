@@ -336,11 +336,11 @@ for name, frame,framew in zip(names,framelist,framelistw):
             and (framew['Close'].iloc[-1]<framew['sup2'].iloc[-1])\
             and (framew['Close'].iloc[-1]<framew['sup4'].iloc[-1] or framew['Close'].iloc[-1]<framew['sup6'].iloc[-1]):
                 if option2 == 'EMASUPER':
-                   if frame['Decision Super2'].iloc[-1]=='Sell' or frame['Decision Super3'].iloc[-1]=='Sell'\
+                   if frame['Decision Super3'].iloc[-1]=='Sell'\
                     or frame['EMA50_cross'].iloc[-1]=='Sell'\
-                    or frame['Decision Super2'].iloc[-1]=='Sell2' or frame['Decision Super3'].iloc[-1]=='Sell2'\
+                    or frame['Decision Super3'].iloc[-1]=='Sell2'\
                     or frame['EMA50_cross'].iloc[-1]=='Sell2'\
-                    or frame['Decision Super2'].iloc[-1]=='Sell3' or frame['Decision Super3'].iloc[-1]=='Sell3'\
+                    or frame['Decision Super3'].iloc[-1]=='Sell3'\
                     or frame['EMA50_cross'].iloc[-1]=='Sell3' :
                             sira +=1
                             expander()
