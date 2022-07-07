@@ -337,11 +337,9 @@ for name, frame,framew in zip(names,framelist,framelistw):
             #and (framew['Close'].iloc[-1]<framew['sup4'].iloc[-1] or framew['Close'].iloc[-1]<framew['sup6'].iloc[-1]):
                 if option2 == 'EMASUPER':
                    if (frame['EMA50_cross'].iloc[-1]=='Sell' or frame['EMA50_cross'].iloc[-1]=='Sell2' or frame['EMA50_cross'].iloc[-1]=='Sell3')\
-                   or ((frame['Decision Super2'].iloc[-1]=='Sell' or frame['Decision Super2'].iloc[-1]=='Sell2' or frame['Decision Super2'].iloc[-1]=='Sell3'\
-                   or frame['Decision Super'].iloc[-1]=='Sell' or frame['Decision Super'].iloc[-1]=='Sell2' or frame['Decision Super'].iloc[-1]=='Sell3')\
-                   and frame['Dec_EMA20'].iloc[-1]=='Buy')\
-                   or ((frame['Decision Super3'].iloc[-1]=='Sell' or frame['Decision Super3'].iloc[-1]=='Sell2' or frame['Decision Super3'].iloc[-1]=='Sell3'):
-                   #and (frame['Dec_EMA20'].iloc[-1]=='Sell' or frame['Dec_EMA50'].iloc[-1]=='Sell'))
+                   or (frame['Decision Super2'].iloc[-1]=='Sell' or frame['Decision Super2'].iloc[-1]=='Sell2' or frame['Decision Super2'].iloc[-1]=='Sell3'\
+                   or frame['Decision Super'].iloc[-1]=='Sell')\                  
+                   or (frame['Decision Super3'].iloc[-1]=='Sell' or frame['Decision Super3'].iloc[-1]=='Sell2' or frame['Decision Super3'].iloc[-1]=='Sell3'):                  
                             sira +=1
                             expander()
         if option2 == 'Index' and name in indices:
