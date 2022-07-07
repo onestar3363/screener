@@ -333,8 +333,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                     or frame['EMA50_cross'].iloc[-1]=='Buy3' or frame['EMA20_cross'].iloc[-1]=='Buy3':
                             sira +=1
                             expander()
-            if option1 == 'Sell' and (framew['Close'].iloc[-1]<framew['sup6'].iloc[-1]\
-            and (framew['Dec_EMA20'].iloc[-1]=='Sell' or framew['Dec_EMA50'].iloc[-1]=='Sell')):
+            if option1 == 'Sell' and (framew['Dec_EMA20'].iloc[-1]=='Sell' or framew['Dec_EMA50'].iloc[-1]=='Sell')):
             #and (framew['Close'].iloc[-1]<framew['sup4'].iloc[-1] or framew['Close'].iloc[-1]<framew['sup6'].iloc[-1]):
                 if option2 == 'EMASUPER':
                    if ((frame['EMA50_cross'].iloc[-1]=='Sell' or frame['EMA50_cross'].iloc[-1]=='Sell2' or frame['EMA50_cross'].iloc[-1]=='Sell3'\
