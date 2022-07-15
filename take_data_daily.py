@@ -86,8 +86,8 @@ def EMA_decision(df):
     df.loc[(df.Close>df['EMA20']), 'Dec_EMA20'] = 'Buy'
     df.loc[(df.Close<df['EMA20']), 'Dec_EMA20'] = 'Sell'
     df.loc[((df.Close>=df.EMA20)& (df.Close.shift(1)<=df.EMA20.shift(1))), 'EMA20_cross'] = 'Buy'
-    df.loc[((df.Close.shift(1)>=df.EMA20.shift(1))&(df.Low<=df.EMA20)&(df.Close>=df.EMA20)), 'EMA20_cross'] = 'Buy2'
-    df.loc[((df.Close.shift(1)<=df.EMA20.shift(1))&(df.High>=df.EMA20)&(df.Close<=df.EMA20)), 'EMA20_cross'] = 'Buy3'
+    df.loc[((df.Close.shift(1)>=df.EMA20.shift(1))&(df.Low<=df.EMA20)), 'EMA20_cross'] = 'Buy2'
+    df.loc[((df.Close.shift(1)<=df.EMA20.shift(1))&(df.High>=df.EMA20)), 'EMA20_cross'] = 'Buy3'
     df.loc[((df.Close<=df.EMA20)& (df.Close.shift(1)>=df.EMA20.shift(1))), 'EMA20_cross'] = 'Sell'
     df.loc[((df.Close.shift(1)<=df.EMA20.shift(1))& (df.High>=df.EMA20)), 'EMA20_cross'] = 'Sell2'
     df.loc[((df.Close.shift(1)>=df.EMA20.shift(1))&(df.Low<=df.EMA20)), 'EMA20_cross'] = 'Sell3'
@@ -128,7 +128,7 @@ def Supertrend(df):
     
     
     df.loc[(df.sup==1)&(df.sup.shift(1)==-1), 'Decision Super'] = 'Buy'
-    df.loc[(df.Close.shift(1)>=df.sup2.shift(1))&(df.Low<=df.sup2), 'Decision Super'] = 'Buy2'
+    df.loc[(df.Close.shift(1)>=df.sup2.shift(1))&(df.Low<=df.sup2)&(df.Close>df.sup2), 'Decision Super'] = 'Buy2'
     df.loc[(df.Close.shift(1)<=df.sup2.shift(1))&(df.High>=df.sup2)&(df.Close<df.sup2), 'Decision Super'] = 'Buy3'
     df.loc[(df.sup==-1)&(df.sup.shift(1)==1), 'Decision Super'] = 'Sell' 
     df.loc[(df.Close.shift(1)<=df.sup2.shift(1))&(df.High>=df.sup2), 'Decision Super'] = 'Sell2'
