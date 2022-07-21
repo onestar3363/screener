@@ -302,7 +302,7 @@ def expander():
         col3.write(frame[['Close','EMA20_cross','EMA50_cross','Decision Super','Decision Super2','Decision Super3','Dec_MACD','ADX','Trend MACD','MACD_diff']].tail(2))
         col4.write(framew[['Close','ATR%','ADX','Dec_EMA50','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
         col1, col2 = st.columns([1, 1])
-        r=200
+        r=250
         fig=get_figures(frame,r)
         r=50
         figw=get_figures(framew,r)
