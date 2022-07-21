@@ -236,14 +236,10 @@ framelistw=get_framelistw()
 end = time.perf_counter()
 st.write(end - start)
 
-def get_figures(frame):
+def get_figures(frame,r):
     fig = go.Figure()
     fig = plotly.subplots.make_subplots(rows=3, cols=1, shared_xaxes=True,
     vertical_spacing=0.01, row_heights=[0.5,0.2,0.2])
-    if frame==frame:
-        r=250
-    elif frame==framew:
-        r=50
     fig.add_trace(go.Candlestick(x=frame['Date'].tail(r), open=frame['Open'].tail(r), high=frame['High'].tail(r), low=frame['Low'].tail(r), close=frame['Close'].tail(r)))
     fig.add_trace(go.Scatter(x=frame['Date'].tail(r), 
          y=frame['EMA20'].tail(r), 
@@ -306,11 +302,12 @@ def expander():
         col3.write(frame[['Close','EMA20_cross','EMA50_cross','Decision Super','Decision Super2','Decision Super3','Dec_MACD','ADX','Trend MACD','MACD_diff']].tail(2))
         col4.write(framew[['Close','ATR%','ADX','Dec_EMA50','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
         col1, col2 = st.columns([1, 1])
-        fig=get_figures(frame)
-        figw=get_figures(framew)
+        r=200
+        fig=get_figures(frame,r)
+        r=50
+        figw=get_figures(framew,r)
         col1.plotly_chart(fig,use_container_width=True)
         col2.plotly_chart(figw,use_container_width=True)        
-    
 sira=0
 option1 = st.sidebar.selectbox("Buy or Sell",('Buy','Sell')) 
 option2 = st.sidebar.selectbox("Which Indicator?", ('EMASUPER','Index','EMA50','Supertrend','EMA20','MACD','ADX','Consolidating','EMA200'))
