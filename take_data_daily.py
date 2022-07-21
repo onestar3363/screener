@@ -242,7 +242,7 @@ def get_figures(frame):
     vertical_spacing=0.01, row_heights=[0.5,0.2,0.2])
     if frame==frame:
         r=250
-     else:
+     elif frame==framew:
         r=50
     fig.add_trace(go.Candlestick(x=frame['Date'].tail(r), open=frame['Open'].tail(r), high=frame['High'].tail(r), low=frame['Low'].tail(r), close=frame['Close'].tail(r)))
     fig.add_trace(go.Scatter(x=frame['Date'].tail(r), 
