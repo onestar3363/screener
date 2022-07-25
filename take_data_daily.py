@@ -358,13 +358,5 @@ for name, frame,framew in zip(names,framelist,framelistw):
                 expander()            
     except Exception as e:
         st.write(name,e) 
-
-reference = 50582307060_WP+_200101_200201
-reference = reference.replace('"','&quot;')
-
-to_save = abc.serialize().encode("ascii", "ignore")
-to_save = to_save.replace('"','&quot;')
-
-href = f'<a href="data:text/plain;charset=UTF-8,{to_save}" download="{reference}.txt">Download File</a> (right-click and save as {reference}.txt)'
-st.markdown(href, unsafe_allow_html=True)
-
+       
+    
