@@ -359,7 +359,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
     except Exception as e:
         st.write(name,e) 
 
-        reference = 50582307060_WP+_200101_200201
+reference = 50582307060_WP+_200101_200201
 reference = reference.replace('"','&quot;')
 
 to_save = abc.serialize().encode("ascii", "ignore")
