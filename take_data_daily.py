@@ -297,7 +297,6 @@ def get_figures(frame,r):
         showlegend=False, xaxis_rangeslider_visible=False)
     return fig
 def expander():
-    s=st.write(str(sira) +') '+ name+'/'+' RISK= '+str(frame['RISK'].iloc[-1].round(2))+'/ %ATR='+str(frame['ATR%'].iloc[-1].round(2)))
     with st.expander(str(sira) +') '+ name+'/'+' RISK= '+str(frame['RISK'].iloc[-1].round(2))+'/ %ATR='+str(frame['ATR%'].iloc[-1].round(2))):
         #st.write(str(sira) +') '+ name+'/'+' RISK= '+str(frame['RISK'].iloc[-1].round(2))+'/ %ATR='+str(frame['ATR%'].iloc[-1].round(2)))
         col3, col4 = st.columns([1, 1])
@@ -361,17 +360,4 @@ for name, frame,framew in zip(names,framelist,framelistw):
     except Exception as e:
         st.write(name,e) 
         
-def download_link(object_to_download, download_filename, download_link_text):
-    
-    if isinstance(object_to_download,pd.DataFrame):
-        object_to_download = object_to_download.to_csv(index=False)
-
-    # some strings <-> bytes conversions necessary here
-    b64 = base64.b64encode(object_to_download.encode()).decode()
-
-    return f'<a href="data:file/txt;base64,{b64}" download="{download_filename}">{download_link_text}</a>'
-
-if st.button('Download input as a text file'):
-    tmp_download_link = download_link(s, 'YOUR_INPUT.txt', 'Click here to download your text!')
-    st.markdown(tmp_download_link, unsafe_allow_html=True)
     
