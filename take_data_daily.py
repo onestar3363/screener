@@ -333,7 +333,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                     or frame['EMA50_cross'].iloc[-1]=='Buy' or frame['EMA20_cross'].iloc[-1]=='Buy'\
                     or frame['Decision Super'].iloc[-1]=='Buy2' or frame['Decision Super2'].iloc[-1]=='Buy2' or frame['Decision Super3'].iloc[-1]=='Buy2'\
                     or frame['EMA50_cross'].iloc[-1]=='Buy2' or frame['EMA20_cross'].iloc[-1]=='Buy2'\
-                    or frame['Decision Super'].iloc[-1]=='Buy3' or frame['Decision Super2'].iloc[-1]=='Buy3' or frame['Decision Super3'].iloc[-1]=='Buy3'\
+                    or frame['Decision Super'].iloc[-2]=='Buy3' or frame['Decision Super2'].iloc[-1]=='Buy3' or frame['Decision Super3'].iloc[-1]=='Buy3'\
                     or frame['EMA50_cross'].iloc[-1]=='Buy3' or frame['EMA20_cross'].iloc[-1]=='Buy3')\
                     and ((frame['Close'].iloc[-1]>frame['sup6'].iloc[-1] or frame['Close'].iloc[-1]>frame['sup4'].iloc[-1])\
                     or (frame['Dec_EMA20'].iloc[-1]=='Buy' and frame['Close'].iloc[-1]>frame['sup2'].iloc[-1])):
