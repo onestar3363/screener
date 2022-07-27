@@ -89,7 +89,7 @@ def EMA_decision(df):
     df.loc[((df.Close>=df.EMA20)& (df.Close.shift(1)<=df.EMA20.shift(1))), 'EMA20_cross'] = 'Buy'
     #df.loc[((df.Close.shift(1)>=df.EMA20.shift(1))&(df.Low<=df.EMA20)), 'EMA20_cross'] = 'Buy2'
     df.loc[((df.Close.shift(1)<=df.EMA20.shift(1))&(df.High>=df.EMA20)&(df.Close<=df.EMA20))|\
-    (df.Close.shift(1)>=df.EMA20.shift(1))&(df.Low<=df.EMA20)&(df.Close>=df.EMA20)), 'EMA20_cross'] = 'SB'
+    ((df.Close.shift(1)>=df.EMA20.shift(1))&(df.Low<=df.EMA20)&(df.Close>=df.EMA20)), 'EMA20_cross'] = 'SB'
     df.loc[((df.Close<=df.EMA20)& (df.Close.shift(1)>=df.EMA20.shift(1))), 'EMA20_cross'] = 'Sell'
     #df.loc[((df.Close.shift(1)<=df.EMA20.shift(1))& (df.High>=df.EMA20)), 'EMA20_cross'] = 'Sell2'
     #df.loc[((df.Close.shift(1)>=df.EMA20.shift(1))&(df.Low<=df.EMA20)&(df.Close>=df.EMA20)), 'EMA20_cross'] = 'SBL'
