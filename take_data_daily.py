@@ -332,7 +332,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                     and (frame['Dec_EMA20'].iloc[-1]=='Buy' or frame['Dec_EMA50'].iloc[-1]=='Buy'):
                             sira +=1
                             expander()
-                    elif (frame['Consolidating2'].iloc[-1]=='Yes' or frame['Consolidating3'].iloc[-1]=='Yes'))\
+                    elif (frame['Consolidating2'].iloc[-1]=='Yes' or frame['Consolidating3'].iloc[-1]=='Yes')\
                     and (frame['Dec_EMA20'].iloc[-1]=='Buy' and frame['Dec_EMA50'].iloc[-1]=='Sell'):
                             sira +=1
                             expander()
