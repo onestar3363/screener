@@ -334,7 +334,8 @@ for name, frame,framew in zip(names,framelist,framelistw):
                             expander()
                 if option2 == 'Consolidating':
                     if (frame['Consolidating'].iloc[-1]=='Yes')\
-                    and (frame['Close'].iloc[-1]>frame['sup6'].iloc[-1] or frame['Close'].iloc[-1]>frame['sup4'].iloc[-1])\
+                    and (frame['Close'].iloc[-1]<frame['sup6'].iloc[-1] or frame['Close'].iloc[-1]<frame['sup4'].iloc[-1]\
+                    or frame['Close'].iloc[-1]<frame['sup2'].iloc[-1]\
                     and (frame['Dec_EMA20'].iloc[-1]=='Buy' or frame['Dec_EMA50'].iloc[-1]=='Buy'):
                             sira +=1
                             expander()                   
