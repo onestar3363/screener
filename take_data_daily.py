@@ -331,11 +331,11 @@ for name, frame,framew in zip(names,framelist,framelistw):
                     #or frame['EMA50_cross'].iloc[-1]=='Buy2' or frame['EMA20_cross'].iloc[-1]=='Buy2')\
                             sira +=1
                             expander()
-                    elif ((frame['Decision Super'].iloc[-1]=='Buy2' or frame['Decision Super2'].iloc[-1]=='Buy2' or frame['Decision Super3'].iloc[-1]=='Buy2'\
-                    or frame['EMA50_cross'].iloc[-1]=='Buy2' or frame['EMA20_cross'].iloc[-1]=='Buy2') and frame['EMA20'].iloc[-1]>frame['EMA50'].iloc[-1]\
-                    and frame['Dec_EMA50'].iloc[-1]=='Buy'):
-                            sira +=1
-                            expander()
+                    #elif ((frame['Decision Super'].iloc[-1]=='Buy2' or frame['Decision Super2'].iloc[-1]=='Buy2' or frame['Decision Super3'].iloc[-1]=='Buy2'\
+                    #or frame['EMA50_cross'].iloc[-1]=='Buy2' or frame['EMA20_cross'].iloc[-1]=='Buy2') and frame['EMA20'].iloc[-1]>frame['EMA50'].iloc[-1]\
+                    #and frame['Dec_EMA50'].iloc[-1]=='Buy'):
+                    #        sira +=1
+                    #        expander()
                 if option2 == 'Consolidating':
                     if (frame['Consolidating2'].iloc[-1]=='Yes' and frame['Consolidating3'].iloc[-1]=='Yes')\
                     and frame['Close'].iloc[-1]>frame['sup2'].iloc[-1]>frame['sup4'].iloc[-1]>frame['sup6'].iloc[-1]\
