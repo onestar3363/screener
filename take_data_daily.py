@@ -372,7 +372,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                     and (frame['EMA20'].iloc[-1]<frame['EMA50'].iloc[-1] or frame['Dec_EMA50'].iloc[-1]=='Sell')\
                     and frame['Close'].iloc[-1]<frame['sup4'].iloc[-1]<frame['sup6'].iloc[-1]:
                             sira +=1
-                            expander() 
+                            expander()
         if option2 == 'Index' and name in indices:
                 sira +=1
                 expander()
