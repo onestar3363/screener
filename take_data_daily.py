@@ -325,8 +325,8 @@ for name, frame,framew in zip(names,framelist,framelistw):
                 if option2 == 'EMASUPER':
                     if (frame['Decision Super2'].iloc[-1]=='Buy'\
                     or (frame['Decision Super'].iloc[-1]=='Buy' and frame['Consolidating'].iloc[-2]=='Yes'))\
-                    and frame['EMA20'].iloc[-1]<frame['EMA50'].iloc[-1]\
-                    and (frame['Dec_EMA50'].iloc[-1]=='Buy' or frame['Dec_EMA20'].iloc[-1]=='Buy'):
+                    and frame['EMA20'].iloc[-1]<frame['EMA50'].iloc[-1]:
+                    #and (frame['Dec_EMA50'].iloc[-1]=='Buy' or frame['Dec_EMA20'].iloc[-1]=='Buy'):
                     #and (frame['Close'].iloc[-1]>frame['sup4'].iloc[-1] or frame['Close'].iloc[-1]>frame['sup6'].iloc[-1])
                     #or frame['Decision Super'].iloc[-1]=='Buy2' or frame['Decision Super2'].iloc[-1]=='Buy2' or frame['Decision Super3'].iloc[-1]=='Buy2'\
                     #or frame['EMA50_cross'].iloc[-1]=='Buy2' or frame['EMA20_cross'].iloc[-1]=='Buy2')\
@@ -349,15 +349,15 @@ for name, frame,framew in zip(names,framelist,framelistw):
                             expander()   
             if option1 == 'Sell' and (framew['Dec_EMA20'].iloc[-1]=='Sell' or framew['Dec_EMA50'].iloc[-1]=='Sell'\
             or framew['Close'].iloc[-1]<framew['sup4'].iloc[-1] or framew['Close'].iloc[-1]<framew['sup6'].iloc[-1]\
-            or framew['Close'].iloc[-1]<framew['sup2'].iloc[-1]) and framew['Trend MACD'].iloc[-1]=='Sell':
+            or framew['Close'].iloc[-1]<framew['sup2'].iloc[-1] or framew['Trend MACD'].iloc[-1]=='Sell'):
             #and (framew['Dec_EMA20'].iloc[-1]=='Sell' or framew['Dec_EMA50'].iloc[-1]=='Sell')
             #and (framew['Close'].iloc[-1]<framew['sup4'].iloc[-1] or framew['Close'].iloc[-1]<framew['sup6'].iloc[-1])
                 if option2 == 'EMASUPER':
-                   if (frame['EMA50_cross'].iloc[-1]=='Sell' or frame['EMA20_cross'].iloc[-1]=='Sell'\
-                   or frame['Decision Super2'].iloc[-1]=='Sell'\
-                   or frame['Decision Super3'].iloc[-1]=='Sell')\
-                   and (frame['Dec_EMA50'].iloc[-1]=='Sell' or frame['Dec_EMA20'].iloc[-1]=='Sell') and frame['Trend MACD'].iloc[-1]=='Sell'\
-                   and (frame['Close'].iloc[-1]<frame['sup4'].iloc[-1] or frame['Close'].iloc[-1]<frame['sup6'].iloc[-1]):
+                   if (frame['Decision Super2'].iloc[-1]=='Sell'\
+                   or (frame['Decision Super'].iloc[-1]=='Sell' and frame['Consolidating'].iloc[-2]=='Yes'))\
+                   and frame['EMA20'].iloc[-1]>frame['EMA50'].iloc[-1]\
+                   #and (frame['Dec_EMA50'].iloc[-1]=='Sell' or frame['Dec_EMA20'].iloc[-1]=='Sell')\
+                   #and (frame['Close'].iloc[-1]<frame['sup4'].iloc[-1] or frame['Close'].iloc[-1]<frame['sup6'].iloc[-1]):
                    #and frame['EMA50'].iloc[-1]<(1+(fark/100))*frame['EMA20'].iloc[-1]
                    #and (frame['Close'].iloc[-1]<frame['sup2'].iloc[-1] or frame['Close'].iloc[-1]<frame['sup4'].iloc[-1]\
                             sira +=1
