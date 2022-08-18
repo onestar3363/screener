@@ -308,7 +308,7 @@ sira=0
 option1 = st.sidebar.selectbox("Buy or Sell",('Buy','Sell')) 
 option2 = st.sidebar.selectbox("Which Indicator?", ('EMASUPER','Index','EMA50','Supertrend','EMA20','MACD','ADX','Consolidating','EMA200'))
 adx_value= st.sidebar.number_input('ADX Value',min_value=10,value=18)
-adx_value2= st.sidebar.number_input('ADX Value_ust',min_value=10,value=25)
+adx_value2= st.sidebar.number_input('ADX Value_ust',min_value=10,value=100)
 riskvalue=st.sidebar.number_input('Risk',min_value=1,value=1000)
 option3=st.sidebar.text_input('Ticker','Enter Ticker Name')
 fark=st.sidebar.number_input('Fark',min_value=1.0,value=5.0,step=0.5)
