@@ -108,14 +108,15 @@ def EMA_decision(df):
     df.loc[((df.Close<=df.EMA200)& (df.Close.shift(1)>=df.EMA200.shift(1))), 'EMA200_cross'] = 'Sell'
 
 def ADX_decision(df):
-    df['ADX']= ta.trend.adx(df.High, df.Low, df.Close)
-    df['ADX_neg']=ta.trend.adx_neg(df.High, df.Low, df.Close)
-    df['ADX_pos']=ta.trend.adx_pos(df.High, df.Low, df.Close)
-    df['DIOSQ']=df['ADX_pos']-df['ADX_neg']
-    df['DIOSQ_EMA']=ta.trend.ema_indicator(df.DIOSQ,window=10)
+    #df['ADX']= ta.trend.adx(df.High, df.Low, df.Close)
+    df['ADX']=pa.adx(high=df4['High'],low=df4['Low'],close=df4['Close'],mamode='ema')[ADX_14]
+    #df['ADX_neg']=ta.trend.adx_neg(df.High, df.Low, df.Close)
+    #df['ADX_pos']=ta.trend.adx_pos(df.High, df.Low, df.Close)
+    #df['DIOSQ']=df['ADX_pos']-df['ADX_neg']
+    #df['DIOSQ_EMA']=ta.trend.ema_indicator(df.DIOSQ,window=10)
     df.loc[(df.ADX>df.ADX.shift(1)) ,'Decision ADX']='Buy'
-    df.loc[(df.DIOSQ>df.DIOSQ_EMA)& (df.DIOSQ.shift(1)<df.DIOSQ_EMA.shift(1)), 'Dec_DIOSQ'] = 'Buy'
-    df.loc[(df.DIOSQ<df.DIOSQ_EMA)& (df.DIOSQ.shift(1)>df.DIOSQ_EMA.shift(1)), 'Dec_DIOSQ'] = 'Sell'
+    #df.loc[(df.DIOSQ>df.DIOSQ_EMA)& (df.DIOSQ.shift(1)<df.DIOSQ_EMA.shift(1)), 'Dec_DIOSQ'] = 'Buy'
+    #df.loc[(df.DIOSQ<df.DIOSQ_EMA)& (df.DIOSQ.shift(1)>df.DIOSQ_EMA.shift(1)), 'Dec_DIOSQ'] = 'Sell'
 
 def Supertrend(df):
     df['sup']=pa.supertrend(high=df['High'],low=df['Low'],close=df['Close'],length=10,multiplier=1.0)['SUPERTd_10_1.0']
