@@ -114,7 +114,7 @@ def ADX_decision(df):
     #df['ADX_pos']=ta.trend.adx_pos(df.High, df.Low, df.Close)
     #df['DIOSQ']=df['ADX_pos']-df['ADX_neg']
     #df['DIOSQ_EMA']=ta.trend.ema_indicator(df.DIOSQ,window=10)
-    #df.loc[(df.ADX>df.ADX.shift(1)) ,'Decision ADX']='Buy'
+    df.loc[(df.ADX>df.ADX.shift(1)) ,'Decision ADX']='Buy'
     #df.loc[(df.DIOSQ>df.DIOSQ_EMA)& (df.DIOSQ.shift(1)<df.DIOSQ_EMA.shift(1)), 'Dec_DIOSQ'] = 'Buy'
     #df.loc[(df.DIOSQ<df.DIOSQ_EMA)& (df.DIOSQ.shift(1)>df.DIOSQ_EMA.shift(1)), 'Dec_DIOSQ'] = 'Sell'
 
