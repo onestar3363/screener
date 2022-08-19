@@ -109,7 +109,7 @@ def EMA_decision(df):
 
 def ADX_decision(df):
     #df['ADX']= ta.trend.adx(df.High, df.Low, df.Close)
-    df['ADX']=pa.adx(high=df4['High'],low=df4['Low'],close=df4['Close'],mamode='ema')['ADX_14']
+    df['ADX']=pa.adx(high=df4['High'],low=df4['Low'],close=df4['Close'],mamode='ema',append=True)['ADX_14']
     #df['ADX_neg']=ta.trend.adx_neg(df.High, df.Low, df.Close)
     #df['ADX_pos']=ta.trend.adx_pos(df.High, df.Low, df.Close)
     #df['DIOSQ']=df['ADX_pos']-df['ADX_neg']
