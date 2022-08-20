@@ -110,8 +110,8 @@ def EMA_decision(df):
 def ADX_decision(df):
     df['ADX']= ta.trend.adx(df.High, df.Low, df.Close)
     #df['ADX']=pa.adx(high=df['High'],low=df['Low'],close=df['Close'],mamode='ema',append=True)['ADX_14']
-    #df['ADX_neg']=ta.trend.adx_neg(df.High, df.Low, df.Close)
-    #df['ADX_pos']=ta.trend.adx_pos(df.High, df.Low, df.Close)
+    df['ADX_neg']=ta.trend.adx_neg(df.High, df.Low, df.Close)
+    df['ADX_pos']=ta.trend.adx_pos(df.High, df.Low, df.Close)
     #df['DIOSQ']=df['ADX_pos']-df['ADX_neg']
     #df['DIOSQ_EMA']=ta.trend.ema_indicator(df.DIOSQ,window=10)
     df.loc[(df.ADX>df.ADX.shift(1)) ,'Decision ADX']='Buy'
@@ -279,17 +279,30 @@ def get_figures(frame,r):
          y=frame['MACD_signal'].tail(r),
          line=dict(color='orange', width=1)
         ), row=2, col=1)
-    fig.add_trace(go.Bar(x=frame['Date'].tail(r), 
-     y=frame['Volume'].tail(r)
+    
+    fig.add_trace(go.Scatter(x=frame['Date'].tail(r),
+         y=frame['ADX'].tail(r),
+         line=dict(color='black', width=1)
         ), row=3, col=1)
     fig.add_trace(go.Scatter(x=frame['Date'].tail(r),
-         y=frame['Volume_EMA'].tail(r),
-         line=dict(color='orange', width=2)
+         y=frame['ADX_pos'].tail(r),
+         line=dict(color='green', width=1)
         ), row=3, col=1)
-    fig.add_hline(y=0.2, line_width=1, line_dash="dash", line_color="green",row=3, col=1)
-    fig.add_hline(y=0.5, line_width=1, line_dash="dash", line_color="green",row=3, col=1)
-    fig.add_hline(y=0.8, line_width=1, line_dash="dash", line_color="green",row=3, col=1)
-    fig.update_layout( height=600, width=1200,
+    fig.add_trace(go.Scatter(x=frame['Date'].tail(r),
+         y=frame['ADX_neg'].tail(r),
+         line=dict(color='red', width=1)
+        ), row=3, col=1)
+    #fig.add_trace(go.Bar(x=frame['Date'].tail(r), 
+    # y=frame['Volume'].tail(r)
+    #    ), row=3, col=1)
+    #fig.add_trace(go.Scatter(x=frame['Date'].tail(r),
+    #     y=frame['Volume_EMA'].tail(r),
+    #     line=dict(color='orange', width=2)
+    #    ), row=3, col=1)
+    #fig.add_hline(y=0.2, line_width=1, line_dash="dash", line_color="green",row=3, col=1)
+    #fig.add_hline(y=0.5, line_width=1, line_dash="dash", line_color="green",row=3, col=1)
+    #fig.add_hline(y=0.8, line_width=1, line_dash="dash", line_color="green",row=3, col=1)
+    #fig.update_layout( height=600, width=1200,
         showlegend=False, xaxis_rangeslider_visible=False)
     return fig
 def expander():
