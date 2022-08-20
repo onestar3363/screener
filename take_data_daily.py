@@ -292,6 +292,8 @@ def get_figures(frame,r):
          y=frame['ADX_neg'].tail(r),
          line=dict(color='red', width=1)
         ), row=3, col=1)
+            showlegend=False, xaxis_rangeslider_visible=False)
+    return fig
     #fig.add_trace(go.Bar(x=frame['Date'].tail(r), 
     # y=frame['Volume'].tail(r)
     #    ), row=3, col=1)
@@ -303,8 +305,7 @@ def get_figures(frame,r):
     #fig.add_hline(y=0.5, line_width=1, line_dash="dash", line_color="green",row=3, col=1)
     #fig.add_hline(y=0.8, line_width=1, line_dash="dash", line_color="green",row=3, col=1)
     #fig.update_layout( height=600, width=1200,
-        showlegend=False, xaxis_rangeslider_visible=False)
-    return fig
+
 def expander():
     with st.expander(str(sira) +') '+ name+'/'+' RISK= '+str(frame['RISK'].iloc[-1].round(2))+'/ %ATR='+str(frame['ATR%'].iloc[-1].round(2))):
         #st.write(str(sira) +') '+ name+'/'+' RISK= '+str(frame['RISK'].iloc[-1].round(2))+'/ %ATR='+str(frame['ATR%'].iloc[-1].round(2)))
