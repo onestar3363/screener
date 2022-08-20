@@ -65,7 +65,8 @@ def getdata():
             df2w=dfw.drop('Adj Close', 1)
             df3w=df2w.reset_index()
             df4w=df3w.round(2)
-            df4w.to_sql(bticker,enginew, if_exists='replace')
+            df5w=df4w.dropna()
+            df5w.to_sql(bticker,enginew, if_exists='replace')
         now=pd.Timestamp.now().strftime("%d-%m-%Y, %H:%M")
         st.write('Last downloaded', index,ticker,now)
         return(index,ticker,now)
@@ -108,7 +109,7 @@ def EMA_decision(df):
     df.loc[((df.Close<=df.EMA200)& (df.Close.shift(1)>=df.EMA200.shift(1))), 'EMA200_cross'] = 'Sell'
 
 def ADX_decision(df):
-    df['ADX']= ta.trend.adx(df.High, df.Low, df.Close,fillna=True)
+    df['ADX']= ta.trend.adx(df.High, df.Low, df.Close)
     #df['ADX']=pa.adx(high=df['High'],low=df['Low'],close=df['Close'],mamode='ema',append=True)['ADX_14']
     df['ADX_neg']=ta.trend.adx_neg(df.High, df.Low, df.Close,fillna=True)
     df['ADX_pos']=ta.trend.adx_pos(df.High, df.Low, df.Close,fillna=True)
