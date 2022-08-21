@@ -369,7 +369,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                             sira +=1
                             expander()   
                 if option2 == 'Increasing':
-                    if (frame['sup2'].iloc[-1]>frame['sup2'].iloc[-2]>frame['sup2'].iloc[-3])\
+                    if (frame['sup2'].iloc[-1]>frame['sup2'].iloc[-2])\
                     and (frame['Open'].iloc[-1]>frame['Open'].iloc[-2] or frame['Close'].iloc[-1]>frame['Close'].iloc[-2])\
                     and frame['Close'].iloc[-1]>frame['Open'].iloc[-1]\
                     and (frame['EMA20'].iloc[-1]>frame['EMA50'].iloc[-1] and frame['Close'].iloc[-1]>frame['EMA200'].iloc[-1])\
