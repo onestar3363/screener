@@ -369,7 +369,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                             sira +=1
                             expander()   
                 if option2 == 'Increasing':
-                    if (frame['sup2'].iloc[-1]>frame['sup2'].iloc[-2]>frame['sup2'].iloc[-3])\
+                    if (frame['sup2'].iloc[-1]>frame['sup2'].iloc[-2])\
                     and (frame['EMA20'].iloc[-1]>frame['EMA50'].iloc[-1] and frame['Close'].iloc[-1]>frame['EMA200'].iloc[-1])\
                     and (frame['Close'].iloc[-1]>frame['sup2'].iloc[-1]>frame['sup4'].iloc[-1]>frame['sup6'].iloc[-1]):
                     #and (frame['Dec_EMA20'].iloc[-1]=='Buy' and frame['Dec_EMA50'].iloc[-1]=='Sell'):
