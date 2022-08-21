@@ -89,7 +89,7 @@ def EMA_decision(df):
     df.loc[(df.Close<df['EMA20']), 'Dec_EMA20'] = 'Sell'
     df.loc[((df.Close>=df.EMA20)& (df.Close.shift(1)<=df.EMA20.shift(1))), 'EMA20_cross'] = 'Buy'
     df.loc[(df.Close.shift(1)>=df.EMA20.shift(1))&(df.Low<=df.EMA20)&(df.Close>=df.EMA20), 'EMA20_cross'] = 'Buy2'
-    df.loc[(df.Close.shift(1)<=df.EMA20.shift(1))&(df.High>=df.EMA20)&(df.Close<=df.EMA20), 'EMA20_cross'] = 'Sell2' 
+    df.loc[(df.Close.shift(1)<=df.EMA20.shift(1))&(df.High>=df.EMA20)&(df.Close<=df.EMA20)&(df.Close.shift(1)<df.Close), 'EMA20_cross'] = 'Sell2' 
     df.loc[((df.Close<=df.EMA20)& (df.Close.shift(1)>=df.EMA20.shift(1))), 'EMA20_cross'] = 'Sell'
 
 
@@ -391,14 +391,6 @@ for name, frame,framew in zip(names,framelist,framelistw):
                    and (frame['Close'].iloc[-1]<frame['sup6'].iloc[-1] and frame['Close'].iloc[-1]<frame['sup4'].iloc[-1]):
                             sira +=1
                             expander()
-                if option2 == 'Consolidating':
-                    if (frame['Consolidating2'].iloc[-1]=='Yes' and frame['Consolidating3'].iloc[-1]=='Yes')\
-                    and (frame['EMA20'].iloc[-1]<frame['EMA50'].iloc[-1] and frame['Dec_EMA20'].iloc[-1]=='Buy')\
-                    and frame['Close'].iloc[-1]<frame['sup4'].iloc[-1]<frame['sup6'].iloc[-1]:
-                    #and (frame['Dec_EMA20'].iloc[-1]=='Buy' and frame['Dec_EMA50'].iloc[-1]=='Sell'):
-                    #and (frame['Close'].iloc[-1]<frame['sup6'].iloc[-1] or frame['Close'].iloc[-1]<frame['sup4'].iloc[-1] or frame['Close'].iloc[-1]<frame['sup4'].iloc[-1])
-                            sira +=1
-                            expander()   
         if option2 == 'Index' and name in indices:
                 sira +=1
                 expander()
