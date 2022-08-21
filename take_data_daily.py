@@ -323,7 +323,7 @@ def expander():
         col2.plotly_chart(figw,use_container_width=True)        
 sira=0
 option1 = st.sidebar.selectbox("Buy or Sell",('Buy','Sell')) 
-option2 = st.sidebar.selectbox("Which Indicator?", ('EMASUPER','Index','EMA50','Supertrend','EMA20','MACD','ADX','Consolidating','EMA200'))
+option2 = st.sidebar.selectbox("Which Indicator?", ('EMASUPER','Consolidating','Increasing','Index','EMA50','Supertrend','EMA20','MACD','ADX','EMA200'))
 adx_value= st.sidebar.number_input('ADX Value',min_value=10,value=15)
 adx_value2= st.sidebar.number_input('ADX Value_ust',min_value=10,value=50)
 riskvalue=st.sidebar.number_input('Risk',min_value=1,value=1000)
@@ -368,6 +368,15 @@ for name, frame,framew in zip(names,framelist,framelistw):
                     #and (frame['Close'].iloc[-1]<frame['Close'].iloc[-2] or frame['Close'].iloc[-1]<frame['Open'].iloc[-1])\
                             sira +=1
                             expander()   
+                if option2 == 'Increasing':
+                    if (frame['sup2'].iloc[-1]>frame['sup2'].iloc[-2]>frame['sup2'].iloc[-3])\
+                    and (frame['EMA20'].iloc[-1]>frame['EMA50'].iloc[-1] and frame['Close'].iloc[-1]>frame['EMA200'].iloc[-1])\
+                    and (frame['Close'].iloc[-1]>frame['sup2'].iloc[-1]>frame['sup4'].iloc[-1]>frame['sup6'].iloc[-1]):
+                    #and (frame['Dec_EMA20'].iloc[-1]=='Buy' and frame['Dec_EMA50'].iloc[-1]=='Sell'):
+                    #and (frame['Close'].iloc[-1]<frame['sup6'].iloc[-1] or frame['Close'].iloc[-1]<frame['sup4'].iloc[-1] or frame['Close'].iloc[-1]<frame['sup4'].iloc[-1])
+                    #and (frame['Close'].iloc[-1]<frame['Close'].iloc[-2] or frame['Close'].iloc[-1]<frame['Open'].iloc[-1])\
+                            sira +=1
+                            expander()                             
             if option1 == 'Sell' and (framew['Dec_EMA20'].iloc[-1]=='Sell' or framew['Dec_EMA50'].iloc[-1]=='Sell'\
             or framew['Close'].iloc[-1]<framew['sup4'].iloc[-1] or framew['Close'].iloc[-1]<framew['sup6'].iloc[-1]\
             or framew['Close'].iloc[-1]<framew['sup2'].iloc[-1])\
