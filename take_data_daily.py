@@ -361,7 +361,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
 
                 if option2 == 'Consolidating':
                     if (frame['Consolidating'].iloc[-1]=='Yes' and frame['Consolidating2'].iloc[-1]=='Yes' and frame['Consolidating3'].iloc[-1]=='Yes')\
-                    and (frame['EMA20'].iloc[-1]>frame['EMA50'].iloc[-1] and frame['Close'].iloc[-1]>frame['EMA200'].iloc[-1])\
+                    and (frame['EMA20'].iloc[-1]>frame['EMA50'].iloc[-1] and frame['Close'].iloc[-1]>frame['EMA200'].iloc[-1] and framew['Close'].iloc[-1]>framew['EMA200'].iloc[-1] )\
                     and (frame['Close'].iloc[-1]>frame['sup2'].iloc[-1]>frame['sup4'].iloc[-1]>frame['sup6'].iloc[-1]):
                     #and (frame['Dec_EMA20'].iloc[-1]=='Buy' and frame['Dec_EMA50'].iloc[-1]=='Sell'):
                     #and (frame['Close'].iloc[-1]<frame['sup6'].iloc[-1] or frame['Close'].iloc[-1]<frame['sup4'].iloc[-1] or frame['Close'].iloc[-1]<frame['sup4'].iloc[-1])
