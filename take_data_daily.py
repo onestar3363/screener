@@ -400,7 +400,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                             sira +=1
                             expander()
                 if option2 == 'Consolidating':
-                    if (frame['Consolidating'].iloc[-1]=='Yes' and frame['Consolidating2'].iloc[-1]=='Yes' and frame['Consolidating3'].iloc[-1]=='Yes')\
+                    if (frame['Consolidating2'].iloc[-1]=='Yes' and frame['Consolidating3'].iloc[-1]=='Yes')\
                     and (frame['EMA20'].iloc[-1]<frame['EMA50'].iloc[-1] and frame['Close'].iloc[-1]<frame['EMA200'].iloc[-1])\
                     and (frame['Close'].iloc[-1]<frame['sup4'].iloc[-1]<frame['sup6'].iloc[-1]):          
                             sira +=1
