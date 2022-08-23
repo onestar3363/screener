@@ -395,10 +395,10 @@ for name, frame,framew in zip(names,framelist,framelistw):
                    #and (frame['Close'].iloc[-1]<frame['sup2'].iloc[-1] or frame['Close'].iloc[-1]<frame['sup4'].iloc[-1]\
                             sira +=1
                             expander()
-                   elif (frame['EMA20_cross'].iloc[-1]=='Sell2')\
-                   and (frame['Close'].iloc[-1]<frame['sup6'].iloc[-1] and frame['Close'].iloc[-1]<frame['sup4'].iloc[-1]):
-                            sira +=1
-                            expander()
+                   #elif (frame['EMA20_cross'].iloc[-1]=='Sell2')\
+                   #and (frame['Close'].iloc[-1]<frame['sup6'].iloc[-1] and frame['Close'].iloc[-1]<frame['sup4'].iloc[-1]):
+                   #         sira +=1
+                   #         expander()
                 if option2 == 'Consolidating':
                     if (frame['Consolidating2'].iloc[-1]=='Yes' and frame['Consolidating3'].iloc[-1]=='Yes')\
                     and (frame['Close'].iloc[-1]<frame['sup4'].iloc[-1]<frame['sup6'].iloc[-1]):
