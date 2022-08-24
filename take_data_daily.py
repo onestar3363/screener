@@ -343,7 +343,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
             #framew['Dec_EMA20'].iloc[-1]=='Buy' or framew['Dec_EMA50'].iloc[-1]=='Buy'
            
                 if option2 == 'EMASUPER':
-                    if (frame['Decision Super2'].iloc[-h]=='Buy'\
+                    if (frame['Decision Super2'].iloc[-h]=='Buy' or frame['Decision Super'].iloc[-h]=='Buy'\
                     or frame['EMA50_cross'].iloc[-h]=='Buy')\
                     and frame['Dec_EMA200'].iloc[-h]=='Buy'\
                     and (frame['Close'].iloc[-h]>frame['sup6'].iloc[-h] or frame['Close'].iloc[-h]>frame['sup4'].iloc[-h]):
