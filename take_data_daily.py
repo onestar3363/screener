@@ -329,6 +329,7 @@ adx_value2= st.sidebar.number_input('ADX Value_ust',min_value=10,value=50)
 riskvalue=st.sidebar.number_input('Risk',min_value=1,value=1000)
 option3=st.sidebar.text_input('Ticker','Enter Ticker Name')
 fark=st.sidebar.number_input('Fark',min_value=1.0,value=5.0,step=0.5)
+h=st.sidebar.number_input('Geçmiş',min_value=-20,value=-1)
 st.header(option1 + option2)
 indices=['US500/USD_S&P 500_INDEX_US','EU50/EUR_Euro Stoxx 50_INDEX_DE','^N225','XU030.IS']
 for name, frame,framew in zip(names,framelist,framelistw): 
@@ -342,7 +343,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
             #framew['Dec_EMA20'].iloc[-1]=='Buy' or framew['Dec_EMA50'].iloc[-1]=='Buy'
            
                 if option2 == 'EMASUPER':
-                    if (frame['Decision Super2'].iloc[-1]=='Buy'\
+                    if (frame['Decision Super2'].iloc[h]=='Buy'\
                     or frame['EMA50_cross'].iloc[-1]=='Buy')\
                     and frame['Dec_EMA200'].iloc[-1]=='Buy'\
                     and (frame['Close'].iloc[-1]>frame['sup6'].iloc[-1] or frame['Close'].iloc[-1]>frame['sup4'].iloc[-1]):
