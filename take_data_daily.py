@@ -326,10 +326,10 @@ option1 = st.sidebar.selectbox("Buy or Sell",('Buy','Sell'))
 option2 = st.sidebar.selectbox("Which Indicator?", ('EMASUPER','Consolidating','Increasing','Index','EMA50','Supertrend','EMA20','MACD','ADX','EMA200'))
 adx_value= st.sidebar.number_input('ADX Value',min_value=10,value=15)
 adx_value2= st.sidebar.number_input('ADX Value_ust',min_value=10,value=50)
+h=st.sidebar.number_input('Geçmiş',value=1)
 riskvalue=st.sidebar.number_input('Risk',min_value=1,value=1000)
 option3=st.sidebar.text_input('Ticker','Enter Ticker Name')
 fark=st.sidebar.number_input('Fark',min_value=1.0,value=5.0,step=0.5)
-h=st.sidebar.number_input('Geçmiş',value=1)
 st.header(option1 + option2)
 indices=['US500/USD_S&P 500_INDEX_US','EU50/EUR_Euro Stoxx 50_INDEX_DE','^N225','XU030.IS']
 for name, frame,framew in zip(names,framelist,framelistw): 
