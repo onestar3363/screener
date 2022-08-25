@@ -377,7 +377,8 @@ for name, frame,framew in zip(names,framelist,framelistw):
                     #and (frame['Close'].iloc[-1]<frame['Close'].iloc[-2] or frame['Close'].iloc[-1]<frame['Open'].iloc[-1])\
                             sira +=1
                             expander()                                
-            if option1 == 'Sell' and (framew['Trend MACD'].iloc[-1]=='Sell' or framew['Dec_EMA50'].iloc[-1]=='Sell'):
+            if option1 == 'Sell' and framew['Close'].iloc[-1]<framew['sup2'].iloc[-1]:
+            #(framew['Trend MACD'].iloc[-1]=='Sell' or framew['Dec_EMA50'].iloc[-1]=='Sell'):
             #(framew['Dec_EMA20'].iloc[-1]=='Sell' or framew['Dec_EMA50'].iloc[-1]=='Sell'\
             #or framew['Close'].iloc[-1]<framew['sup4'].iloc[-1] or framew['Close'].iloc[-1]<framew['sup6'].iloc[-1]\
             #or framew['Close'].iloc[-1]<framew['sup2'].iloc[-1] or framew['Trend MACD'].iloc[-1]=='Sell'):
