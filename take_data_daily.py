@@ -309,18 +309,19 @@ def get_figures(frame,r):
     #fig.update_layout( height=600, width=1200,
 
 def expander(cond):
-    with st.expander(cond+str(sira) +') '+ name+'/'+' RISK= '+str(frame['RISK'].iloc[-1].round(2))+'/ %ATR='+str(frame['ATR%'].iloc[-1].round(2))):
-        #st.write(str(sira) +') '+ name+'/'+' RISK= '+str(frame['RISK'].iloc[-1].round(2))+'/ %ATR='+str(frame['ATR%'].iloc[-1].round(2)))
-        col3, col4 = st.columns([1, 1])
-        col3.write(frame[['Close','ADX','EMA20_cross','EMA50_cross','Decision Super','Decision Super2','Decision Super3','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
-        col4.write(framew[['Close','ATR%','ADX','Dec_EMA50','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
-        col1, col2 = st.columns([1, 1])
-        r=200
-        fig=get_figures(frame,r)
-        r=40
-        figw=get_figures(framew,r)
-        col1.plotly_chart(fig,use_container_width=True)
-        col2.plotly_chart(figw,use_container_width=True)        
+    if cond=consolidating or cond=emasuper:
+        with st.expander(cond+str(sira) +') '+ name+'/'+' RISK= '+str(frame['RISK'].iloc[-1].round(2))+'/ %ATR='+str(frame['ATR%'].iloc[-1].round(2))):
+            #st.write(str(sira) +') '+ name+'/'+' RISK= '+str(frame['RISK'].iloc[-1].round(2))+'/ %ATR='+str(frame['ATR%'].iloc[-1].round(2)))
+            col3, col4 = st.columns([1, 1])
+            col3.write(frame[['Close','ADX','EMA20_cross','EMA50_cross','Decision Super','Decision Super2','Decision Super3','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
+            col4.write(framew[['Close','ATR%','ADX','Dec_EMA50','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
+            col1, col2 = st.columns([1, 1])
+            r=200
+            fig=get_figures(frame,r)
+            r=40
+            figw=get_figures(framew,r)
+            col1.plotly_chart(fig,use_container_width=True)
+            col2.plotly_chart(figw,use_container_width=True)        
 sira=0
 option1 = st.sidebar.selectbox("Buy or Sell",('Buy','Sell')) 
 option2 = st.sidebar.selectbox("Which Indicator?", ('EMASUPER','Consolidating','Increasing','Index','EMA50','Supertrend','EMA20','MACD','ADX','EMA200'))
