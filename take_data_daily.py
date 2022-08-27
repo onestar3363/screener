@@ -308,8 +308,8 @@ def get_figures(frame,r):
     #fig.add_hline(y=0.8, line_width=1, line_dash="dash", line_color="green",row=3, col=1)
     #fig.update_layout( height=600, width=1200,
 
-def expander():
-    with st.expander(str(sira) +') '+ name+'/'+' RISK= '+str(frame['RISK'].iloc[-1].round(2))+'/ %ATR='+str(frame['ATR%'].iloc[-1].round(2))):
+def expander(cond):
+    with st.expander(cond+str(sira) +') '+ name+'/'+' RISK= '+str(frame['RISK'].iloc[-1].round(2))+'/ %ATR='+str(frame['ATR%'].iloc[-1].round(2))):
         #st.write(str(sira) +') '+ name+'/'+' RISK= '+str(frame['RISK'].iloc[-1].round(2))+'/ %ATR='+str(frame['ATR%'].iloc[-1].round(2)))
         col3, col4 = st.columns([1, 1])
         col3.write(frame[['Close','ADX','EMA20_cross','EMA50_cross','Decision Super','Decision Super2','Decision Super3','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
@@ -347,10 +347,16 @@ for name, frame,framew in zip(names,framelist,framelistw):
                 if option2 == 'EMASUPER':
                     if (frame['Decision Super2'].iloc[-h]=='Buy' or frame['Decision Super'].iloc[-h]=='Buy'\
                     or frame['EMA50_cross'].iloc[-h]=='Buy')\
-                    and frame['Dec_EMA50'].iloc[-h]=='Buy'\
+                    and frame['Dec_EMA50'].iloc[-h]=='Buy' and frame['Dec_EMA200'].iloc[-h]=='Buy'\
                     and frame['EMA20'].iloc[-h]<frame['EMA50'].iloc[-h]\
                     and (frame['Close'].iloc[-h]>frame['sup6'].iloc[-h] or frame['Close'].iloc[-h]>frame['sup4'].iloc[-h]):
-                    
+                            sira +=1
+                            expander(emasuper)
+                    elif (frame['Consolidating2'].iloc[-1]=='Yes' and frame['Consolidating3'].iloc[-1]=='Yes')\
+                    and frame['Close'].iloc[-1]>frame['sup2'].iloc[-1]\
+                    and frame['Dec_EMA50'].iloc[-1]=='Buy':
+                            sira +=1
+                            expander(consolidating)
                     #or (frame['Decision Super'].iloc[-1]=='Buy' and frame['Dec_EMA50'].iloc[-1]=='Buy')):
                     #and (frame['Dec_EMA50'].iloc[-1]=='Buy' or frame['Dec_EMA20'].iloc[-1]=='Buy'):
                     #and (frame['Close'].iloc[-1]>frame['sup4'].iloc[-1] or frame['Close'].iloc[-1]>frame['sup6'].iloc[-1])
