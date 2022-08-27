@@ -309,7 +309,7 @@ def get_figures(frame,r):
     #fig.update_layout( height=600, width=1200,
 
 def expander(cond):
-    if cond=consolidating or cond=emasuper:
+    if cond==consolidating or cond==emasuper:
         with st.expander(cond+str(sira) +') '+ name+'/'+' RISK= '+str(frame['RISK'].iloc[-1].round(2))+'/ %ATR='+str(frame['ATR%'].iloc[-1].round(2))):
             #st.write(str(sira) +') '+ name+'/'+' RISK= '+str(frame['RISK'].iloc[-1].round(2))+'/ %ATR='+str(frame['ATR%'].iloc[-1].round(2)))
             col3, col4 = st.columns([1, 1])
