@@ -321,7 +321,7 @@ def expander(cond):
            figw=get_figures(framew,r)
            col1.plotly_chart(fig,use_container_width=True)
            col2.plotly_chart(figw,use_container_width=True)      
-     return cond
+           return cond
 sira=0
 option1 = st.sidebar.selectbox("Buy or Sell",('Buy','Sell')) 
 option2 = st.sidebar.selectbox("Which Indicator?", ('EMASUPER','Consolidating','Increasing','Index','EMA50','Supertrend','EMA20','MACD','ADX','EMA200'))
