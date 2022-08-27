@@ -308,7 +308,7 @@ def get_figures(frame,r):
     #fig.add_hline(y=0.8, line_width=1, line_dash="dash", line_color="green",row=3, col=1)
     #fig.update_layout( height=600, width=1200,
 
-def expander(cond):
+def expander(str(cond)):
     if cond==consolidating or cond==emasuper:
         with st.expander(cond+str(sira) +') '+ name+'/'+' RISK= '+str(frame['RISK'].iloc[-1].round(2))+'/ %ATR='+str(frame['ATR%'].iloc[-1].round(2))):
             #st.write(str(sira) +') '+ name+'/'+' RISK= '+str(frame['RISK'].iloc[-1].round(2))+'/ %ATR='+str(frame['ATR%'].iloc[-1].round(2)))
