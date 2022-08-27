@@ -399,7 +399,8 @@ for name, frame,framew in zip(names,framelist,framelistw):
                    and frame['EMA20'].iloc[-h]>frame['EMA50'].iloc[-h]\
                    and (frame['Close'].iloc[-h]<frame['sup4'].iloc[-h] or frame['Close'].iloc[-h]<frame['sup6'].iloc[-h])\
                    and frame['Dec_EMA50'].iloc[-h]=='Sell':
-                    
+                            sira +=1
+                            expander()          
                    #or (frame['Decision Super'].iloc[-1]=='Sell' and frame['Dec_EMA50'].iloc[-1]=='Sell')):
                    #and (frame['Dec_EMA50'].iloc[-1]=='Sell' or frame['Dec_EMA20'].iloc[-1]=='Sell'):
                    #and (frame['Close'].iloc[-1]<frame['sup4'].iloc[-1] or frame['Close'].iloc[-1]<frame['sup6'].iloc[-1]):
