@@ -348,10 +348,10 @@ for name, frame,framew in zip(names,framelist,framelistw):
                     #and frame['EMA20'].iloc[-h]<frame['EMA50'].iloc[-h]\
                             sira +=1
                             expander('emasuper')
-                    elif (frame['Consolidating'].iloc[-1]=='Yes' and frame['Consolidating2'].iloc[-1]=='Yes' and frame['Consolidating3'].iloc[-1]=='Yes')\
-                    and frame['Close'].iloc[-1]>frame['sup2'].iloc[-1]>frame['sup4'].iloc[-h]>frame['sup6'].iloc[-h]:
-                    #and frame['Decision ADX'].iloc[-1]=='Buy':
-                    #and frame['Dec_EMA50'].iloc[-1]=='Buy':
+                    elif (frame['Consolidating2'].iloc[-1]=='Yes' and frame['Consolidating3'].iloc[-1]=='Yes')\
+                    #and frame['Close'].iloc[-1]>frame['sup2'].iloc[-1]>frame['sup4'].iloc[-h]>frame['sup6'].iloc[-h]:
+                    and frame['Decision ADX'].iloc[-1]=='Buy':
+                    and frame['Dec_EMA50'].iloc[-1]=='Buy':
                             sira +=1
                             expander('consolidating')                            
             if option1 == 'Sell' and (framew['Close'].iloc[-1]<framew['sup2'].iloc[-1] and framew['Dec_EMA50'].iloc[-1]=='Sell'):
@@ -365,7 +365,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                             expander('emasuper')
                    elif (frame['Consolidating2'].iloc[-1]=='Yes' and frame['Consolidating3'].iloc[-1]=='Yes')\
                     and frame['Close'].iloc[-1]<frame['sup4'].iloc[-h]<frame['sup6'].iloc[-h]:
-                    #and frame['Decision ADX'].iloc[-1]=='Buy':
+                    and frame['Decision ADX'].iloc[-1]=='Buy':
                     #and frame['Dec_EMA50'].iloc[-1]=='Sell':
                             sira +=1
                             expander('consolidating')
