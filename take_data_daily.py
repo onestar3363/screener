@@ -374,7 +374,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                 expander()
         if name in option3:
                 sira +=1
-                expander()
+                expander('entered ticker')
     except Exception as e:
         st.write(name,e) 
         
