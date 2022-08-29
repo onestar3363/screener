@@ -359,8 +359,8 @@ for name, frame,framew in zip(names,framelist,framelistw):
                 if option2 == 'EMASUPER':
                    if (frame['Decision Super2'].iloc[-h]=='Sell' or frame['EMA50_cross'].iloc[-h]=='Sell'\
                    or frame['Decision Super'].iloc[-h]=='Sell')\
-                   #and (frame['Close'].iloc[-h]<frame['sup4'].iloc[-h] or frame['Close'].iloc[-h]<frame['sup6'].iloc[-h])\
                    and frame['Dec_EMA50'].iloc[-h]=='Sell':
+                   # #and (frame['Close'].iloc[-h]<frame['sup4'].iloc[-h] or frame['Close'].iloc[-h]<frame['sup6'].iloc[-h])\
                             sira +=1
                             expander('emasuper')
                    if (frame['Consolidating2'].iloc[-1]=='Yes' and frame['Consolidating3'].iloc[-1]=='Yes')\
