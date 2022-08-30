@@ -341,20 +341,20 @@ for name, frame,framew in zip(names,framelist,framelistw):
             #or framew['Trend MACD'].iloc[-1]=='Buy'
            
                 if option2 == 'EMASUPER':
-                    if (frame['Decision Super2'].iloc[-h]=='Buy'\
-                    or frame['EMA50_cross'].iloc[-h]=='Buy' or frame['Decision Super'].iloc[-h]=='Buy'):
-                    #and frame['Dec_EMA50'].iloc[-h]=='Buy':
-                    #and (frame['Close'].iloc[-h]>frame['sup6'].iloc[-h] or frame['Close'].iloc[-h]>frame['sup4'].iloc[-h]):
-                    #and frame['EMA20'].iloc[-h]<frame['EMA50'].iloc[-h]\
-                            sira +=1
-                            expander('emasuper')
-                    elif (frame['Consolidating'].iloc[-1]=='Yes' and frame['Consolidating2'].iloc[-1]=='Yes' and frame['Consolidating3'].iloc[-1]=='Yes')\
+                    #if (frame['Decision Super2'].iloc[-h]=='Buy'\
+                    #or frame['EMA50_cross'].iloc[-h]=='Buy' or frame['Decision Super'].iloc[-h]=='Buy'):
+                    ##and frame['Dec_EMA50'].iloc[-h]=='Buy':
+                    ##and (frame['Close'].iloc[-h]>frame['sup6'].iloc[-h] or frame['Close'].iloc[-h]>frame['sup4'].iloc[-h]):
+                    ##and frame['EMA20'].iloc[-h]<frame['EMA50'].iloc[-h]\
+                    #        sira +=1
+                    #        expander('emasuper')
+                    if (frame['Consolidating'].iloc[-1]=='Yes' and frame['Consolidating2'].iloc[-1]=='Yes' and frame['Consolidating3'].iloc[-1]=='Yes')\
                     and frame['Close'].iloc[-1]>frame['sup2'].iloc[-1]>frame['sup4'].iloc[-h]>frame['sup6'].iloc[-h]:
                     #and frame['Decision ADX'].iloc[-1]=='Buy'
                     #and frame['Dec_EMA50'].iloc[-1]=='Buy'\
                             sira +=1
                             expander('consolidating')
-                    elif (frame['Consolidating'].iloc[-(h+1)]=='Yes' and frame['Consolidating2'].iloc[-(h+1)]=='Yes' and frame['Consolidating3'].iloc[-(h+1)]=='Yes')\
+                    if (frame['Consolidating'].iloc[-(h+1)]=='Yes' and frame['Consolidating2'].iloc[-(h+1)]=='Yes' and frame['Consolidating3'].iloc[-(h+1)]=='Yes')\
                     and frame['sup2'].iloc[-h]>frame['sup2'].iloc[-(h+1)]\
                     and frame['Close'].iloc[-(h+1)]>frame['sup2'].iloc[-(h+1)]>frame['sup4'].iloc[-(h+1)]>frame['sup6'].iloc[-(h+1)]\
                     and frame['Close'].iloc[-h]>frame['sup2'].iloc[-h]>frame['sup4'].iloc[-h]>frame['sup6'].iloc[-h]\
