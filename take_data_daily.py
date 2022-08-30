@@ -376,7 +376,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                     #and frame['Dec_EMA50'].iloc[-1]=='Sell'
                             sira +=1
                             expander('consolidating')
-                    elif (frame['Consolidating'].iloc[-(h+1)]=='Yes' and frame['Consolidating2'].iloc[-(h+1)]=='Yes' and frame['Consolidating3'].iloc[-(h+1)]=='Yes')\
+                   elif (frame['Consolidating'].iloc[-(h+1)]=='Yes' and frame['Consolidating2'].iloc[-(h+1)]=='Yes' and frame['Consolidating3'].iloc[-(h+1)]=='Yes')\
                     and frame['sup2'].iloc[-h]<frame['sup2'].iloc[-(h+1)]\
                     and frame['Close'].iloc[-(h+1)]<frame['sup2'].iloc[-(h+1)]<frame['sup4'].iloc[-(h+1)]<frame['sup6'].iloc[-(h+1)]\
                     and frame['Close'].iloc[-h]<frame['sup2'].iloc[-h]<frame['sup4'].iloc[-h]<frame['sup6'].iloc[-h]\
