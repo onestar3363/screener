@@ -370,7 +370,9 @@ for name, frame,framew in zip(names,framelist,framelistw):
                             sira +=1
                             expander('consolidating')
                    if (frame['Consolidating'].iloc[-2]=='Yes' and frame['Consolidating2'].iloc[-2]=='Yes' and frame['Consolidating3'].iloc[-2]=='Yes')\
+                    and frame['sup2'].iloc[-1]<frame['sup2'].iloc[-2]\
                     and frame['Close'].iloc[-2]<frame['sup2'].iloc[-2]<frame['sup4'].iloc[-2]<frame['sup6'].iloc[-2]\
+                    and frame['Close'].iloc[-1]<frame['sup2'].iloc[-1]<frame['sup4'].iloc[-1]<frame['sup6'].iloc[-1]\
                     and frame['Decision ADX'].iloc[-1]=='Buy':
                             sira +=1
                             expander('consolidating2')
