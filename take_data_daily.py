@@ -372,7 +372,8 @@ for name, frame,framew in zip(names,framelist,framelistw):
                     if (frame['Consolidating'].iloc[-2]=='Yes' and frame['Consolidating2'].iloc[-2]=='Yes' and frame['Consolidating3'].iloc[-2]=='Yes')\
                     and frame['Close'].iloc[-2]<frame['sup2'].iloc[-2]<frame['sup4'].iloc[-2]<frame['sup6'].iloc[-2]\
                     and frame['Decision ADX'].iloc[-1]=='Buy':
-                    
+                            sira +=1
+                            expander('consolidating2')
         if option2 == 'Index' and name in indices:
                 sira +=1
                 expander()
