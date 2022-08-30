@@ -353,7 +353,14 @@ for name, frame,framew in zip(names,framelist,framelistw):
                     #and frame['Decision ADX'].iloc[-1]=='Buy'
                     #and frame['Dec_EMA50'].iloc[-1]=='Buy'\
                             sira +=1
-                            expander('consolidating')                            
+                            expander('consolidating')
+                    elif (frame['Consolidating'].iloc[-2]=='Yes' and frame['Consolidating2'].iloc[-2]=='Yes' and frame['Consolidating3'].iloc[-2]=='Yes')\
+                    and frame['sup2'].iloc[-1]>frame['sup2'].iloc[-2]\
+                    and frame['Close'].iloc[-2]>frame['sup2'].iloc[-2]>frame['sup4'].iloc[-2]>frame['sup6'].iloc[-2]\
+                    and frame['Close'].iloc[-1]>frame['sup2'].iloc[-1]>frame['sup4'].iloc[-1]>frame['sup6'].iloc[-1]\
+                    and frame['Decision ADX'].iloc[-1]=='Buy':
+                            sira +=1
+                            expander('consolidating2')
             if option1 == 'Sell' and (framew['Close'].iloc[-1]<framew['sup2'].iloc[-1] or framew['Dec_EMA50'].iloc[-h]=='Sell'):
             #(framew['Trend MACD'].iloc[-1]=='Sell' or framew['Dec_EMA50'].iloc[-1]=='Sell'):
                 if option2 == 'EMASUPER':
@@ -369,7 +376,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                     #and frame['Dec_EMA50'].iloc[-1]=='Sell'
                             sira +=1
                             expander('consolidating')
-                   if (frame['Consolidating'].iloc[-2]=='Yes' and frame['Consolidating2'].iloc[-2]=='Yes' and frame['Consolidating3'].iloc[-2]=='Yes')\
+                   elif (frame['Consolidating'].iloc[-2]=='Yes' and frame['Consolidating2'].iloc[-2]=='Yes' and frame['Consolidating3'].iloc[-2]=='Yes')\
                     and frame['sup2'].iloc[-1]<frame['sup2'].iloc[-2]\
                     and frame['Close'].iloc[-2]<frame['sup2'].iloc[-2]<frame['sup4'].iloc[-2]<frame['sup6'].iloc[-2]\
                     and frame['Close'].iloc[-1]<frame['sup2'].iloc[-1]<frame['sup4'].iloc[-1]<frame['sup6'].iloc[-1]\
