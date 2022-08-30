@@ -363,13 +363,16 @@ for name, frame,framew in zip(names,framelist,framelistw):
                    ##and (frame['Close'].iloc[-h]<frame['sup4'].iloc[-h] or frame['Close'].iloc[-h]<frame['sup6'].iloc[-h])\
                    #         sira +=1
                    #         expander('emasuper')
-                   if (frame['Consolidating'].iloc[-1]=='Yes' and frame['Consolidating2'].iloc[-1]=='Yes' and frame['Consolidating3'].iloc[-1]=='Yes')\
-                    or (frame['Consolidating'].iloc[-2]=='Yes' and frame['Consolidating2'].iloc[-2]=='Yes' and frame['Consolidating3'].iloc[-2]=='Yes')\
-                    and frame['Close'].iloc[-1]<frame['sup2'].iloc[-h]<frame['sup4'].iloc[-h]<frame['sup6'].iloc[-h]\
+                   if (frame['Consolidating'].iloc[-1]=='Yes' and frame['Consolidating2'].iloc[-1]=='Yes' and frame['Consolidating3'].iloc[-1]=='Yes')\                    
+                    and frame['Close'].iloc[-1]<frame['sup2'].iloc[-1]<frame['sup4'].iloc[-1]<frame['sup6'].iloc[-1]\
                     and frame['Decision ADX'].iloc[-1]=='Buy':
                     #and frame['Dec_EMA50'].iloc[-1]=='Sell'
                             sira +=1
                             expander('consolidating')
+                    if (frame['Consolidating'].iloc[-2]=='Yes' and frame['Consolidating2'].iloc[-2]=='Yes' and frame['Consolidating3'].iloc[-2]=='Yes')\
+                    and frame['Close'].iloc[-2]<frame['sup2'].iloc[-2]<frame['sup4'].iloc[-2]<frame['sup6'].iloc[-2]\
+                    and frame['Decision ADX'].iloc[-1]=='Buy':
+                    
         if option2 == 'Index' and name in indices:
                 sira +=1
                 expander()
