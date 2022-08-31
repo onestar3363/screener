@@ -388,9 +388,9 @@ for name, frame,framew in zip(names,framelist,framelistw):
                     and frame['Decision ADX'].iloc[-h]=='Buy':
                             sira +=1
                             expander('atak') 
-                    if frame['Close'].iloc[-h]<frame['sup2'].iloc[-h]<frame['sup4'].iloc[-h]<frame['sup6'].iloc[-h]\
-                     and frame['Decision ADX'].iloc[-h]=='Buy'\
-                     and frame['sup2'].iloc[-h]<frame['sup2'].iloc[-(h+1)]:
+                   if frame['Close'].iloc[-h]<frame['sup2'].iloc[-h]<frame['sup4'].iloc[-h]<frame['sup6'].iloc[-h]\
+                    and frame['Decision ADX'].iloc[-h]=='Buy'\
+                    and frame['sup2'].iloc[-h]<frame['sup2'].iloc[-(h+1)]:
                             sira +=1
                             expander('surekli atak')                          
         if option2 == 'Index' and name in indices:
