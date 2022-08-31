@@ -348,12 +348,12 @@ for name, frame,framew in zip(names,framelist,framelistw):
                     ##and frame['EMA20'].iloc[-h]<frame['EMA50'].iloc[-h]\
                     #        sira +=1
                     #        expander('emasuper')
-                    if (frame['Consolidating'].iloc[-h]=='Yes' and frame['Consolidating2'].iloc[-h]=='Yes' and frame['Consolidating3'].iloc[-h]=='Yes')\
-                     and frame['Close'].iloc[-h]>frame['sup2'].iloc[-h]>frame['sup4'].iloc[-h]>frame['sup6'].iloc[-h]\
-                     and frame['Decision ADX'].iloc[-h]=='Buy':
-                    #and frame['Dec_EMA50'].iloc[-h]=='Buy'\
-                            sira +=1
-                            expander('consolidating')
+                    #if (frame['Consolidating'].iloc[-h]=='Yes' and frame['Consolidating2'].iloc[-h]=='Yes' and frame['Consolidating3'].iloc[-h]=='Yes')\
+                    # and frame['Close'].iloc[-h]>frame['sup2'].iloc[-h]>frame['sup4'].iloc[-h]>frame['sup6'].iloc[-h]\
+                    # and frame['Decision ADX'].iloc[-h]=='Buy':
+                    ##and frame['Dec_EMA50'].iloc[-h]=='Buy'\
+                    #        sira +=1
+                    #        expander('consolidating')
                     if (frame['Consolidating'].iloc[-(h+1)]=='Yes' and frame['Consolidating2'].iloc[-(h+1)]=='Yes' and frame['Consolidating3'].iloc[-(h+1)]=='Yes')\
                      and frame['sup2'].iloc[-h]>frame['sup2'].iloc[-(h+1)]\
                      and frame['Close'].iloc[-(h+1)]>frame['sup2'].iloc[-(h+1)]>frame['sup4'].iloc[-(h+1)]>frame['sup6'].iloc[-(h+1)]\
@@ -375,19 +375,24 @@ for name, frame,framew in zip(names,framelist,framelistw):
                    ##and (frame['Close'].iloc[-h]<frame['sup4'].iloc[-h] or frame['Close'].iloc[-h]<frame['sup6'].iloc[-h])\
                    #         sira +=1
                    #         expander('emasuper')
-                   if (frame['Consolidating'].iloc[-h]=='Yes' and frame['Consolidating2'].iloc[-h]=='Yes' and frame['Consolidating3'].iloc[-h]=='Yes')\
-                    and frame['Close'].iloc[-h]<frame['sup2'].iloc[-h]<frame['sup4'].iloc[-h]<frame['sup6'].iloc[-h]\
-                    and frame['Decision ADX'].iloc[-h]=='Buy':
-                    #and frame['Dec_EMA50'].iloc[-1]=='Sell'
-                            sira +=1
-                            expander('consolidating')
+                   #if (frame['Consolidating'].iloc[-h]=='Yes' and frame['Consolidating2'].iloc[-h]=='Yes' and frame['Consolidating3'].iloc[-h]=='Yes')\
+                   # and frame['Close'].iloc[-h]<frame['sup2'].iloc[-h]<frame['sup4'].iloc[-h]<frame['sup6'].iloc[-h]\
+                   # and frame['Decision ADX'].iloc[-h]=='Buy':
+                   # #and frame['Dec_EMA50'].iloc[-1]=='Sell'
+                   #         sira +=1
+                   #         expander('consolidating')
                    if (frame['Consolidating'].iloc[-(h+1)]=='Yes' and frame['Consolidating2'].iloc[-(h+1)]=='Yes' and frame['Consolidating3'].iloc[-(h+1)]=='Yes')\
                     and frame['sup2'].iloc[-h]<frame['sup2'].iloc[-(h+1)]\
                     and frame['Close'].iloc[-(h+1)]<frame['sup2'].iloc[-(h+1)]<frame['sup4'].iloc[-(h+1)]<frame['sup6'].iloc[-(h+1)]\
                     and frame['Close'].iloc[-h]<frame['sup2'].iloc[-h]<frame['sup4'].iloc[-h]<frame['sup6'].iloc[-h]\
                     and frame['Decision ADX'].iloc[-h]=='Buy':
                             sira +=1
-                            expander('atak')                            
+                            expander('atak') 
+                    if frame['Close'].iloc[-h]<frame['sup2'].iloc[-h]<frame['sup4'].iloc[-h]<frame['sup6'].iloc[-h]\
+                     and frame['Decision ADX'].iloc[-h]=='Buy'\
+                     and frame['sup2'].iloc[-h]<frame['sup2'].iloc[-(h+1)]:
+                            sira +=1
+                            expander('surekli atak')                          
         if option2 == 'Index' and name in indices:
                 sira +=1
                 expander()
