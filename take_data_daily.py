@@ -367,7 +367,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                     # and frame['sup2'].iloc[-h]>frame['sup2'].iloc[-(h+1)]:
                     #        sira +=1
                     #        expander('surekli atak')                            
-            if option1 == 'Sell' and (framew['Close'].iloc[-1]<framew['sup2'].iloc[-1] or framew['Dec_EMA50'].iloc[-h]=='Sell'):
+            if option1 == 'Sell' and (framew['Close'].iloc[-1]<framew['sup2'].iloc[-1] and framew['Dec_EMA50'].iloc[-h]=='Sell'):
             #(framew['Trend MACD'].iloc[-1]=='Sell' or framew['Dec_EMA50'].iloc[-1]=='Sell'):
                 #if option2 == 'EMASUPER':
                 #   if (frame['Decision Super2'].iloc[-h]=='Sell2' or frame['EMA50_cross'].iloc[-h]=='Sell2'\
