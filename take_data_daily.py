@@ -337,7 +337,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
         if  len(frame)>30 and len(framew)>30 and frame['ADX'].iloc[-1]>=adx_value and frame['ADX'].iloc[-1]<=adx_value2:
         #and frame['RISK'].iloc[-1]<=riskvalue:
             
-            if option1 == 'Buy' and (framew['Close'].iloc[-1]>framew['sup2'].iloc[-1] and framew['Trend MACD'].iloc[-1]=='Buy'):
+            if option1 == 'Buy' and (framew['Close'].iloc[-2]>framew['sup2'].iloc[-2] and framew['Trend MACD'].iloc[-2]=='Buy'):
             #or framew['Trend MACD'].iloc[-1]=='Buy'
            
                 if option2 == 'EMASUPER':
@@ -367,7 +367,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                     # and frame['sup2'].iloc[-h]>frame['sup2'].iloc[-(h+1)]:
                     #        sira +=1
                     #        expander('surekli atak')                            
-            if option1 == 'Sell' and (framew['Close'].iloc[-1]<framew['sup2'].iloc[-1] and framew['Trend MACD'].iloc[-1]=='Sell'):
+            if option1 == 'Sell' and (framew['Close'].iloc[-2]<framew['sup2'].iloc[-2] and framew['Trend MACD'].iloc[-2]=='Sell'):
             #(framew['Trend MACD'].iloc[-1]=='Sell' or framew['Dec_EMA50'].iloc[-1]=='Sell'):
                 #if option2 == 'EMASUPER':
                 #   if (frame['Decision Super2'].iloc[-h]=='Sell2' or frame['EMA50_cross'].iloc[-h]=='Sell2'\
