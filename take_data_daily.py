@@ -77,8 +77,10 @@ def MACDdecision(df):
     df['MACD_diff']= ta.trend.macd_diff(df.Close)
     df['MACD']= ta.trend.macd(df.Close)
     df['MACD_signal']=ta.trend.macd_signal(df.Close)
-    df.loc[(df.MACD_diff>0) & (df.MACD_diff.shift(1)<0),'Dec_MACD']='Buy'
-    df.loc[(df.MACD_diff<0) & (df.MACD_diff.shift(1)>0),'Dec_MACD']='Sell'
+    #df.loc[(df.MACD_diff>0) & (df.MACD_diff.shift(1)<0),'Dec_MACD']='Buy'
+    #df.loc[(df.MACD_diff<0) & (df.MACD_diff.shift(1)>0),'Dec_MACD']='Sell'
+    df.loc[(df.MACD_diff>0),'Dec_MACD']='Buy'
+    df.loc[(df.MACD_diff<0),'Dec_MACD']='Sell'
     df.loc[(df.MACD_diff.shift(1)<df.MACD_diff),'Trend MACD']='Buy'
     df.loc[(df.MACD_diff.shift(1)>df.MACD_diff),'Trend MACD']='Sell'
 
