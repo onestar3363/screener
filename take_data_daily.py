@@ -386,8 +386,8 @@ for name, frame,framew in zip(names,framelist,framelistw):
                 #   #and (frame['Close'].iloc[-h]<frame['sup4'].iloc[-h] or frame['Close'].iloc[-h]<frame['sup6'].iloc[-h])\
                 #            sira +=1
                 #            expander('emasuper')
-                   if (frame['Consolidating'].iloc[-h]=='Yes' and frame['Consolidating2'].iloc[-h]=='Yes' and frame['Consolidating3'].iloc[-h]=='Yes')\
-                    and (frame['Trend MACD'].iloc[-1]=='Sell' and frame['Dec_MACD'].iloc[-1]=='Sell'):
+                   if (frame['Consolidating'].iloc[-h]=='Yes' and frame['Consolidating2'].iloc[-h]=='Yes' and frame['Consolidating3'].iloc[-h]=='Yes'):
+                    #and (frame['Trend MACD'].iloc[-1]=='Sell' and frame['Dec_MACD'].iloc[-1]=='Sell'):
                     #and frame['ADX'].iloc[-1]<frame['ADX'].iloc[-2]\
                     #and frame['Close'].iloc[-h]<frame['sup2'].iloc[-h]<frame['sup4'].iloc[-h]<frame['sup6'].iloc[-h]\
                     #and frame['Decision ADX'].iloc[-h]=='Buy':
