@@ -352,8 +352,8 @@ for name, frame,framew in zip(names,framelist,framelistw):
                     #        expander('emasuper')
                     if (frame['Consolidating'].iloc[-h]=='Yes' or frame['Consolidating2'].iloc[-h]=='Yes' or frame['Consolidating3'].iloc[-h]=='Yes')\
                      and frame['Close'].iloc[-1]>frame['sup2'].iloc[-1]\
-                     and frame['Dec_EMA50'].iloc[-h]=='Buy':
-                     #and frame['Trend MACD'].iloc[-1]=='Buy'\
+                     and frame['Dec_EMA50'].iloc[-h]=='Buy'\
+                     and frame['Dec_MACD'].iloc[-1]=='Buy':
                      #and frame['ADX'].iloc[-1]<frame['ADX'].iloc[-2]\   
                      #and frame['Close'].iloc[-h]>frame['sup2'].iloc[-h]>frame['sup4'].iloc[-h]>frame['sup6'].iloc[-h]\
                      #and frame['Decision ADX'].iloc[-h]=='Buy':                    
