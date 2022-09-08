@@ -350,7 +350,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                     ##and frame['EMA20'].iloc[-h]<frame['EMA50'].iloc[-h]\
                     #        sira +=1
                     #        expander('emasuper')
-                    if (frame['Consolidating'].iloc[-h]=='Yes' or frame['Consolidating2'].iloc[-h]=='Yes' or frame['Consolidating3'].iloc[-h]=='Yes')\                     
+                    if (frame['Consolidating'].iloc[-h]=='Yes' or frame['Consolidating2'].iloc[-h]=='Yes' or frame['Consolidating3'].iloc[-h]=='Yes')\
                      and frame['Close'].iloc[-1]>frame['sup2'].iloc[-1]\
                      and frame['Dec_EMA50'].iloc[-h]=='Buy':
                      #and frame['Trend MACD'].iloc[-1]=='Buy'\
