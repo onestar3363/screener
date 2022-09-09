@@ -384,8 +384,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
             #(framew['Trend MACD'].iloc[-1]=='Sell' or framew['Dec_EMA50'].iloc[-1]=='Sell'):
                 if option2 == 'EMASUPER':
                    if (frame['Decision Super2'].iloc[-h]=='Sell' or frame['Decision Super'].iloc[-h]=='Sell' or frame['EMA50_cross'].iloc[-h]=='Sell')\
-                   or frame['EMA20_cross'].iloc[-h]=='Sell'\
-                   and frame['EMA50'].iloc[-1]<frame['EMA200'].iloc[-1]:
+                   or frame['EMA20_cross'].iloc[-h]=='Sell':
                    #and frame['Dec_EMA50'].iloc[-h]=='Sell':
                    #and (frame['Close'].iloc[-h]<frame['sup4'].iloc[-h] or frame['Close'].iloc[-h]<frame['sup6'].iloc[-h])\
                             sira +=1
