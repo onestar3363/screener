@@ -329,6 +329,7 @@ option2 = st.sidebar.selectbox("Which Indicator?", ('EMASUPER','Consolidating','
 adx_value= st.sidebar.number_input('ADX Value',min_value=10,value=15)
 adx_value2= st.sidebar.number_input('ADX Value_ust',min_value=10,value=50)
 h=st.sidebar.number_input('Geçmiş',value=1)
+h1=int(h)
 riskvalue=st.sidebar.number_input('Risk',min_value=1,value=1000)
 option3=st.sidebar.text_input('Ticker','Enter Ticker Name')
 fark=st.sidebar.number_input('Fark',min_value=1.0,value=5.0,step=0.5)
@@ -347,7 +348,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                     if (frame['Decision Super2'].iloc[-1]=='Buy'\
                     or frame['EMA50_cross'].iloc[-1]=='Buy' or frame['Decision Super'].iloc[-1]=='Buy')\
                     and frame['Close'].iloc[-1]>frame['EMA200'].iloc[-1]\
-                    and frame['Dec_EMA50'].iloc[-h]=='Buy':
+                    and frame['Dec_EMA50'].iloc[-h1]=='Buy':
                     #and (frame['Close'].iloc[-h]>frame['sup6'].iloc[-h] or frame['Close'].iloc[-h]>frame['sup4'].iloc[-h]):
                     #and frame['EMA20'].iloc[-h]<frame['EMA50'].iloc[-h]\
                             sira +=1
@@ -360,10 +361,10 @@ for name, frame,framew in zip(names,framelist,framelistw):
                     #and frame['EMA20'].iloc[-h]<frame['EMA50'].iloc[-h]\
                             sira +=1
                             expander('pullback')                          
-                    elif (frame['Consolidating'].iloc[-h]=='Yes' or frame['Consolidating2'].iloc[-h]=='Yes' or frame['Consolidating3'].iloc[-h]=='Yes')\
+                    elif (frame['Consolidating'].iloc[-h1]=='Yes' or frame['Consolidating2'].iloc[-h1]=='Yes' or frame['Consolidating3'].iloc[-h1]=='Yes')\
                      and frame['Close'].iloc[-1]>frame['sup2'].iloc[-1]\
                      and frame['Close'].iloc[-1]>frame['EMA200'].iloc[-1]\
-                     and frame['Dec_EMA50'].iloc[-h]=='Buy'\
+                     and frame['Dec_EMA50'].iloc[-h1]=='Buy'\
                      and frame['Dec_MACD'].iloc[-1]=='Buy':
                      #and frame['ADX'].iloc[-1]<frame['ADX'].iloc[-2]\   
                      #and frame['Close'].iloc[-h]>frame['sup2'].iloc[-h]>frame['sup4'].iloc[-h]>frame['sup6'].iloc[-h]\
@@ -394,13 +395,13 @@ for name, frame,framew in zip(names,framelist,framelistw):
             #(framew['Trend MACD'].iloc[-1]=='Sell' or framew['Dec_EMA50'].iloc[-1]=='Sell'):
                 if option2 == 'EMASUPER':
                    if (frame['Decision Super2'].iloc[-h]=='Sell' or frame['EMA50_cross'].iloc[-h]=='Sell')\
-                   or frame['EMA20_cross'].iloc[-h]=='Sell'\
-                   and frame['Dec_EMA50'].iloc[-h]=='Sell':
+                   or frame['EMA20_cross'].iloc[-h1]=='Sell'\
+                   and frame['Dec_EMA50'].iloc[-h1]=='Sell':
                    #and (frame['Close'].iloc[-h]<frame['sup4'].iloc[-h] or frame['Close'].iloc[-h]<frame['sup6'].iloc[-h])\
                             sira +=1
                             expander('breakout')
                    elif framew['Close'].iloc[-1]<framew['sup4'].iloc[-1]\
-                    and (frame['Decision Super2'].iloc[-h]=='Sell2')\
+                    and (frame['Decision Super2'].iloc[-h1]=='Sell2')\
                     and frame['Dec_EMA50'].iloc[-h]=='Sell':
                    #and (frame['Close'].iloc[-h]<frame['sup4'].iloc[-h] or frame['Close'].iloc[-h]<frame['sup6'].iloc[-h])\
                             sira +=1
