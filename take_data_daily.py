@@ -345,18 +345,18 @@ for name, frame,framew in zip(names,framelist,framelistw):
             #or framew['Trend MACD'].iloc[-1]=='Buy'
            
                 if option2 == 'EMASUPER':
-                    if (frame['Decision Super2'].iloc[-1]=='Buy'\
-                    or frame['EMA50_cross'].iloc[-1]=='Buy' or frame['Decision Super'].iloc[-1]=='Buy')\
-                    and frame['Close'].iloc[-1]>frame['EMA200'].iloc[-1]:
-                    #and frame['Dec_EMA50'].iloc[-h1]=='Buy':
+                    if (frame['Decision Super2'].iloc[-h1]=='Buy'\
+                    or frame['EMA50_cross'].iloc[-h1]=='Buy' or frame['Decision Super'].iloc[-h1]=='Buy')\
+                    and frame['Close'].iloc[-h1]>frame['EMA200'].iloc[-h1]\
+                    and frame['Dec_EMA50'].iloc[-h1]=='Buy':
                     #and (frame['Close'].iloc[-h]>frame['sup6'].iloc[-h] or frame['Close'].iloc[-h]>frame['sup4'].iloc[-h]):
                     #and frame['EMA20'].iloc[-h]<frame['EMA50'].iloc[-h]\
                             sira +=1
                             expander('breakout')
-                    elif (frame['Decision Super2'].iloc[-1]=='Buy2' or frame['Decision Super3'].iloc[-1]=='Buy2'\
-                    or frame['EMA50_cross'].iloc[-1]=='Buy2' or frame['EMA20_cross'].iloc[-1]=='Buy2')\
-                    and frame['Close'].iloc[-1]>frame['EMA200'].iloc[-1]\
-                    and frame['Dec_EMA50'].iloc[-1]=='Buy':
+                    elif (frame['Decision Super2'].iloc[-h1]=='Buy2' or frame['Decision Super3'].iloc[-h1]=='Buy2'\
+                    or frame['EMA50_cross'].iloc[-h1]=='Buy2' or frame['EMA20_cross'].iloc[-h1]=='Buy2')\
+                    and frame['Close'].iloc[-h1]>frame['EMA200'].iloc[-h1]\
+                    and frame['Dec_EMA50'].iloc[-h1]=='Buy':
                     #and (frame['Close'].iloc[-1]>frame['sup6'].iloc[-h] or frame['Close'].iloc[-1]>frame['sup4'].iloc[-1]):
                     #and frame['EMA20'].iloc[-h]<frame['EMA50'].iloc[-h]\
                             sira +=1
