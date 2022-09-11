@@ -366,7 +366,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                      and frame['Close'].iloc[-h1]>frame['EMA200'].iloc[-h1]\
                      and frame['Dec_EMA50'].iloc[-h1]=='Buy'\
                      and frame['Dec_MACD'].iloc[-h1]=='Buy':
-                     #and frame['ADX'].iloc[-1]<frame['ADX'].iloc[-2]\   
+                     and frame['ADX'].iloc[-h1]>frame['ADX'].iloc[-(h1+1)]\   
                      #and frame['Close'].iloc[-h]>frame['sup2'].iloc[-h]>frame['sup4'].iloc[-h]>frame['sup6'].iloc[-h]\
                      #and frame['Decision ADX'].iloc[-h]=='Buy':                    
                             sira +=1
