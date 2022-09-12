@@ -358,7 +358,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                             sira +=1
                             expander('pullback')                          
                    elif (frame['Consolidating'].iloc[-h1]=='Yes' and frame['Consolidating2'].iloc[-h1]=='Yes' and frame['Consolidating3'].iloc[-h1]=='Yes')\
-                    and frame['EMA20'].iloc[-h1]>frame['EMA50'].iloc[-h1]\
+                    and frame['EMA20'].iloc[-h1]>frame['EMA50'].iloc[-h1]:
                      #and frame['ADX'].iloc[-h1]>frame['ADX'].iloc[-(h1+1)]:
                      #and frame['Close'].iloc[-h]>frame['sup2'].iloc[-h]>frame['sup4'].iloc[-h]>frame['sup6'].iloc[-h]\
                      #and frame['Decision ADX'].iloc[-h]=='Buy':                    
