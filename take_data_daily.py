@@ -341,8 +341,8 @@ for name, frame,framew in zip(names,framelist,framelistw):
         #and frame['RISK'].iloc[-1]<=riskvalue:
             
             if option1 == 'Buy' and (frame['Close'].iloc[-1]>frame['sup2'].iloc[-1]\
-            or framew['Close'].iloc[-1]>framew['sup4'].iloc[-1] or framew['Close'].iloc[-1]>framew['sup6'].iloc[-1]):
-            #or framew['Trend MACD'].iloc[-1]=='Buy'
+            or framew['Close'].iloc[-1]>framew['sup4'].iloc[-1] or framew['Close'].iloc[-1]>framew['sup6'].iloc[-1])\
+            and framew['Trend MACD'].iloc[-1]=='Buy':
            
                 if option2 == 'EMASUPER':
                    if frame['EMA50_cross'].iloc[-h1]=='Buy'\
