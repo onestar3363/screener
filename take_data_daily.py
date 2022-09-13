@@ -340,12 +340,11 @@ for name, frame,framew in zip(names,framelist,framelistw):
         if  len(frame)>30 and len(framew)>30 and frame['ADX'].iloc[-1]>=adx_value and frame['ADX'].iloc[-1]<=adx_value2:
         #and frame['RISK'].iloc[-1]<=riskvalue:
             
-            if option1 == 'Buy' and (framew['Close'].iloc[-1]>framew['sup2'].iloc[-1]\
-            or framew['Close'].iloc[-1]>framew['sup4'].iloc[-1] or framew['Close'].iloc[-1]>framew['sup6'].iloc[-1]):
+            if option1 == 'Buy' and (framew['Close'].iloc[-1]>framew['sup2'].iloc[-1]):
            
                 if option2 == 'EMASUPER':
                    if (frame['EMA50_cross'].iloc[-h1]=='Buy' or frame['EMA20_cross'].iloc[-h1]=='Buy')\
-                    and (frame['Dec_EMA50'].iloc[-h1]=='Buy' and frame['Dec_EMA200'].iloc[-h1]=='Buy'):
+                    and frame['Dec_EMA50'].iloc[-h1]=='Buy' and frame['Dec_EMA200'].iloc[-h1]=='Buy':
                     #and (frame['Close'].iloc[-h]>frame['sup6'].iloc[-h] or frame['Close'].iloc[-h]>frame['sup4'].iloc[-h]):
                     #and frame['EMA20'].iloc[-h]<frame['EMA50'].iloc[-h]\
                             sira +=1
@@ -390,13 +389,15 @@ for name, frame,framew in zip(names,framelist,framelistw):
                 if option2 == 'EMASUPER':
                    if (frame['Decision Super2'].iloc[-h1]=='Sell' or frame['EMA50_cross'].iloc[-h1]=='Sell')\
                    or frame['EMA20_cross'].iloc[-h1]=='Sell'\
-                   and frame['Dec_EMA50'].iloc[-h1]=='Sell':
+                   and frame['Dec_EMA50'].iloc[-h1]=='Sell'\
+                   and frame['Dec_EMA200'].iloc[-h1]=='Sell':
                    #and (frame['Close'].iloc[-h]<frame['sup4'].iloc[-h] or frame['Close'].iloc[-h]<frame['sup6'].iloc[-h])\
                             sira +=1
                             expander('breakout')
                    elif framew['Close'].iloc[-1]<framew['sup4'].iloc[-1]\
                     and (frame['Decision Super2'].iloc[-h1]=='Sell2')\
-                    and frame['Dec_EMA50'].iloc[-h1]=='Sell':
+                    and frame['Dec_EMA50'].iloc[-h1]=='Sell'\
+                    and frame['Dec_EMA200'].iloc[-h1]=='Sell':
                    #and (frame['Close'].iloc[-h]<frame['sup4'].iloc[-h] or frame['Close'].iloc[-h]<frame['sup6'].iloc[-h])\
                             sira +=1
                             expander('pullback')                        
