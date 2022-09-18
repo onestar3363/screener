@@ -326,7 +326,7 @@ def expander(cond):
 sira=0
 option1 = st.sidebar.selectbox("Buy or Sell",('Buy','Sell')) 
 option2 = st.sidebar.selectbox("Which Indicator?", ('EMASUPER','Consolidating','Increasing','Index','EMA50','Supertrend','EMA20','MACD','ADX','EMA200'))
-adx_value= st.sidebar.number_input('ADX Value',min_value=10,value=15)
+adx_value= st.sidebar.number_input('ADX Value',min_value=10,value=20)
 adx_value2= st.sidebar.number_input('ADX Value_ust',min_value=10,value=50)
 h=st.sidebar.number_input('Geçmiş',value=1)
 h1=int(h)
