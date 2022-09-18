@@ -412,14 +412,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                     and frame['Dec_EMA50'].iloc[-h1]=='Sell':
                    #and (frame['Close'].iloc[-h]<frame['sup4'].iloc[-h] or frame['Close'].iloc[-h]<frame['sup6'].iloc[-h])\
                             sira +=1
-                            expander('pullback')
-                   elif (framew['Decision Super2'].iloc[-h1]=='Sell2' or framew['Decision Super3'].iloc[-h1]=='Sell2'\
-                    or framew['EMA50_cross'].iloc[-h1]=='Sell2' or framew['EMA20_cross'].iloc[-h1]=='Sell2')\
-                    and framew['Dec_EMA50'].iloc[-h1]=='Sell':
-                    #and (frame['Close'].iloc[-1]>frame['sup6'].iloc[-h] or frame['Close'].iloc[-1]>frame['sup4'].iloc[-1]):
-                    #and frame['EMA20'].iloc[-h]<frame['EMA50'].iloc[-h]\
-                            sira +=1
-                            expander('week pullback')                         
+                            expander('pullback')         
                    #elif (frame['Consolidating'].iloc[-h1]=='Yes' and frame['Consolidating2'].iloc[-h1]=='Yes' and frame['Consolidating3'].iloc[-h1]=='Yes')\
                    # and frame['Dec_EMA50'].iloc[-h1]=='Sell'\
                    # and frame['Close'].iloc[-h1]<frame['sup4'].iloc[-h1]<frame['sup6'].iloc[-h1]:
