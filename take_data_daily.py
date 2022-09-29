@@ -392,12 +392,12 @@ for name, frame,framew in zip(names,framelist,framelistw):
                     #        sira +=1
                     #        expander('surekli atak')                            
             if option1 == 'Sell' and (framew['Trend MACD'].iloc[-1]=='Sell' and (framew['Dec_EMA50'].iloc[-1]=='Sell'or framew['Dec_EMA20'].iloc[-1]=='Sell'\
-            or framew['Close'].iloc[-1]<framew['sup2'].iloc[-1])):
+            or framew['Close'].iloc[-1]<framew['sup2'].iloc[-1] or framew['Close'].iloc[-1]<framew['sup4'].iloc[-1])):
             #(framew['Dec_EMA50'].iloc[-1]=='Sell'):
             #(framew['Trend MACD'].iloc[-1]=='Sell' or framew['Dec_EMA50'].iloc[-1]=='Sell'):
                 if option2 == 'EMASUPER':
-                   if (frame['Decision Super2'].iloc[-h1]=='Sell' or frame['EMA50_cross'].iloc[-h1]=='Sell')\
-                   and frame['Dec_EMA50'].iloc[-h1]=='Sell':
+                   if (frame['Decision Super2'].iloc[-h1]=='Sell' or frame['EMA50_cross'].iloc[-h1]=='Sell'):
+                   #and frame['Dec_EMA50'].iloc[-h1]=='Sell':
                    #and (frame['Close'].iloc[-h]<frame['sup4'].iloc[-h] or frame['Close'].iloc[-h]<frame['sup6'].iloc[-h])\
                             sira +=1
                             expander('breakout')
