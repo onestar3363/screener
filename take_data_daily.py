@@ -366,7 +366,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                             expander('pullback')                          
                    elif (frame['Consolidating2'].iloc[-h1]=='Yes' and frame['Consolidating3'].iloc[-h1]=='Yes')\
                     and frame['Close'].iloc[-h1]>frame['EMA50'].iloc[-h1]\
-                    and frame['Close'].iloc[-h1]>frame['sup2'].iloc[-h1]>frame['sup4'].iloc[-h1]>frame['sup6'].iloc[-h1]:
+                    #and frame['Close'].iloc[-h1]>frame['sup2'].iloc[-h1]>frame['sup4'].iloc[-h1]>frame['sup6'].iloc[-h1]:
                      #and frame['ADX'].iloc[-h1]>frame['ADX'].iloc[-(h1+1)]:
                      #and frame['Close'].iloc[-h]>frame['sup2'].iloc[-h]>frame['sup4'].iloc[-h]>frame['sup6'].iloc[-h]\
                      #and frame['Decision ADX'].iloc[-h]=='Buy':                    
