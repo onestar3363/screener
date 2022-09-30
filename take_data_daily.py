@@ -349,14 +349,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                     #and (frame['Close'].iloc[-h]>frame['sup6'].iloc[-h] or frame['Close'].iloc[-h]>frame['sup4'].iloc[-h]):
                     #and frame['EMA20'].iloc[-h]<frame['EMA50'].iloc[-h]\
                             sira +=1
-                            expander('breakout')
-                   elif (framew['EMA50_cross'].iloc[-h1]=='Buy' or framew['Decision Super2'].iloc[-h1]=='Buy' or  framew['Decision Super'].iloc[-h1]=='Buy'\
-                    or  framew['Decision Super3'].iloc[-h1]=='Buy' or framew['EMA20_cross'].iloc[-h1]=='Buy')\
-                    and framew['Dec_EMA50'].iloc[-h1]=='Buy':
-                    #and (frame['Close'].iloc[-h]>frame['sup6'].iloc[-h] or frame['Close'].iloc[-h]>frame['sup4'].iloc[-h]):
-                    #and frame['EMA20'].iloc[-h]<frame['EMA50'].iloc[-h]\
-                            sira +=1
-                            expander('week breakout')                            
+                            expander('breakout')                          
                    elif (frame['Decision Super2'].iloc[-h1]=='Buy2' or frame['Decision Super3'].iloc[-h1]=='Buy2'\
                     or frame['EMA50_cross'].iloc[-h1]=='Buy2' or frame['EMA20_cross'].iloc[-h1]=='Buy2')\
                     and frame['Dec_EMA200'].iloc[-h1]=='Buy':
