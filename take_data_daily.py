@@ -360,7 +360,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                             sira +=1
                             expander('pullback')                          
                    elif (frame['Consolidating2'].iloc[-h1]=='Yes' and frame['Consolidating3'].iloc[-h1]=='Yes'):
-                    #and frame['Close'].iloc[-h1]>frame['EMA20'].iloc[-h1]:
+                    and frame['Close'].iloc[-h1]>frame['sup2'].iloc[-h1]:
                     #and frame['Close'].iloc[-h1]>frame['sup2'].iloc[-h1]>frame['sup4'].iloc[-h1]>frame['sup6'].iloc[-h1]:
                      #and frame['ADX'].iloc[-h1]>frame['ADX'].iloc[-(h1+1)]:
                      #and frame['Close'].iloc[-h]>frame['sup2'].iloc[-h]>frame['sup4'].iloc[-h]>frame['sup6'].iloc[-h]\
@@ -405,7 +405,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                             sira +=1
                             expander('pullback')         
                    elif (frame['Consolidating2'].iloc[-h1]=='Yes' and frame['Consolidating3'].iloc[-h1]=='Yes'):
-                    #and frame['Dec_EMA20'].iloc[-h1]=='Sell'\
+                    and frame['Close'].iloc[-h1]<frame['sup2'].iloc[-h1]\
                     #and frame['Close'].iloc[-h1]<frame['sup4'].iloc[-h1]<frame['sup6'].iloc[-h1]:
                     #and frame['EMA50'].iloc[-1]<frame['EMA200'].iloc[-1]\
                     #and frame['Dec_MACD'].iloc[-1]=='Sell':
