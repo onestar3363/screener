@@ -340,7 +340,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
         if  len(frame)>30 and len(framew)>30 and frame['ADX'].iloc[-1]>=adx_value and frame['ADX'].iloc[-1]<=adx_value2:
         #and frame['RISK'].iloc[-1]<=riskvalue:
             
-            if option1 == 'Buy' and  (framew['Trend MACD'].iloc[-1]=='Buy' or framew['Dec_MACD'].iloc[-1]=='Buy')\
+            if option1 == 'Buy' and  (framew['Trend MACD'].iloc[-1]=='Buy')\
             and (framew['Consolidating2'].iloc[-h1]=='Yes' and framew['Consolidating3'].iloc[-h1]=='Yes'): 
             #and (framew['Trend MACD'].iloc[-1]=='Buy' and (framew['Dec_EMA50'].iloc[-1]=='Buy'or framew['Dec_EMA20'].iloc[-1]=='Buy'\
             #or framew['Close'].iloc[-1]>framew['sup2'].iloc[-1] or framew['Close'].iloc[-1]>framew['sup4'].iloc[-1])):
@@ -386,7 +386,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                     # and frame['sup2'].iloc[-h]>frame['sup2'].iloc[-(h+1)]:
                     #        sira +=1
                     #        expander('surekli atak')                            
-            if option1 == 'Sell' and (framew['Trend MACD'].iloc[-1]=='Sell' or framew['Dec_MACD'].iloc[-1]=='Sell')\
+            if option1 == 'Sell' and (framew['Trend MACD'].iloc[-1]=='Sell')\
             and (framew['Consolidating2'].iloc[-h1]=='Yes' and framew['Consolidating3'].iloc[-h1]=='Yes'):
             #(framew['Dec_EMA50'].iloc[-1]=='Sell'or framew['Dec_EMA20'].iloc[-1]=='Sell'\
             #or framew['Close'].iloc[-1]<framew['sup2'].iloc[-1] or framew['Close'].iloc[-1]<framew['sup4'].iloc[-1] or framew['Dec_MACD'].iloc[-1]=='Sell')):
