@@ -387,7 +387,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                     #        sira +=1
                     #        expander('surekli atak')                            
             if option1 == 'Sell' and (framew['Dec_EMA50'].iloc[-1]=='Sell' or framew['Dec_EMA20'].iloc[-1]=='Sell')\
-            framew['Trend MACD'].iloc[-1]=='Sell':
+            and framew['Trend MACD'].iloc[-1]=='Sell':
             #and (framew['Consolidating2'].iloc[-h1]=='Yes' and framew['Consolidating3'].iloc[-h1]=='Yes'):
             #(framew['Dec_EMA50'].iloc[-1]=='Sell'or framew['Dec_EMA20'].iloc[-1]=='Sell'\
             #or framew['Close'].iloc[-1]<framew['sup2'].iloc[-1] or framew['Close'].iloc[-1]<framew['sup4'].iloc[-1] or framew['Dec_MACD'].iloc[-1]=='Sell')):
