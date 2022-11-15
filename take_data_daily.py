@@ -369,7 +369,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                    #and (frame['Close'].iloc[-1]>frame['sup6'].iloc[-h] or frame['Close'].iloc[-1]>frame['sup4'].iloc[-1]):
                             sira +=1
                             expander('pullback')   
-                   elif (framew['Decision Super2'].iloc[-2]=='Buy2' or framew['Decision Super3'].iloc[-2]=='Buy2'\
+                   elif (framew['Decision Super2'].iloc[-2]=='Buy2' or framew['Decision Super3'].iloc[-2]=='Buy2')\
                    and (framew['Dec_EMA50'].iloc[-2]=='Buy' or framew['Dec_EMA20'].iloc[-2]=='Buy'):
                    #or framew['EMA50_cross'].iloc[-2]=='Buy2' or framew['EMA20_cross'].iloc[-2]=='Buy2')\
                    #and framew['Dec_EMA200'].iloc[-h1]=='Buy':
