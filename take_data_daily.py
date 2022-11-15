@@ -354,7 +354,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                    #and (frame['Close'].iloc[-h1]>frame['sup6'].iloc[-h1] or frame['Close'].iloc[-h1]>frame['sup4'].iloc[-h1])\
                             sira +=1
                             expander('breakout')
-                   elif (frame['EMA50_cross'].iloc[-h1]=='Buy' or frame['EMA20_cross'].iloc[-h1]=='Buy')\
+                   elif (frame['EMA50_cross'].iloc[-2]=='Buy' or frame['EMA20_cross'].iloc[-2]=='Buy')\
                    and framew['Dec_MACD'].iloc[-2]=='Buy':
                    #and (framew['Dec_EMA50'].iloc[-2]=='Buy' or framew['Dec_EMA20'].iloc[-2]=='Buy')\
                    #and (frame['Dec_EMA200'].iloc[-h1]=='Buy')
