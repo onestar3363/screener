@@ -403,16 +403,16 @@ for name, frame,framew in zip(names,framelist,framelistw):
                    #and (frame['Close'].iloc[-h]<frame['sup4'].iloc[-h] or frame['Close'].iloc[-h]<frame['sup6'].iloc[-h])\
                             sira +=1
                             expander('breakout')
-                   elif (framew['Decision Super'].iloc[-2]=='Sell' or framew['Decision Super3'].iloc[-2]=='Sell'):
-                   #and (framew['Dec_EMA50'].iloc[-2]=='Sell' or framew['Dec_EMA20'].iloc[-2]=='Sell')
-                   #and (framew['Close'].iloc[-2]<framew['sup4'].iloc[-2] or framew['Close'].iloc[-2]<framew['sup6'].iloc[-2])\
-                            sira +=1
-                            expander('weak breakout')
-                   elif (framew['Decision Super'].iloc[-2]=='Sell2' or framew['Decision Super3'].iloc[-2]=='Sell2')\
-                   and (framew['Dec_EMA50'].iloc[-2]=='Sell' or framew['Dec_EMA20'].iloc[-2]=='Sell'):
-                   #and (framew['Close'].iloc[-h]<framew['sup4'].iloc[-h] or framew['Close'].iloc[-h]<framew['sup6'].iloc[-h])
-                            sira +=1
-                            expander('week pullback')
+                   #elif (framew['Decision Super'].iloc[-2]=='Sell' or framew['Decision Super3'].iloc[-2]=='Sell'):
+                   ##and (framew['Dec_EMA50'].iloc[-2]=='Sell' or framew['Dec_EMA20'].iloc[-2]=='Sell')
+                   ##and (framew['Close'].iloc[-2]<framew['sup4'].iloc[-2] or framew['Close'].iloc[-2]<framew['sup6'].iloc[-2])\
+                   #         sira +=1
+                   #         expander('weak breakout')
+                   #elif (framew['Decision Super'].iloc[-2]=='Sell2' or framew['Decision Super3'].iloc[-2]=='Sell2')\
+                   #and (framew['Dec_EMA50'].iloc[-2]=='Sell' or framew['Dec_EMA20'].iloc[-2]=='Sell'):
+                   ##and (framew['Close'].iloc[-h]<framew['sup4'].iloc[-h] or framew['Close'].iloc[-h]<framew['sup6'].iloc[-h])
+                   #         sira +=1
+                   #         expander('week pullback')
                    #if (frame['Consolidating2'].iloc[-h1]=='Yes' and frame['Consolidating3'].iloc[-h1]=='Yes')\
                     #and (frame['Trend MACD'].iloc[-1]=='Sell'):
                     #and frame['Close'].iloc[-h1]<frame['sup4'].iloc[-h1]<frame['sup6'].iloc[-h1]:
