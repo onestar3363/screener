@@ -399,13 +399,13 @@ for name, frame,framew in zip(names,framelist,framelistw):
             #(framew['Dec_EMA50'].iloc[-1]=='Sell'):
             #(framew['Trend MACD'].iloc[-1]=='Sell' or framew['Dec_EMA50'].iloc[-1]=='Sell'):
                 if option2 == 'EMASUPER':
-                   if (frame['Decision Super2'].iloc[-h1]=='Sell'\
-                   or frame['Decision Super3'].iloc[-h1]=='Sell')\
-                   and (frame['Dec_EMA50'].iloc[-h1]=='Sell' or frame['Dec_EMA20'].iloc[-h1]=='Sell') :
-                   #and (frame['Close'].iloc[-h]<frame['sup4'].iloc[-h] or frame['Close'].iloc[-h]<frame['sup6'].iloc[-h])\
-                            sira +=1
-                            expander('breakout')
-                   elif (framew['Decision Super2'].iloc[-2]=='Sell' or framew['Decision Super3'].iloc[-2]=='Sell')\
+                   #if (frame['Decision Super2'].iloc[-h1]=='Sell'\
+                   #or frame['Decision Super3'].iloc[-h1]=='Sell')\
+                   #and (frame['Dec_EMA50'].iloc[-h1]=='Sell' or frame['Dec_EMA20'].iloc[-h1]=='Sell') :
+                   ##and (frame['Close'].iloc[-h]<frame['sup4'].iloc[-h] or frame['Close'].iloc[-h]<frame['sup6'].iloc[-h])\
+                   #         sira +=1
+                   #         expander('breakout')
+                   if (framew['Decision Super2'].iloc[-2]=='Sell' or framew['Decision Super3'].iloc[-2]=='Sell')\
                    and (framew['Dec_EMA50'].iloc[-2]=='Sell' or framew['Dec_EMA20'].iloc[-2]=='Sell')\
                    and framew['Close'].iloc[-2]>framew['Close'].iloc[-1]:
                             sira +=1
