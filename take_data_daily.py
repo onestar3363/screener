@@ -406,7 +406,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                    #and (frame['Close'].iloc[-h]<frame['sup4'].iloc[-h] or frame['Close'].iloc[-h]<frame['sup6'].iloc[-h])\
                             sira +=1
                             expander('breakout')
-                   elif (framew['Decision Super'].iloc[-2]=='Sell' or framew['Decision Super3'].iloc[-2]=='Sell'):
+                   elif (framew['Decision Super'].iloc[-2]=='Sell' or framew['Decision Super3'].iloc[-2]=='Sell')\
                    and framew['Dec_MACD'].iloc[-2]=='Sell'\
                    and framew['Close'].iloc[-2]>framew['Close'].iloc[-1]:
                             sira +=1
