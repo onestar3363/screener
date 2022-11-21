@@ -412,8 +412,8 @@ for name, frame,framew in zip(names,framelist,framelistw):
                             expander('weak breakout')
                    elif (framew['Decision Super2'].iloc[-2]=='Sell2' or framew['Decision Super3'].iloc[-2]=='Sell2'\
                    or framew['EMA50_cross'].iloc[-2]=='Sell2' or framew['EMA20_cross'].iloc[-2]=='Sell2')\
-                   and (framew['Dec_EMA50'].iloc[-2]=='Sell' or framew['Dec_EMA20'].iloc[-2]=='Sell')\
                    and framew['Close'].iloc[-2]>framew['Close'].iloc[-1]:
+                   #and (framew['Dec_EMA50'].iloc[-2]=='Sell' or framew['Dec_EMA20'].iloc[-2]=='Sell')\
                             sira +=1
                             expander('week pullback')
                    #if (frame['Consolidating2'].iloc[-h1]=='Yes' and frame['Consolidating3'].iloc[-h1]=='Yes')\
