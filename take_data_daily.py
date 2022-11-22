@@ -418,7 +418,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                             expander('week pullback')                     
                    elif (frame['Decision Super2'].iloc[-h1-1]=='Sell2' or frame['Decision Super3'].iloc[-h1-1]=='Sell2'\
                    or frame['EMA50_cross'].iloc[-h1-1]=='Sell2')\
-                   and (frame['Dec_EMA50'].iloc[-h1-1]=='Sell' or frame['Dec_EMA20'].iloc[-h1-1]=='Sell')\
+                   and (frame['Dec_EMA50'].iloc[-h1-1]=='Sell' or frame['Dec_EMA20'].iloc[-h1-1]=='Sell' or frame['Dec_EMA200'].iloc[-h1-1]=='Sell' )\
                    and frame['Close'].iloc[-2]>frame['Close'].iloc[-1]:
                    #and frame['Dec_MACD'].iloc[-h1]=='Buy':
                    #and (frame['Close'].iloc[-1]>frame['sup6'].iloc[-h] or frame['Close'].iloc[-1]>frame['sup4'].iloc[-1]):
