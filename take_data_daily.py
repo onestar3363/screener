@@ -383,7 +383,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                    elif (frame['Consolidating2'].iloc[-h1]=='Yes' and frame['Consolidating3'].iloc[-h1]=='Yes')\
                    and (frame['Dec_EMA50'].iloc[-h1]=='Buy' or frame['Dec_EMA20'].iloc[-h1]=='Buy')\
                    and frame['Dec_MACD'].iloc[-h1]=='Buy'\
-                   and frame['Close'].iloc[-h1]>frame['sup2'].iloc[-h1]\
+                   and frame['Close'].iloc[-h1]>frame['Close'].iloc[-h1-1]\
                    and frame['Dec_EMA200'].iloc[-h1]=='Buy':
                    #and (frame['Close'].iloc[-h1]>frame['sup2'].iloc[-h1] >frame['sup4'].iloc[-h1] >frame['sup6'].iloc[-h1])\
                    #and frame['Close'].iloc[-h1]>frame['sup2'].iloc[-h1]>frame['sup4'].iloc[-h1]>frame['sup6'].iloc[-h1]:
@@ -392,17 +392,17 @@ for name, frame,framew in zip(names,framelist,framelistw):
                    #and frame['Decision ADX'].iloc[-h]=='Buy':                    
                             sira +=1
                             expander('consolidating')                             
-                   elif (frame['Close'].iloc[-h1]>frame['sup2'].iloc[-h1]>frame['sup4'].iloc[-h1] >frame['sup6'].iloc[-h1])\
-                   and (frame['Dec_EMA50'].iloc[-h1]=='Buy' or frame['Dec_EMA20'].iloc[-h1]=='Buy')\
-                   and frame['Close'].iloc[-h1]>frame['Close'].iloc[-h1-1]\
-                   and frame['Dec_MACD'].iloc[-h1]=='Buy'\
-                   and frame['Dec_EMA200'].iloc[-h1]=='Buy':
-                   #and frame['Close'].iloc[-h1]>frame['sup2'].iloc[-h1]>frame['sup4'].iloc[-h1]>frame['sup6'].iloc[-h1]:
-                   #and frame['ADX'].iloc[-h1]>frame['ADX'].iloc[-(h1+1)]:
-                   #and frame['Close'].iloc[-h]>frame['sup2'].iloc[-h]>frame['sup4'].iloc[-h]>frame['sup6'].iloc[-h]\
-                   #and frame['Decision ADX'].iloc[-h]=='Buy':                    
-                            sira +=1
-                            expander('cosku')                          
+                   #elif (frame['Close'].iloc[-h1]>frame['sup2'].iloc[-h1]>frame['sup4'].iloc[-h1] >frame['sup6'].iloc[-h1])\
+                   #and (frame['Dec_EMA50'].iloc[-h1]=='Buy' or frame['Dec_EMA20'].iloc[-h1]=='Buy')\
+                   #and frame['Close'].iloc[-h1]>frame['Close'].iloc[-h1-1]\
+                   #and frame['Dec_MACD'].iloc[-h1]=='Buy'\
+                   #and frame['Dec_EMA200'].iloc[-h1]=='Buy':
+                   ##and frame['Close'].iloc[-h1]>frame['sup2'].iloc[-h1]>frame['sup4'].iloc[-h1]>frame['sup6'].iloc[-h1]:
+                   ##and frame['ADX'].iloc[-h1]>frame['ADX'].iloc[-(h1+1)]:
+                   ##and frame['Close'].iloc[-h]>frame['sup2'].iloc[-h]>frame['sup4'].iloc[-h]>frame['sup6'].iloc[-h]\
+                   ##and frame['Decision ADX'].iloc[-h]=='Buy':                    
+                   #         sira +=1
+                   #         expander('cosku')                          
             if option1 == 'Sell' and (framew['Dec_EMA50'].iloc[-2]=='Sell' or framew['Dec_EMA20'].iloc[-2]=='Sell'\
             or framew['Close'].iloc[-2]<framew['sup2'].iloc[-2] or framew['Trend MACD'].iloc[-2]=='Sell'):
             #and (framew['Consolidating2'].iloc[-h1]=='Yes' and framew['Consolidating3'].iloc[-h1]=='Yes'):
