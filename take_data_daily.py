@@ -149,9 +149,9 @@ def Supertrend(df):
     df.loc[(df.sup5==-1)&(df.sup5.shift(1)==1), 'Decision Super3'] = 'Sell' 
 
     
-    df.loc[(df.sup2 == df.sup2.shift(2)), 'Consolidating'] = 'Yes'
-    df.loc[(df.sup4 == df.sup4.shift(2)), 'Consolidating2'] = 'Yes'
-    df.loc[(df.sup6 == df.sup6.shift(2)), 'Consolidating3'] = 'Yes'
+    df.loc[(df.sup2 == df.sup2.shift(1)), 'Consolidating'] = 'Yes'
+    df.loc[(df.sup4 == df.sup4.shift(1)), 'Consolidating2'] = 'Yes'
+    df.loc[(df.sup6 == df.sup6.shift(1)), 'Consolidating3'] = 'Yes'
 def ATR_decision(df):
     df['ATR']= ta.volatility.average_true_range(df.High, df.Low, df.Close,window=10)
     df['ATR%'] = df['ATR']/df.Close*100
@@ -381,11 +381,11 @@ for name, frame,framew in zip(names,framelist,framelistw):
                    #and (frame['Close'].iloc[-1]>frame['sup6'].iloc[-h] or frame['Close'].iloc[-1]>frame['sup4'].iloc[-1]):
                             sira +=1
                             expander('pullback')
-                   #elif (frame['Consolidating2'].iloc[-h1]=='Yes' or frame['Consolidating3'].iloc[-h1]=='Yes')\
-                   #and (frame['Dec_EMA50'].iloc[-h1]=='Buy'and frame['Dec_EMA20'].iloc[-h1]=='Buy')\
-                   #and frame['Close'].iloc[-h1]/frame['EMA50'].iloc[-h1]<1+(3*frame['ATR%'].iloc[-h1]/100)\
-                   #and frame['Dec_EMA200'].iloc[-h1]=='Buy'\
-                   #and frame['Close'].iloc[-h1]>frame['sup2'].iloc[-h1]:
+                   elif (frame['Consolidating2'].iloc[-h1]=='Yes' and frame['Consolidating3'].iloc[-h1]=='Yes')\
+                   and (frame['Dec_EMA50'].iloc[-h1]=='Buy'and frame['Dec_EMA20'].iloc[-h1]=='Buy')\
+                   and (frame['Close'].iloc[-h1]>frame['sup2'].iloc[-h1] >frame['sup4'].iloc[-h1] >frame['sup6'].iloc[-h1])\
+                   and frame['Close'].iloc[-h1]/frame['EMA50'].iloc[-h1]<1+(3*frame['ATR%'].iloc[-h1]/100)\
+                   and frame['Dec_EMA200'].iloc[-h1]=='Buy'\
                    #and frame['Dec_MACD'].iloc[-h1]=='Buy'\
                    #and frame['Close'].iloc[-h1]>frame['Close'].iloc[-h1-1]\
                    #and (frame['Close'].iloc[-h1]>frame['sup2'].iloc[-h1] >frame['sup4'].iloc[-h1] >frame['sup6'].iloc[-h1])\
@@ -393,8 +393,8 @@ for name, frame,framew in zip(names,framelist,framelistw):
                    #and frame['ADX'].iloc[-h1]>frame['ADX'].iloc[-(h1+1)]:
                    #and frame['Close'].iloc[-h]>frame['sup2'].iloc[-h]>frame['sup4'].iloc[-h]>frame['sup6'].iloc[-h]\
                    #and frame['Decision ADX'].iloc[-h]=='Buy':                    
-                            #sira +=1
-                            #expander('consolidating')                             
+                            sira +=1
+                            expander('consolidating')                             
                    #elif (frame['Close'].iloc[-h1]>frame['sup2'].iloc[-h1]>frame['sup4'].iloc[-h1] >frame['sup6'].iloc[-h1])\
                    #and (frame['Dec_EMA50'].iloc[-h1]=='Buy' or frame['Dec_EMA20'].iloc[-h1]=='Buy')\
                    #and frame['Close'].iloc[-h1]>frame['Close'].iloc[-h1-1]\
