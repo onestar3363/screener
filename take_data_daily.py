@@ -382,7 +382,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                    #and (frame['Close'].iloc[-1]>frame['sup6'].iloc[-h] or frame['Close'].iloc[-1]>frame['sup4'].iloc[-1]):
                             sira +=1
                             expander('pullback')
-                   elif (frame['Consolidating2'].iloc[-h1]=='Yes' and frame['Consolidating3'].iloc[-h1]=='Yes')\
+                   elif (frame['Consolidating'].iloc[-h1]=='Yes' and frame['Consolidating2'].iloc[-h1]=='Yes' and frame['Consolidating3'].iloc[-h1]=='Yes')\
                    and (frame['Dec_EMA50'].iloc[-h1]=='Buy'and frame['Dec_EMA20'].iloc[-h1]=='Buy')\
                    and (frame['Close'].iloc[-h1]>frame['sup2'].iloc[-h1] >frame['sup4'].iloc[-h1] >frame['sup6'].iloc[-h1])\
                    and frame['Close'].iloc[-h1]/frame['EMA20'].iloc[-h1]<1+(frame['ATR%'].iloc[-h1]/100)\
