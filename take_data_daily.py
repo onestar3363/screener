@@ -364,14 +364,14 @@ for name, frame,framew in zip(names,framelist,framelistw):
                    #and (frame['Close'].iloc[-h1]>frame['sup6'].iloc[-h1] or frame['Close'].iloc[-h1]>frame['sup4'].iloc[-h1])\
                             sira +=1
                             expander('week breakout')                    
-                   elif (framew['Decision Super'].iloc[-2]=='Buy2' or framew['Decision Super2'].iloc[-2]=='Buy2' or framew['Decision Super3'].iloc[-2]=='Buy2'\
-                   or framew['EMA50_cross'].iloc[-2]=='Buy2' or framew['EMA20_cross'].iloc[-2]=='Buy2')\
-                   and (framew['Dec_EMA50'].iloc[-2]=='Buy' or framew['Dec_EMA20'].iloc[-2]=='Buy')\
-                   and framew['Close'].iloc[-1]>framew['Close'].iloc[-2]:
-                   #and frame['Dec_MACD'].iloc[-h1]=='Buy':
-                   #and (frame['Close'].iloc[-1]>frame['sup6'].iloc[-h] or frame['Close'].iloc[-1]>frame['sup4'].iloc[-1]):
-                            sira +=1
-                            expander('week pullback')                             
+                   #elif (framew['Decision Super'].iloc[-2]=='Buy2' or framew['Decision Super2'].iloc[-2]=='Buy2' or framew['Decision Super3'].iloc[-2]=='Buy2'\
+                   #or framew['EMA50_cross'].iloc[-2]=='Buy2' or framew['EMA20_cross'].iloc[-2]=='Buy2')\
+                   #and (framew['Dec_EMA50'].iloc[-2]=='Buy' or framew['Dec_EMA20'].iloc[-2]=='Buy')\
+                   #and framew['Close'].iloc[-1]>framew['Close'].iloc[-2]:
+                   ##and frame['Dec_MACD'].iloc[-h1]=='Buy':
+                   ##and (frame['Close'].iloc[-1]>frame['sup6'].iloc[-h] or frame['Close'].iloc[-1]>frame['sup4'].iloc[-1]):
+                   #         sira +=1
+                   #         expander('week pullback')                             
                    elif (frame['Decision Super2'].iloc[-h1-1]=='Buy2' or frame['Decision Super3'].iloc[-h1-1]=='Buy2'\
                    or frame['EMA50_cross'].iloc[-h1]=='Buy2' or frame['EMA20_cross'].iloc[-h1]=='Buy2' or frame['EMA200_cross'].iloc[-h1]=='Buy2')\
                    and (frame['Dec_EMA50'].iloc[-h1]=='Buy' or frame['Dec_EMA20'].iloc[-h1]=='Buy')\
