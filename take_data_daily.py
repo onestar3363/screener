@@ -283,17 +283,24 @@ def get_figures(frame,r):
          line=dict(color='orange', width=1)
         ), row=2, col=1)
     
-    fig.add_trace(go.Scatter(x=frame['Date'].tail(r),
-         y=frame['ADX'].tail(r),
-         line=dict(color='black', width=1)
+    #fig.add_trace(go.Scatter(x=frame['Date'].tail(r),
+    #     y=frame['ADX'].tail(r),
+    #     line=dict(color='black', width=1)
+    #    ), row=3, col=1)
+    #fig.add_trace(go.Scatter(x=frame['Date'].tail(r),
+    #     y=frame['ADX_pos'].tail(r),
+    #     line=dict(color='green', width=1)
+    #    ), row=3, col=1)
+    #fig.add_trace(go.Scatter(x=frame['Date'].tail(r),
+    #     y=frame['ADX_neg'].tail(r),
+    #     line=dict(color='red', width=1)
+    #    ), row=3, col=1)
+    fig.add_trace(go.Bar(x=frame['Date'].tail(r), 
+     y=frame['Volume'].tail(r)
         ), row=3, col=1)
     fig.add_trace(go.Scatter(x=frame['Date'].tail(r),
-         y=frame['ADX_pos'].tail(r),
-         line=dict(color='green', width=1)
-        ), row=3, col=1)
-    fig.add_trace(go.Scatter(x=frame['Date'].tail(r),
-         y=frame['ADX_neg'].tail(r),
-         line=dict(color='red', width=1)
+         y=frame['Volume_EMA'].tail(r),
+         line=dict(color='orange', width=2)
         ), row=3, col=1)
     fig.update_layout( height=600, width=1200,
         showlegend=False, xaxis_rangeslider_visible=False)
