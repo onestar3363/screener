@@ -332,7 +332,7 @@ def expander(cond):
            col2.plotly_chart(figw,use_container_width=True)
 sira=0
 option1 = st.sidebar.selectbox("Buy or Sell",('Buy','Sell')) 
-option2 = st.sidebar.selectbox("Which Indicator?", ('breakout','pullback','consolidating','week','Index','EMA50','Supertrend','EMA20','MACD','ADX','EMA200'))
+option2 = st.sidebar.selectbox("Which Indicator?", ('breakout','pullback','consolidating','week','EMASUPER','Index','EMA50','Supertrend','EMA20','MACD','ADX','EMA200'))
 adx_value= st.sidebar.number_input('ADX Value',min_value=10,value=18)
 adx_value2= st.sidebar.number_input('ADX Value_ust',min_value=10,value=60)
 h=st.sidebar.number_input('Geçmiş',value=1)
