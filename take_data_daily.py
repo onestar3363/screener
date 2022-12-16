@@ -458,8 +458,8 @@ for name, frame,framew in zip(names,framelist,framelistw):
                    #and frame['ADX'].iloc[-1]<frame['ADX'].iloc[-2]\
                    #and frame['Decision ADX'].iloc[-h]=='Buy':
                    #and frame['Dec_EMA50'].iloc[-1]=='Sell'
-                           #sira +=1
-                           #expander('consolidating')                         
+                           sira +=1
+                           expander('consolidating')                         
         if option2 == 'Index' and name in indices:
                 sira +=1
                 expander()
