@@ -433,7 +433,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                 #   ##and (frame['Close'].iloc[-h]<frame['sup4'].iloc[-h] or frame['Close'].iloc[-h]<frame['sup6'].iloc[-h])\
                 #   #         sira +=1
                 #   #         expander('breakout')
-                if option2 == 'week':  
+                if option2 == 'week':
                    if (framew['Decision Super2'].iloc[-2]=='Sell' or framew['Decision Super3'].iloc[-2]=='Sell')\
                    and (framew['Dec_EMA50'].iloc[-2]=='Sell' or framew['Dec_EMA20'].iloc[-2]=='Sell')\
                    and framew['Close'].iloc[-2]>framew['Close'].iloc[-1]:
@@ -445,7 +445,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                    #and (framew['Dec_EMA50'].iloc[-2]=='Sell' or framew['Dec_EMA20'].iloc[-2]=='Sell')\
                             sira +=1
                             expander('week pullback')                     
-                if option2=='pullback':   
+                if option2=='pullback':
                    if (frame['Decision Super2'].iloc[-h1-1]=='Sell2' or frame['Decision Super3'].iloc[-h1-1]=='Sell2'\
                    or frame['EMA50_cross'].iloc[-h1-1]=='Sell2' or frame['EMA20_cross'].iloc[-h1-1]=='Sell2')\
                    and (frame['Dec_EMA50'].iloc[-h1]=='Sell' or frame['Dec_EMA20'].iloc[-h1]=='Sell' or frame['Dec_EMA200'].iloc[-h1]=='Sell' )\
@@ -454,7 +454,7 @@ for name, frame,framew in zip(names,framelist,framelistw):
                    #and (frame['Close'].iloc[-1]>frame['sup6'].iloc[-h] or frame['Close'].iloc[-1]>frame['sup4'].iloc[-1]):
                             sira +=1
                             expander('pullback')
-                 if option2=='consolidating':  
+                 if option2=='consolidating':
                    if (frame['Consolidating2'].iloc[-h1]=='Yes' and frame['Consolidating3'].iloc[-h1]=='Yes')\
                    and frame['Close'].iloc[-h1]>frame['sup4'].iloc[-h1]>frame['sup6'].iloc[-h1]\
                    and frame['Dec_EMA20'].iloc[-1]=='Sell'\
