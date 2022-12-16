@@ -397,8 +397,8 @@ for name, frame,framew in zip(names,framelist,framelistw):
                    and (frame['Dec_EMA50'].iloc[-h1]=='Buy'and frame['Dec_EMA20'].iloc[-h1]=='Buy')\
                    and (frame['Close'].iloc[-h1]>frame['sup4'].iloc[-h1] >frame['sup6'].iloc[-h1])\
                    and frame['Dec_EMA200'].iloc[-h1]=='Buy'\
-                   and frame['MACD'].iloc[-h1]>frame['MACD'].iloc[-h1-1]\
-                   and frame['Dec_MACD'].iloc[-h1]=='Buy':
+                   and frame['MACD'].iloc[-h1]>frame['MACD'].iloc[-h1-1]:
+                   #and frame['Dec_MACD'].iloc[-h1]=='Buy':
                    #and frame['Close'].iloc[-h1]/frame['EMA20'].iloc[-h1]<1+(frame['ATR%'].iloc[-h1]/100)\
                    #and frame['Close'].iloc[-h1]>frame['Close'].iloc[-h1-1]\
                    #and (frame['Close'].iloc[-h1]>frame['sup2'].iloc[-h1] >frame['sup4'].iloc[-h1] >frame['sup6'].iloc[-h1])\
